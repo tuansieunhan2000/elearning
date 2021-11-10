@@ -4,15 +4,17 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { courseService } from "../../Services";
 import { FETCH_DETAIL_COURCE } from "../../Redux/Types";
+import { fetchDetailCourse } from "../../Redux/Actions/courseAction";
 
 export default function DetailScreen() {
     const dispatch = useDispatch();
-    const detailCourse = useSelector((state) => state.course.courseDetail);
+    const detailCourse = useSelector((state) => state.course.courseDetail) || {
+        hinhAnh:"",
+        ngayTao:""
+    };
     console.log(detailCourse);
     useEffect(() => {
-        courseService.DetailCourse.then((res) => {
-            dispatch(FETCH_DETAIL_COURCE, res.data);
-        }).catch((err) => console.log(err));
+        dispatch(fetchDetailCourse());
     }, []);
     return (
         <div className="card border-primary">

@@ -1,5 +1,3 @@
-// async action
-
 import { createAction } from ".";
 import { courseService } from "../../Services";
 import { FETCH_COURSE } from "../Types";

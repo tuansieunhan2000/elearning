@@ -4,7 +4,6 @@ import CourseItem from "../../Components/CourseItem";
 import { fetchCourse } from "../../Redux/Actions/userAction";
 
 export default function HomeScreen() {
-
     const course = useSelector((state) => state.course.course);
     console.log("course", course);
 
