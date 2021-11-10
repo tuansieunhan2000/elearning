@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CourseItem from "../../Components/CourseItem";
-import { courseService } from "../../Services";
+import { fetchCourse } from "../../Redux/Actions/userAction";
+
 export default function HomeScreen() {
-    //Get counter from counterReducer
+
     const course = useSelector((state) => state.course.course);
     console.log("course", course);
 
     //Use for all the dispatch actions
     const dispatch = useDispatch();
     useEffect(() => {
-        courseService.AllCourse.then((res) =>
-            dispatch({
-                type: "FETCH_COURSE",
-                payload: res.data,
-            })
-        ).catch((err) => console.log(err));
+        dispatch(fetchCourse());
     }, []);
     return (
         <div>

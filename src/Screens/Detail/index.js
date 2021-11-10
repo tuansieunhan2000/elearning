@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { courseService } from "../../Services";
+import { FETCH_DETAIL_COURCE } from "../../Redux/Types";
 
 export default function DetailScreen() {
     const dispatch = useDispatch();
@@ -10,10 +11,7 @@ export default function DetailScreen() {
     console.log(detailCourse);
     useEffect(() => {
         courseService.DetailCourse.then((res) => {
-            dispatch({
-                type: "FETCH_DETAIL_COURCE",
-                payload: res.data,
-            });
+            dispatch(FETCH_DETAIL_COURCE, res.data);
         }).catch((err) => console.log(err));
     }, []);
     return (

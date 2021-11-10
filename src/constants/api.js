@@ -1,4 +1,4 @@
-const API = process.env.API_BASE;
+const API = "https://elearning0706.cybersoft.edu.vn/api/";
 
 const API_COURSE = "QuanLyKhoaHoc/";
 const API_USER = "QuanLyNguoiDung/";
