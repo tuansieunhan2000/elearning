@@ -1,23 +1,20 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { API_GET_DETAIL_COURSES } from "../../constants/api";
+
 import { useDispatch, useSelector } from "react-redux";
+import { courseService } from "../../Services";
+
 export default function DetailScreen() {
     const dispatch = useDispatch();
     const detailCourse = useSelector((state) => state.course.courseDetail);
     console.log(detailCourse);
     useEffect(() => {
-        axios({
-            method: "GET",
-            url: API_GET_DETAIL_COURSES + "?maKhoaHoc=0.6300311755302548",
-        })
-            .then((res) => {
-                dispatch({
-                    type: "FETCH_DETAIL_COURCE",
-                    payload: res.data,
-                });
-            })
-            .catch((err) => console.log(err));
+        courseService.DetailCourse.then((res) => {
+            dispatch({
+                type: "FETCH_DETAIL_COURCE",
+                payload: res.data,
+            });
+        }).catch((err) => console.log(err));
     }, []);
     return (
         <div className="card border-primary">

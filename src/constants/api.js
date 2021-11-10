@@ -1,4 +1,9 @@
-const API = "https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/";
+const API = process.env.API_BASE;
 
-export const API_GET_COURSES = API + "LayDanhSachKhoaHoc";
-export const API_GET_DETAIL_COURSES = API + "LayThongTinKhoaHoc";
+const API_COURSE = "QuanLyKhoaHoc/";
+const API_USER = "QuanLyNguoiDung/";
+
+export const API_COURSES = API + API_COURSE + "LayDanhSachKhoaHoc";
+export const API_DETAIL_COURSES = API + API_COURSE + "LayThongTinKhoaHoc";
+
+export const API_REGISTER_USER = API + API_USER + "DangKy";

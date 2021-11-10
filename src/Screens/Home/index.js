@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import CourseItem from "../../Components/CourseItem";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { API_GET_COURSES } from "../../constants/api";
+import CourseItem from "../../Components/CourseItem";
+import { courseService } from "../../Services";
 export default function HomeScreen() {
     //Get counter from counterReducer
     const course = useSelector((state) => state.course.course);
@@ -11,17 +10,12 @@ export default function HomeScreen() {
     //Use for all the dispatch actions
     const dispatch = useDispatch();
     useEffect(() => {
-        axios({
-            method: "GET",
-            url: API_GET_COURSES,
-        })
-            .then((res) =>
-                dispatch({
-                    type: "FETCH_COURSE",
-                    payload: res.data,
-                })
-            )
-            .catch((err) => console.log(err));
+        courseService.AllCourse.then((res) =>
+            dispatch({
+                type: "FETCH_COURSE",
+                payload: res.data,
+            })
+        ).catch((err) => console.log(err));
     }, []);
     return (
         <div>
