@@ -30,20 +30,20 @@ export default function Header() {
                                 to="/"
                                 className="nav-link"
                             >
-                                Home
+                                Trang chủ
                             </NavLink>
                         </li>
                     </ul>
                     <div className="d-flex">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink to="/signin" className="nav-link">
-                                    Sign In
+                                <NavLink to="/signup" className="nav-link">
+                                    Đăng kí
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/" className="nav-link">
-                                    Sign Up
+                                <NavLink to="/signin" className="nav-link">
+                                    Đăng nhập
                                 </NavLink>
                             </li>
                         </ul>

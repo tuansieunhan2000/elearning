@@ -1,18 +1,15 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import axios from "axios";
-import { API_REGISTER_USER } from "../../constants/api";
-import { userSer, userService } from "../../Services";
+import { register } from "../../Redux/Actions/userAction";
 import { signUpUserSchema } from "../../Services/UserService";
 
 export default function SignUpScreen() {
     const handleSubmit = (value) => {
-        console.log(value);
-        userService.SignUp.then((res) => console.log(res)).catch((err) => console.log(err));
+        register(value);
     };
     return (
         <div className="w-50 mx-auto">
-            <h4 className="text-center display-4">Sign up</h4>
+            <h4 className="text-center display-4">Đăng kí</h4>
             <Formik
                 initialValues={{
                     taiKhoan: "",

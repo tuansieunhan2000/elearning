@@ -1,2 +1,3 @@
 export const FETCH_DETAIL_COURCE = "FETCH_DETAIL_COURCE";
 export const FETCH_COURSE = "FETCH_COURSE";
+export const GET_USER_LOGIN = "GET_USER_LOGIN";

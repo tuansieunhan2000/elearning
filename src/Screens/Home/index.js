@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CourseItem from "../../Components/CourseItem";
-import { fetchCourse } from "../../Redux/Actions/userAction";
+import { fetchCourse } from "../../Redux/Actions/courseAction";
 
 export default function HomeScreen() {
     const course = useSelector((state) => state.course.course);

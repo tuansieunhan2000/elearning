@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { courseService } from "../../Services";
 import { FETCH_DETAIL_COURCE } from "../../Redux/Types";
 import { fetchDetailCourse } from "../../Redux/Actions/courseAction";
+import { useParams } from "react-router";
 
 export default function DetailScreen() {
     const dispatch = useDispatch();
     const detailCourse = useSelector((state) => state.course.courseDetail) || {
-        hinhAnh:"",
-        ngayTao:""
+        hinhAnh: "",
+        ngayTao: "",
     };
     console.log(detailCourse);
+    let { id } = useParams();
     useEffect(() => {
-        dispatch(fetchDetailCourse());
+        dispatch(fetchDetailCourse(id));
     }, []);
     return (
         <div className="card border-primary">

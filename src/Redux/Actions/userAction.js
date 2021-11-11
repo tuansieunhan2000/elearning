@@ -1,12 +1,19 @@
 import { createAction } from ".";
-import { courseService } from "../../Services";
-import { FETCH_COURSE } from "../Types";
+import { userService } from "../../Services";
+import { GET_USER_LOGIN } from "../Types";
 
-export const fetchCourse = () => {
+export const register = (value) => {
+    userService
+        .SignUp(value)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+};
+
+export const login = () => {
     return (dispatch) => {
-        courseService
-            .AllCourse()
-            .then((res) => dispatch(createAction(FETCH_COURSE, res.data)))
+        userService
+            .SignIn()
+            .then((res) => dispatch(createAction(GET_USER_LOGIN, res.data)))
             .catch((err) => console.log(err));
     };
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_REGISTER_USER } from "../constants/api";
+import { API_LOGIN_USER, API_REGISTER_USER } from "../constants/api";
 import * as yup from "yup";
 
 export const signUpUserSchema = yup.object().shape({
@@ -13,13 +13,17 @@ export const signUpUserSchema = yup.object().shape({
     maNhom: yup.string(),
     email: yup.string().required("Vui lòng nhập tài khoản").email("Email Không hợp lệ"),
 });
+
+export const signInUserSchema = yup.object().shape({
+    taiKhoan: yup.string().required("Vui lòng nhập tài khoản"),
+    matKhau: yup.string().required("Vui lòng nhập mật khẩu"),
+});
 export default function UserService() {}
 UserService.prototype = {
     SignUp(value) {
-        return axios({
-            method: "POST",
-            url: API_REGISTER_USER,
-            data: value,
-        });
+        return axios.post(API_REGISTER_USER, value);
+    },
+    SignIn(value) {
+        return axios.post(API_LOGIN_USER, value);
     },
 };
