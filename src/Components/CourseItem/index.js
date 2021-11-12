@@ -13,6 +13,7 @@ export default function CourseItem({ courseItem }) {
                 className="card-img-top"
                 style={{ width: "100%", height: "250px" }}
                 src={courseItem.hinhAnh}
+                alt={courseItem.hinhAnh}
             />
             <div className="card-body">
                 <h4 className="card-title">{limitDisplayName(courseItem.tenKhoaHoc)}</h4>

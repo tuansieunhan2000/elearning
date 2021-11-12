@@ -1,0 +1,47 @@
+.student{
+    h3{
+        padding-top: $pd-2;
+        color: $color-gray-3;
+        font-size: $fs-2;
+        font-weight: $fw-normal;
+    }
+    .card-title{
+        font-size: $fs-0;
+        font-weight: $fw-bold;
+        
+    }
+    .card-text{
+        font-size: $fs-1;
+        font-weight: $fw-normal;
+        color: $color-black-light;
+    }
+    .rating{
+        display: flex;
+        .ratingstar{
+            color: $color-yellow;
+        }
+        span:nth-child(2){
+            font-size: $fs-1;
+            color: $color-black-0;
+            font-weight: $fw-bold-0;
+        }
+        span:last-child{
+            font-size: $fs-1;
+            color: $color-black-0;
+            font-weight: $fw-normal;
+        }
+    }
+    .price{
+        text-align: right;
+        .old__price{
+            font-size: $fs-1;
+            color: $color-black-0;
+            font-weight: $fw-normal;
+        }
+        .new__price{
+            font-size: $fs-1;
+            color: $color-black-0;
+            font-weight: $fw-bold-0;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+// không chứa code css chỉ chứa đường dẫn tới các file con
+
+// helper
+@import './Helper/vairiable';
+@import './Helper/mixin';
+
+//Vendor
+//code thư viện
+
+//Base
+@import './Base/reset';
+@import './Base/customize';//đè code thư viện
+
+//Components
+@import './Components/button';
+
+//Layout
+
+//Page
+
+//Theme
+// @import './Theme/Dark/';
+// @import './Theme/Halloween/';

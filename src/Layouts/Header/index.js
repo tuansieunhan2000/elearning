@@ -1,55 +1,166 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import logo1 from "../../assets/img/logo-coral.svg";
+
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import "./main.scss";
 export default function Header() {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
-            <div className="container-fluid">
-                <NavLink activeStyle={{ color: "red" }} to="/" className="navbar-brand">
-                    E-learning
-                </NavLink>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
+    const userInfo = useSelector((state) => state.user.userInfo);
+    const category = useSelector((state) => state.category.category);
+    console.log(category);
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.href = "/";
+    };
+    const fetchCategory = (category) => {
+        return category.map((categoryItem) => {
+            return (
+                <Link
+                    className="dropdown-item"
+                    to={`/courselist/${categoryItem.maDanhMuc}`}
+                    key={categoryItem.maDanhMuc}
                 >
-                    <span className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <NavLink
-                                activeStyle={{
-                                    fontWeight: "bold",
-                                    color: "red",
-                                }}
-                                exact
+                    {categoryItem.tenDanhMuc}
+                </Link>
+            );
+        });
+    };
+    const fetchCategorySmallSreen = () => {
+        return (
+            <ul className="dropdown-submenu">
+                <li>
+                    <i className="fa fa-th iconLogoutDislaySmall ml-3"></i>Hạng mục
+                    <ul className="dropdown-submenu">{fetchCategory(category)}</ul>
+                </li>
+            </ul>
+        );
+    };
+    return (
+        <header>
+            <nav className="navbar navbar-expand-md d-flex justify-content-between flex-row px-4">
+                <div className="col-sm-1 d-md-none ">
+                    <div className="nav-item dropdown displayWhenSmallScreen ">
+                        <Link
+                            className="nav-link "
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            to=""
+                        >
+                            <i className="fa fa-bars" />
+                        </Link>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {userInfo.taiKhoan ? (
+                                <>
+                                    <Link className="dropdown-item" to="">
+                                        {`Hi, ${
+                                            userInfo.hoTen.length > 20
+                                                ? userInfo.hoTen.substring(0, 15) + "..."
+                                                : userInfo.hoTen
+                                        }`}
+                                    </Link>
+                                    {fetchCategorySmallSreen()}
+                                    <Link className="dropdown-item" onClick={logout} to="">
+                                        <i className="fas fa-sign-out-alt iconLogoutDislaySmall"></i>
+                                        Đăng xuất
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    {fetchCategorySmallSreen()}
+                                    <Link to="/signin" className="dropdown-item">
+                                        <i className="fas fa-sign-in-alt iconLogoutDislaySmall"></i>
+                                        Đăng nhập
+                                    </Link>
+                                    <Link to="/signup" className="dropdown-item ">
+                                        <i className="fas fa-user-plus iconLogoutDislaySmall"></i>
+                                        Đăng kí
+                                    </Link>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className=" col-sm-11 col-md-12 col-lg-9 ">
+                    <div className="header__left d-flex justify-content-start flex-row align-items-start">
+                        <NavLink className="navbar-brand text-center" to="/">
+                            <img src={logo1} alt="logo" />
+                        </NavLink>
+                        <div className="nav-item dropdown Categories ">
+                            <Link
+                                className="nav-link "
                                 to="/"
-                                className="nav-link"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-expanded="false"
                             >
-                                Trang chủ
-                            </NavLink>
-                        </li>
-                    </ul>
-                    <div className="d-flex">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <NavLink to="/signup" className="nav-link">
-                                    Đăng kí
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink to="/signin" className="nav-link">
-                                    Đăng nhập
-                                </NavLink>
-                            </li>
+                                <i className="fa fa-th"></i>Category
+                            </Link>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {fetchCategory(category)}
+                            </div>
+                        </div>
+                        <form action className="form__search ml-5">
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Search for anything"
+                                    aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2"
+                                />
+                                <div className="input-group-append">
+                                    <span className="input-group-text" id="basic-addon2">
+                                        <i className="fa fa-search" />
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div className=" col-lg-3 d-none d-md-block d-flex justify-content-between flex-row-reverse">
+                    <div className="header__right  d-md-none d-lg-block">
+                        <ul className="navbar-nav d-flex align-items-center flex-row-reverse">
+                            {userInfo.taiKhoan ? (
+                                <>
+                                    <li className="nav-item">
+                                        <NavLink to="/" className="navlink logout" onClick={logout}>
+                                            <i className="fas fa-sign-out-alt"></i>
+                                            Đăng xuất
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink to="/" className="navlink nameUser">
+                                            {`Hi, ${
+                                                userInfo.hoTen.length > 20
+                                                    ? userInfo.hoTen.substring(0, 15) + "..."
+                                                    : userInfo.hoTen
+                                            }`}
+                                        </NavLink>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className="nav-item">
+                                        <NavLink to="/signin" className="navlink signIn">
+                                            Đăng nhập
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink to="/signup" className="navlink signUp">
+                                            Đăng kí
+                                        </NavLink>
+                                    </li>
+                                </>
+                            )}
                         </ul>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     );
 }

@@ -1,9 +1,20 @@
-import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Login } from "../../Redux/Actions/userAction";
 import { signInUserSchema } from "../../Services/UserService";
+
 export default function SignInScreen() {
-    const handleSubmit = (value) => {
-        console.log(value);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const handleLogin = (value) => {
+        dispatch(Login(value))
+            .then(() => {
+                console.log(1);
+                history.push("/");
+            })
+            .catch(() => {});
     };
     return (
         <div className="w-50 mx-auto">
@@ -14,7 +25,7 @@ export default function SignInScreen() {
                     matKhau: "",
                 }}
                 validationSchema={signInUserSchema}
-                onSubmit={handleSubmit}
+                onSubmit={(value) => handleLogin(value)}
                 render={(formikProps) => (
                     <Form>
                         <div className="form-group">

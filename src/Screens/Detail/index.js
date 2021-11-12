@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-import axios from "axios";
-
 import { useDispatch, useSelector } from "react-redux";
-import { courseService } from "../../Services";
-import { FETCH_DETAIL_COURCE } from "../../Redux/Types";
-import { fetchDetailCourse } from "../../Redux/Actions/courseAction";
 import { useParams } from "react-router";
+import { fetchDetailCourse } from "../../Redux/Actions/courseAction";
 
 export default function DetailScreen() {
     const dispatch = useDispatch();
@@ -13,17 +9,18 @@ export default function DetailScreen() {
         hinhAnh: "",
         ngayTao: "",
     };
-    console.log(detailCourse);
+
     let { id } = useParams();
     useEffect(() => {
         dispatch(fetchDetailCourse(id));
-    }, []);
+    }, [id, dispatch]);
     return (
         <div className="card border-primary">
             <img
                 className="card-img-top"
                 style={{ width: "300px", height: "250px" }}
                 src={detailCourse.hinhAnh}
+                alt={detailCourse.hinhAnh}
             />
             <div className="card-body">
                 <h4 className="card-title">Ngay tao: {detailCourse.ngayTao}</h4>

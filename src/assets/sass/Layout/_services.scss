@@ -1,0 +1,29 @@
+.services{
+    background-color: $color-gray-5;
+    margin-top: $mg-1;
+    height: 200px;
+    padding: $pd-2;
+    .card{
+        border: none;
+        background-color: $color-gray-5;
+        .card-body{
+            display: flex;
+            background-color: $color-white-0;
+            height: 150px;
+            box-shadow: 0 2px 8px 2px rgba(20, 23, 28 ,0.1);
+            .service_para{
+                margin-left: $mg-1;
+                
+                p:first-child{
+                    font-size: $fs-2;
+                    font-weight: $fw-bold-0;
+                    padding-top: -20px;
+                }
+                p:last-child{
+                    font-size: $fs-0;
+                    color: $color-gray-2;
+                }
+            }
+        }
+    }
+}

@@ -24,6 +24,8 @@ UserService.prototype = {
         return axios.post(API_REGISTER_USER, value);
     },
     SignIn(value) {
+        console.log("from axios");
+
         return axios.post(API_LOGIN_USER, value);
     },
 };

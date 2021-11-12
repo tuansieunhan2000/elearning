@@ -1,0 +1,29 @@
+@mixin styleText($color,$fs,$fw) {
+    color: $color;
+    font-size: $fs ;
+    font-weight: $fw;
+}
+@mixin button($color, $bg-color, $pd-top-bottom,$pd-right-left,$bg-color-hover) {
+    color: $color;
+    background-color: $bg-color;
+    padding: $pd-top-bottom $pd-right-left;
+    &:hover{
+        background-color: $bg-color-hover;
+    } 
+}
+// $screen: chứa tên màn hình
+@mixin responsive($screen) {
+    //$screen: small;
+    @if(map-has-key($map:$breakpoints , $key:$screen )){
+        // đúng tên màn hình
+        //lấy giá trị màn hình theo tên
+        $value: map-get($map:$breakpoints, $key:$screen );
+        @media screen and (max-width:$value){
+            @content;
+            
+        }
+    }
+    @else{
+        @warn "Màn hình không tồn tại";
+    }
+}

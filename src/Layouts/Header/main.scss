@@ -1,0 +1,191 @@
+@import "../../assets/sass/main.scss";
+header {
+    @include styleText($color-black-light, $fs-1, $fw-normal);
+}
+.displayWhenSmallScreen {
+    li {
+        padding-left: 12px;
+    }
+    .dropdown-submenu {
+        padding: 0 0 0 5px;
+        .dropdown-item {
+            padding-left: 12px;
+            i {
+                padding-right: 10px;
+            }
+        }
+    }
+    .iconLogoutDislaySmall {
+        padding-right: 10px;
+    }
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+    #navbarDropdown {
+        color: $color-black-light;
+        margin-top: 4 px;
+
+        i {
+            margin-top: 3px;
+
+            font-size: 24px;
+        }
+    }
+}
+.header__left {
+    .navbar-brand {
+        img {
+            width: 110px;
+        }
+    }
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+    .Categories {
+        #navbarDropdown {
+            color: $color-black-light;
+            margin-top: 4 px;
+            i {
+                margin-top: 8px;
+                padding-right: 8px;
+            }
+        }
+    }
+    .form__search {
+        flex-grow: 10; //thêm vùng trống còn dư trong flex
+        .form-control {
+            padding: 10px;
+            background-color: $color-gray-1;
+            border: none;
+            transition: none;
+            font-size: $fs-1;
+            transition: all ease 0.5s;
+
+            &:focus {
+                box-shadow: none;
+                background-color: $color-white-0;
+                // border-top: 1px solid $color-gray-3;
+                // border-left: 1px solid $color-gray-3;
+                // border-bottom: 1px solid $color-gray-3;
+                padding: 9px;
+            }
+            &:value {
+                font-size: $fs-1;
+            }
+            &:focus + .input-group-append {
+                .input-group-text {
+                    background-color: $color-white-0;
+                    // border-top: 1px solid $color-gray-3;
+                    // border-right: 1px solid $color-gray-3;
+                    // border-bottom: 1px solid $color-gray-3;
+                }
+                &:hover {
+                    .input-group-text {
+                        background-color: $color-red-0;
+                        color: $color-white-0;
+                    }
+                }
+            }
+        }
+        .input-group-append {
+            .input-group-text {
+                border: none;
+                background-color: $color-gray-1;
+                color: $color-red-0;
+                padding: $pd-1 14px;
+                margin-left: 1px;
+                font-size: $fs-1;
+                &:hover {
+                    background-color: $color-red-0;
+                    color: $color-white-0;
+                }
+            }
+        }
+    }
+}
+.header__right {
+    .navbar-nav {
+        height: 39px;
+        .nav-item {
+            .navlink {
+                text-decoration: none;
+                color: $color-black-light;
+            }
+            .navlink.signUp {
+                padding: 10px;
+                text-decoration: none;
+                background-color: $color-white-0;
+                color: $color-black-light;
+                transition: all ease 0.2s;
+                margin-right: 10px;
+                &:hover {
+                    color: $color-black-light;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                }
+            }
+            .navlink.signIn {
+                padding: 10px;
+                text-decoration: none;
+                transition: all ease 0.2s;
+                background-color: $color-red-0;
+                color: $color-white-0;
+                &:hover {
+                    background-color: $color-red-2;
+                }
+            }
+            .navlink.nameUser {
+                padding: 10px;
+                text-decoration: none;
+                background-color: $color-white-0;
+                color: $color-black-light;
+            }
+            .navlink.logout {
+                line-height: height;
+                i {
+                    color: $color-black-light;
+                    font-size: 14px;
+                    margin-right: 4px;
+                }
+                padding: 10px;
+                text-decoration: none;
+                background-color: $color-white-0;
+                color: $color-black-light;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+//responsive
+.header__right {
+    //1200px
+    @include responsive("extra-large") {
+        .Bussiness,
+        .Teach {
+            display: none;
+        }
+    }
+    //768px
+    @include responsive("medium") {
+        .form__search {
+            display: none;
+        }
+    }
+}
+.header__left {
+    @include responsive("medium") {
+        .Categories {
+            display: none;
+        }
+    }
+    @include responsive("small") {
+        .navbar-brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form__search {
+            display: none;
+        }
+    }
+}

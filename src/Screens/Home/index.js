@@ -1,25 +1,26 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import CourseItem from "../../Components/CourseItem";
-import { fetchCourse } from "../../Redux/Actions/courseAction";
+import Banner from "../../Layouts/Banner";
 
 export default function HomeScreen() {
     const course = useSelector((state) => state.course.course);
+    const category = useSelector((state) => state.category.category);
+
     console.log("course", course);
+    console.log("category", category);
 
     //Use for all the dispatch actions
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchCourse());
-    }, []);
+
     return (
         <div>
+            <Banner />
             <h4 className="display-4 text-center">List Course</h4>
             <div className="container">
                 <div className="row">
                     {course.map((courseItem) => {
                         return (
-                            <div className="col-3">
+                            <div className="col-3" key={courseItem.maKhoaHoc}>
                                 <CourseItem courseItem={courseItem} />
                             </div>
                         );

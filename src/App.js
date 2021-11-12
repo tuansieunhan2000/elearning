@@ -1,21 +1,47 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { API_COURSES } from "./constants/api";
+import "./assets/sass/main.scss";
+import Header from "./Layouts/Header";
+import { createAction } from "./Redux/Actions";
+import { fetchCategory } from "./Redux/Actions/categoryAction";
+import { fetchCourse } from "./Redux/Actions/courseAction";
+import { GET_USER_LOGIN } from "./Redux/Types";
+import CourseList from "./Screens/CourseList";
 import DetailScreen from "./Screens/Detail";
 import HomeScreen from "./Screens/Home";
-import SignUpScreen from "./Screens/SignUp";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./Layouts/Header";
 import SignInScreen from "./Screens/SignIn";
+import SignUpScreen from "./Screens/SignUp";
+
 function App() {
+    const dispatch = useDispatch();
+    const getUserInfo = () => {
+        const userInfo = localStorage.getItem("userItem");
+        if (userInfo) {
+            dispatch(createAction(GET_USER_LOGIN, JSON.parse(userInfo)));
+        }
+    };
+    useEffect(() => {
+        getUserInfo();
+    });
+
+    useEffect(() => {
+        dispatch(fetchCourse());
+        dispatch(fetchCategory());
+    }, [dispatch]);
+
     return (
         <BrowserRouter>
             <Header />
-            <Routes>
-                <Route exact path="/" element={<HomeScreen />} />
-                <Route exact path="/detail/:id" element={<DetailScreen />} />
-                <Route exact path="/signup" element={<SignUpScreen />} />
-                <Route exact path="/signin" element={<SignInScreen />} />
-            </Routes>
+            <Switch>
+                <Route exact path="/" component={HomeScreen} />
+                <Route exact path="/detail/:id" component={DetailScreen} />
+                <Route exact path="/courselist/:type" component={CourseList} />
+
+                <Route exact path="/signup" component={SignUpScreen} />
+                <Route exact path="/signin" component={SignInScreen} />
+            </Switch>
         </BrowserRouter>
     );
 }

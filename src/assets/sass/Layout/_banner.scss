@@ -1,0 +1,55 @@
+.banner{
+    height: 350px;
+    background-color: $color-black-0;
+    .banner_content{
+        width: 95%;
+        margin: auto;
+    }
+     .banner_icon{
+         font-size: $fs-4;
+         color: $color-white-0;
+         padding-top: $pd-2 + 20;
+         text-align: center;
+     }
+     .banner_icon2{
+         padding-top: 40px;
+         
+     }
+     .banner_para{
+         color: $color-white-0;
+         text-align: center;
+         padding-top: $pd-1;
+     }
+}
+.banner_content{
+    @include responsive("large"){
+        .banner_icon{
+            display: none;
+        }
+        .banner_para{
+            width: 100%;
+            margin: auto;
+            padding-top: 35%;
+            text-align: center;
+            margin-left: 20%;
+        }
+    }
+    @include responsive("medium"){
+        .banner_para{
+            width: 100%;
+            margin: auto;
+            padding-top: 20%;
+            margin-left: 20%;
+            text-align: center;
+        }
+    }
+    @include responsive("small"){
+        .banner_para{
+            width: 100%;
+            margin: auto;
+            padding-top: 20%;
+            margin-left: 20%;
+            text-align: center;
+        }
+    }
+}

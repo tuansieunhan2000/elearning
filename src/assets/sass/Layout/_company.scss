@@ -1,0 +1,40 @@
+.company{
+    padding-top: 20px;
+    p{
+        color: $color-blue;
+    }
+    .dropdown{
+        text-align: right;
+        padding: 20px;
+    }
+}
+.company{
+    @include responsive("small"){
+        p{
+            display: none;
+        }
+        .dropdown{
+            text-align: center;
+        }
+    }
+}
+footer{
+    padding-top: 20px;
+    .footer_flex{
+        display: flex;
+        p{
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        a:nth-child(1){
+            padding-top: 20px;
+            padding-left: 380px;
+            
+        }
+        a:nth-child(2){
+            padding-top: 20px;
+            padding-left: 20px;
+            
+        }
+    }
+}

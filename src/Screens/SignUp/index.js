@@ -1,11 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { register } from "../../Redux/Actions/userAction";
 import { signUpUserSchema } from "../../Services/UserService";
 
 export default function SignUpScreen() {
-    const handleSubmit = (value) => {
-        register(value);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const handleRegister = (value) => {
+        dispatch(register(value))
+            .then(() => {
+                console.log(1231);
+                history.push("/signin");
+            })
+            .catch(() => {
+                console.log(123124);
+            });
     };
     return (
         <div className="w-50 mx-auto">
@@ -20,7 +31,7 @@ export default function SignUpScreen() {
                     email: "",
                 }}
                 validationSchema={signUpUserSchema}
-                onSubmit={handleSubmit}
+                onSubmit={(value) => handleRegister(value)}
                 render={(formikProps) => (
                     <Form>
                         <div className="form-group">
@@ -89,7 +100,6 @@ export default function SignUpScreen() {
                             <label>Mã lớp học</label>
 
                             <select
-                                name=""
                                 id=""
                                 className="form-control"
                                 name="maNhom"

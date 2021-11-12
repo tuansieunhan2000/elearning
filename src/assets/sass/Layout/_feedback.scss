@@ -1,0 +1,38 @@
+.feedback{
+    background-color: $color-gray-5;
+    padding-top: 80px;
+    .feedback_icon{
+        p{
+            color: $color-gray-4;
+            text-align: center;
+        }
+        .container{
+            width: 80%;
+            margin: auto;
+        }
+    }
+    .feedback_btn{
+        border-bottom: 1px solid $color-gray-4;
+        padding-bottom: 20px;
+        padding-top: 40px;
+        .feedback__content{
+            text-align: center;
+            p:first-child{
+                color: $color-black-0;
+                font-weight: $fw-bold-0;
+                font-size: $fs-2;
+            }
+            p:nth-child(2){
+                color: $color-gray-4;
+                font-weight: $fw-normal;
+                font-size: $fs-0;
+                
+            }
+            
+        }
+        .feedback__section{
+            border-right: 1px solid $color-gray-4;
+            transform: translateX(-50%);
+        }
+    }
+}

@@ -1,9 +1,11 @@
-import { FETCH_COURSE, FETCH_DETAIL_COURCE } from "../Types";
+import { FETCH_COURSE, FETCH_COURSE_LIST_BY_CATEGORY, FETCH_DETAIL_COURCE } from "../Types";
 
 let initialState = {
     course: [],
     courseDetail: null,
+    courseListByCategory: [],
 };
+
 const CourseReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_COURSE:
@@ -12,6 +14,12 @@ const CourseReducer = (state = initialState, action) => {
         case FETCH_DETAIL_COURCE:
             state.courseDetail = action.payload;
             return { ...state };
+        case FETCH_COURSE_LIST_BY_CATEGORY:
+            state.courseListByCategory = action.payload;
+            console.log("FETCH_COURSE_LIST_BY_CATEGORY RUn", state.courseListByCategory);
+
+            return { ...state };
+
         default:
             return state;
     }

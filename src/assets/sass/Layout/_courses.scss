@@ -1,0 +1,100 @@
+.courses{
+    margin-top: $mg-2;
+    .courses__content{
+       
+        .courses__intro{
+            padding-top: 4rem;
+            background-color: $color-gray-5;
+            width: 105%;
+            height: 97%;
+            padding-top: 45%;
+            padding-left: 5%;
+            h3{
+                text-align: left;   
+                color: $color-black-0;
+                font-size: $fs-3;
+                font-weight: $fw-bold;
+            }
+        }
+        .myTab{
+            .nav{
+                justify-content: space-between;
+                border: none;
+                
+                .nav-item{
+                    &:hover{
+                        .nav-link{
+                            border: none;
+                        }
+                    }
+                    .nav-link.active{
+                        border: none;
+                        border-bottom: 5px solid $color-blue;
+                    }
+                    .nav-link{
+                        color: $color-black-0;
+                        font-size: $fs-0;
+                        font-weight: $fw-normal;
+                        border: none;
+                    }
+                }
+            }
+            .tab-content{
+                position: relative;
+                margin-top: $mg-2;
+                .card-title{
+                    font-size: $fs-0;
+                    color: $color-black-0;
+                    font-weight: $fw-bold-0;
+                }
+                .card-text{
+                    font-size: $fs-1;
+                    color: $color-black-0;
+                    font-weight: $fw-normal;
+                }
+                .rating{
+                    display: flex;
+                    .ratingstar{
+                        color: $color-yellow;
+                        font-size: $fs-1;
+                        margin-right: $mg-1;
+                    }
+                    span:nth-child(2){
+                        font-size: $fs-1;
+                        color: $color-black-0;
+                        font-weight: $fw-bold-0;
+                    }
+                    span:last-child{
+                        font-size: $fs-1;
+                        color: $color-black-0;
+                        font-weight: $fw-normal;
+                    }
+                }
+                .price{
+                    text-align: right;
+                    .old__price{
+                        font-size: $fs-1;
+                        color: $color-black-0;
+                        font-weight: $fw-normal;
+                    }
+                    .new__price{
+                        font-size: $fs-1;
+                        color: $color-black-0;
+                        font-weight: $fw-bold-0;
+                    }
+            }
+            
+            }
+        }
+    }
+}
+.courses__content{
+    
+    @include responsive("large"){
+        .courses__intro{
+            display: none;
+        }
+        
+    }
+    
+}
