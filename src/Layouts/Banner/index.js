@@ -14,7 +14,7 @@ export default function Banner() {
                             <br /> of expert-led courses now.
                         </p>
                     </div>
-                    <form action className="search__banner">
+                    <form className="search__banner">
                         <div className="input-group">
                             <input
                                 type="text"

@@ -5,10 +5,6 @@ import Banner from "../../Layouts/Banner";
 
 export default function HomeScreen() {
     const course = useSelector((state) => state.course.course);
-    const category = useSelector((state) => state.category.category);
-
-    console.log("course", course);
-    console.log("category", category);
 
     //Use for all the dispatch actions
 

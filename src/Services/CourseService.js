@@ -11,7 +11,6 @@ CourseService.prototype = {
         return axios.get(API_COURSES);
     },
     GetCourseListByType(maDanhMuc) {
-        console.log("GetCourseListByType");
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
     },
 };

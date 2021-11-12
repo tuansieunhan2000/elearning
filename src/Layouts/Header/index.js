@@ -7,7 +7,6 @@ import "./main.scss";
 export default function Header() {
     const userInfo = useSelector((state) => state.user.userInfo);
     const category = useSelector((state) => state.category.category);
-    console.log(category);
 
     const logout = () => {
         localStorage.clear();
@@ -57,7 +56,7 @@ export default function Header() {
                                 <>
                                     <Link className="dropdown-item" to="">
                                         {`Hi, ${
-                                            userInfo.hoTen.length > 20
+                                            userInfo.hoTen.toString().length > 20
                                                 ? userInfo.hoTen.substring(0, 15) + "..."
                                                 : userInfo.hoTen
                                         }`}
@@ -104,7 +103,7 @@ export default function Header() {
                                 {fetchCategory(category)}
                             </div>
                         </div>
-                        <form action className="form__search ml-5">
+                        <form className="form__search ml-5">
                             <div className="input-group">
                                 <input
                                     type="text"
@@ -136,7 +135,7 @@ export default function Header() {
                                     <li className="nav-item">
                                         <NavLink to="/" className="navlink nameUser">
                                             {`Hi, ${
-                                                userInfo.hoTen.length > 20
+                                                userInfo.hoTen.toString().length > 20
                                                     ? userInfo.hoTen.substring(0, 15) + "..."
                                                     : userInfo.hoTen
                                             }`}

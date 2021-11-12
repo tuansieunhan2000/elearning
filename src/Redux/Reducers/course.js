@@ -16,8 +16,6 @@ const CourseReducer = (state = initialState, action) => {
             return { ...state };
         case FETCH_COURSE_LIST_BY_CATEGORY:
             state.courseListByCategory = action.payload;
-            console.log("FETCH_COURSE_LIST_BY_CATEGORY RUn", state.courseListByCategory);
-
             return { ...state };
 
         default:
