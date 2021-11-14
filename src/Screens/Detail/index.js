@@ -13,7 +13,7 @@ export default function DetailScreen() {
     let { id } = useParams();
     useEffect(() => {
         dispatch(fetchDetailCourse(id));
-    }, [id, dispatch]);
+    }, [dispatch, id]);
     return (
         <div className="card border-primary">
             <img

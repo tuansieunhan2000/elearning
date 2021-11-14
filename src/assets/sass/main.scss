@@ -1,18 +1,17 @@
 // không chứa code css chỉ chứa đường dẫn tới các file con
 
 // helper
-@import './Helper/vairiable';
-@import './Helper/mixin';
+@import "./Helper/vairiable";
+@import "./Helper/mixin";
 
 //Vendor
 //code thư viện
 
 //Base
-@import './Base/reset';
-@import './Base/customize';//đè code thư viện
+@import "./Base/reset";
 
 //Components
-@import './Components/button';
+@import "./Components/button";
 
 //Layout
 

@@ -1,0 +1,89 @@
+@import "../../assets/sass/main.scss";
+.student_have {
+     button.rec-arrow-left {
+          color: $color-gray-5;
+          background-color: $color-gray-5;
+          color: $color-gray-3;
+          &:hover {
+               color: $color-gray-4;
+               background-color: $color-gray-5;
+               box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          }
+     }
+
+     button.rec-arrow-right {
+          color: $color-gray-5;
+          background-color: $color-gray-5;
+          color: $color-gray-3;
+          &:hover {
+               color: $color-gray-4;
+               background-color: $color-gray-5;
+               box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          }
+     }
+
+     button.rec-dot_active {
+          background-color: $color-gray-4;
+          box-shadow: 0 0 1px 3px $color-gray-2;
+     }
+
+     button.rec-dot:hover,
+     button.rec-dot:active,
+     button.rec-dot:focus {
+          box-shadow: 0 0 1px 3px $color-gray-2;
+     }
+     padding-bottom: 3rem;
+     background-color: $color-gray-5;
+     .title {
+          text-align: center;
+          font-family: $cursive-font;
+          font-size: 28px;
+          color: $color-red-2;
+          margin: 0;
+     }
+     h2 {
+          color: $color-black-0;
+          font-weight: $fw-bold-0;
+          font-size: $fs-3;
+          letter-spacing: 1px;
+          text-align: center;
+          font-size: 36px;
+          margin-bottom: 2rem;
+     }
+     .card {
+          border-radius: 10px;
+          border: 2px solid var(--dark-light);
+          box-shadow: 0 1px 0px 1px rgba(37, 34, 34, 0.137);
+          margin: 0 20px 30px;
+          padding: 20px 30px;
+          .card-title {
+               font-family: $cursive-font;
+               display: flex;
+               img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    transition: all 0.2s ease;
+               }
+               &:hover {
+                    border-color: $color-red-0;
+               }
+               p {
+                    color: $color-black-0;
+                    font-weight: $fw-bold-0;
+                    font-size: $fs-2;
+                    padding-left: $pd-2;
+                    padding-top: $pd-1;
+               }
+          }
+          .card-text {
+               color: $color-black-0;
+               font-weight: $fw-normal;
+               letter-spacing: 1px;
+               font-size: $fs-0;
+          }
+          &:hover {
+               box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+          }
+     }
+}

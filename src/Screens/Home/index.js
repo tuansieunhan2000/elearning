@@ -2,6 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CourseItem from "../../Components/CourseItem";
 import Banner from "../../Layouts/Banner";
+import CourseTabList from "../../Layouts/CategoryNav";
+import Footer from "../../Layouts/Footer";
+import FeedBackFromUser from "../../Layouts/StudentFeedBack";
 
 export default function HomeScreen() {
     const course = useSelector((state) => state.course.course);
@@ -23,6 +26,9 @@ export default function HomeScreen() {
                     })}
                 </div>
             </div>
+            <CourseTabList />
+            <FeedBackFromUser />
+            <Footer />
         </div>
     );
 }

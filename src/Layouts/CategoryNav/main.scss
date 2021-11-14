@@ -1,0 +1,54 @@
+@import "../../assets/sass/main.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.container--tabs {
+     list-style: none;
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+     align-items: stretch;
+
+     .tab {
+          min-height: 2em;
+          padding: 1em;
+          box-sizing: border-box;
+          width: 100%;
+          text-align: center;
+          cursor: pointer;
+          background-color: black;
+          color: white;
+          transition: background-color 0.25s;
+
+          &:hover {
+               background-color: rgba(0, 0, 0, 0.25);
+               transition: background-color 0.25s;
+               color: white;
+          }
+     }
+
+     .tabs--active {
+          background-color: #fff;
+          color: black;
+          pointer-events: none;
+     }
+}
+
+.content {
+     display: none;
+     padding: 3em;
+
+     text-align: center;
+}
+
+.content--active {
+     display: block;
+}
+
+h1 {
+     margin-bottom: 0.5em;
+     font-weight: 700;
+}
+
+p {
+     font-weight: 300;
+}

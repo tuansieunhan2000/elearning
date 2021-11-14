@@ -1,0 +1,63 @@
+@import "../../assets/sass/main.scss";
+
+.company {
+     color: $color-white-0;
+     padding-top: 20px;
+     p {
+          color: $color-white-0;
+     }
+     .dropdown {
+          text-align: right;
+          padding: 20px;
+     }
+}
+.company {
+     @include responsive("small") {
+          p {
+               display: none;
+          }
+          .dropdown {
+               text-align: center;
+          }
+     }
+}
+footer {
+     padding: 2rem;
+     position: relative;
+     background-image: url(../../assets/img/footer_bg.jpeg);
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;
+     z-index: 1;
+     color: $color-white-0;
+     bottom: 0;
+
+     &::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          z-index: -1;
+     }
+     .footer_flex {
+          display: flex;
+          img{
+               width: 110px;
+          }
+          p {
+               padding-top: 20px;
+               padding-left: 20px;
+          }
+          a:nth-child(1) {
+               padding-top: 20px;
+               padding-left: 380px;
+          }
+          a:nth-child(2) {
+               padding-top: 20px;
+               padding-left: 20px;
+          }
+     }
+}
