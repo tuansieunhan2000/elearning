@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import RootReducer from "./Redux/Reducers/root";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import thunk from "redux-thunk";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -26,14 +26,16 @@ export default function FeedBackFromUser() {
         });
     };
     return (
-        <section className="student_have">
-            <div className="container">
-                <p className="title">Some Feedbacks</p>
-                <h2>What our students have to say</h2>
-                <div className="have_content owl-carousel owl-theme">
-                    <Carousel breakPoints={breakPoints}>{mapFeedBack()}</Carousel>
+        <div className="d-block">
+            <section className="student_have">
+                <div className="container">
+                    <p className="title">Some Feedbacks</p>
+                    <h2>What our students have to say</h2>z
+                    <div className="have_content owl-carousel owl-theme">
+                        <Carousel breakPoints={breakPoints}>{mapFeedBack()}</Carousel>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 }

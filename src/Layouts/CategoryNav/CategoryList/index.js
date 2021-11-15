@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchCourseByTypeDefaul } from "../../../Redux/Actions/courseAction";
 
 export default function CategoryList({ item }) {
+    const [category, setCategory] = useState(item.maDanhMuc);
+
+    console.log("CategoryList");
+    const dispatch = useDispatch();
     return (
         <li className="nav-item">
             <a
@@ -11,6 +17,7 @@ export default function CategoryList({ item }) {
                 role="tab"
                 aria-controls="pills-profile"
                 aria-selected="false"
+                onClick={() => dispatch(fetchCourseByTypeDefaul(item.maDanhMuc))}
             >
                 {item.maDanhMuc}
             </a>

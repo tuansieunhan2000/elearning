@@ -1,0 +1,47 @@
+.item-detail {
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.item-detail .item-body .item-img {
+  height: 120px;
+  /* [1.1] Set it as per your need */
+  overflow: hidden;
+  /* [1.2] Hide the overflowing of child elements */
+}
+
+.item-detail .item-body .item-img img {
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  height: 120px;
+  border-radius: 5px;
+}
+
+.item-detail .item-body .item-img img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.item-detail .item-body .item-title {
+  font-size: 15px;
+  color: #29303b;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.item-detail .item-body .item-title .name_course {
+  font-family: "Courier New", Courier, monospace;
+  height: 4rem;
+  font-size: 17px;
+  padding-bottom: 0.2rem;
+}
+
+.item-detail .item-body .item-title .item-content {
+  font-size: 13px;
+  color: #29303b;
+  font-weight: normal;
+}
+/*# sourceMappingURL=main.css.map */

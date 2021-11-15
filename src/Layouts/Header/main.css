@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #29303b;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+header {
+  color: #505763;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.displayWhenSmallScreen li {
+  padding-left: 12px;
+}
+
+.displayWhenSmallScreen .dropdown-submenu {
+  padding: 0 0 0 5px;
+}
+
+.displayWhenSmallScreen .dropdown-submenu .dropdown-item {
+  padding-left: 12px;
+}
+
+.displayWhenSmallScreen .dropdown-submenu .dropdown-item i {
+  padding-right: 10px;
+}
+
+.displayWhenSmallScreen .iconLogoutDislaySmall {
+  padding-right: 10px;
+}
+
+.displayWhenSmallScreen .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.displayWhenSmallScreen #navbarDropdown {
+  color: #505763;
+  margin-top: 4 px;
+}
+
+.displayWhenSmallScreen #navbarDropdown i {
+  margin-top: 3px;
+  font-size: 24px;
+}
+
+.header__left .navbar-brand img {
+  width: 110px;
+}
+
+.header__left .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.header__left .Categories #navbarDropdown {
+  color: #505763;
+  margin-top: 4 px;
+}
+
+.header__left .Categories #navbarDropdown i {
+  margin-top: 8px;
+  padding-right: 8px;
+}
+
+.header__left .form__search {
+  -webkit-box-flex: 10;
+      -ms-flex-positive: 10;
+          flex-grow: 10;
+}
+
+.header__left .form__search .form-control {
+  padding: 10px;
+  background-color: rgba(20, 23, 28, 0.05);
+  border: none;
+  -webkit-transition: none;
+  transition: none;
+  font-size: 13px;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+
+.header__left .form__search .form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #fff;
+  padding: 9px;
+}
+
+.header__left .form__search .form-control:value {
+  font-size: 13px;
+}
+
+.header__left .form__search .form-control:focus + .input-group-append .input-group-text {
+  background-color: #fff;
+}
+
+.header__left .form__search .form-control:focus + .input-group-append:hover .input-group-text {
+  background-color: #ec5252;
+  color: #fff;
+}
+
+.header__left .form__search .input-group-append .input-group-text {
+  border: none;
+  background-color: rgba(20, 23, 28, 0.05);
+  color: #ec5252;
+  padding: 14px 14px;
+  margin-left: 1px;
+  font-size: 13px;
+}
+
+.header__left .form__search .input-group-append .input-group-text:hover {
+  background-color: #ec5252;
+  color: #fff;
+}
+
+.header__right .navbar-nav {
+  height: 39px;
+}
+
+.header__right .navbar-nav .nav-item .navlink {
+  text-decoration: none;
+  color: #505763;
+}
+
+.header__right .navbar-nav .nav-item .navlink.signUp {
+  padding: 10px;
+  text-decoration: none;
+  background-color: #fff;
+  color: #505763;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+  margin-right: 10px;
+}
+
+.header__right .navbar-nav .nav-item .navlink.signUp:hover {
+  color: #505763;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.header__right .navbar-nav .nav-item .navlink.signIn {
+  padding: 10px;
+  text-decoration: none;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+  background-color: #ec5252;
+  color: #fff;
+}
+
+.header__right .navbar-nav .nav-item .navlink.signIn:hover {
+  background-color: #992337;
+}
+
+.header__right .navbar-nav .nav-item .navlink.nameUser {
+  padding: 10px;
+  text-decoration: none;
+  background-color: #fff;
+  color: #505763;
+}
+
+.header__right .navbar-nav .nav-item .navlink.logout {
+  line-height: height;
+  padding: 10px;
+  text-decoration: none;
+  background-color: #fff;
+  color: #505763;
+  margin-right: 10px;
+}
+
+.header__right .navbar-nav .nav-item .navlink.logout i {
+  color: #505763;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media screen and (max-width: 1200px) {
+  .header__right .Bussiness,
+  .header__right .Teach {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__right .form__search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__left .Categories {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header__left .navbar-brand {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header__left .form__search {
+    display: none;
+  }
+}
+/*# sourceMappingURL=main.css.map */

@@ -6,7 +6,7 @@ import "./assets/sass/main.scss";
 import Header from "./Layouts/Header";
 import { createAction } from "./Redux/Actions";
 import { fetchCategory } from "./Redux/Actions/categoryAction";
-import { fetchCourse } from "./Redux/Actions/courseAction";
+import { fetchCourse, fetchCourseByTypeDefaul } from "./Redux/Actions/courseAction";
 import { GET_USER_LOGIN } from "./Redux/Types";
 import CourseList from "./Screens/CourseList";
 import DetailScreen from "./Screens/Detail";
@@ -29,6 +29,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchCourse());
         dispatch(fetchCategory());
+        dispatch(fetchCourseByTypeDefaul("BackEnd"));
     }, [dispatch]);
 
     return (
@@ -38,7 +39,6 @@ function App() {
                 <Route exact path="/" component={HomeScreen} />
                 <Route exact path="/detail/:id" component={DetailScreen} />
                 <Route exact path="/courselist/:type" component={CourseList} />
-
                 <Route exact path="/signup" component={SignUpScreen} />
                 <Route exact path="/signin" component={SignInScreen} />
             </Switch>

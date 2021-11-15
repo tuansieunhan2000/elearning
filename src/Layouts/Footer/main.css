@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #29303b;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.company {
+  color: #fff;
+  padding-top: 20px;
+}
+
+.company p {
+  color: #fff;
+}
+
+.company .dropdown {
+  text-align: right;
+  padding: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .company p {
+    display: none;
+  }
+  .company .dropdown {
+    text-align: center;
+  }
+}
+
+footer {
+  padding: 2rem;
+  position: relative;
+  background-image: url(../../assets/img/footer_bg.jpeg);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: 1;
+  color: #fff;
+  bottom: 0;
+}
+
+footer::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+footer .footer_flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+footer .footer_flex img {
+  width: 110px;
+}
+
+footer .footer_flex p {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+footer .footer_flex a:nth-child(1) {
+  padding-top: 20px;
+  padding-left: 380px;
+}
+
+footer .footer_flex a:nth-child(2) {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+/*# sourceMappingURL=main.css.map */

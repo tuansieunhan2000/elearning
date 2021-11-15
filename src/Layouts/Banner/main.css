@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #29303b;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.header__banner .banner__img {
+  position: relative;
+}
+
+.header__banner .banner__img img {
+  width: 100%;
+}
+
+.header__banner .banner__img .leanOn__banner {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+}
+
+.header__banner .banner__img .leanOn__banner .search__banner .form-control {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  padding: 10px;
+}
+
+.header__banner .banner__img .leanOn__banner .search__banner .input-group-append .input-group-text {
+  color: #ec5252;
+  background-color: #fff;
+  padding: 14px;
+}
+
+.header__banner .banner__img .leanOn__banner .search__banner .input-group-append .input-group-text:hover {
+  background-color: #ec5252;
+  color: #fff;
+}
+
+.header__banner .banner__img .leanOn__banner .para__leanOn {
+  color: #fff;
+}
+
+.header__banner .banner__img .leanOn__banner .para__leanOn h1 {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.header__banner .banner__img .leanOn__banner .para__leanOn p {
+  font-size: 15px;
+}
+
+@media screen and (max-width: 576px) {
+  .header__banner .banner__img .leanOn__banner .para__leanOn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header__banner .banner__img .leanOn__banner {
+    width: 80%;
+    bottom: 30%;
+  }
+}
+
+.header__banner .bg__linear {
+  background: linear-gradient(-45deg, #ec5252, #992337);
+}
+
+.header__banner .bg__linear .content_linear {
+  width: 90%;
+  margin: auto;
+}
+
+.header__banner .bg__linear .spread__color {
+  height: 80px;
+}
+
+.header__banner .bg__linear .spread__color .drop__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header__banner .bg__linear .spread__color .icon__header {
+  line-height: 80px;
+  font-size: 45px;
+  color: #fff;
+}
+
+.header__banner .bg__linear .spread__color .para__header {
+  padding-left: 10px;
+  color: #fff;
+  font-size: 15px;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  .bg__linear .icon__header {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bg__linear .content_linear {
+    display: none;
+  }
+  .bg__linear .form__search {
+    display: none;
+  }
+}
+/*# sourceMappingURL=main.css.map */

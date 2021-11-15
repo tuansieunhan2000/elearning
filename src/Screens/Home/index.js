@@ -14,7 +14,7 @@ export default function HomeScreen() {
     return (
         <div>
             <Banner />
-            <h4 className="display-4 text-center">List Course</h4>
+            {/* <h4 className="display-4 text-center">List Course</h4>
             <div className="container">
                 <div className="row">
                     {course.map((courseItem) => {
@@ -25,7 +25,7 @@ export default function HomeScreen() {
                         );
                     })}
                 </div>
-            </div>
+            </div> */}
             <CourseTabList />
             <FeedBackFromUser />
             <Footer />

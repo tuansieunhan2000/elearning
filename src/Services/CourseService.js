@@ -13,4 +13,7 @@ CourseService.prototype = {
     GetCourseListByType(maDanhMuc) {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
     },
+    GetCourseListByTypeDeFault(maDanhMuc) {
+        return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
+    },
 };
