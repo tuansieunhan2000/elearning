@@ -1,0 +1,19 @@
+@import "../../assets/sass/main.scss";
+
+.btn-prev {
+     padding: 5px 10px;
+     text-decoration: none;
+     transition: all ease 0.2s;
+     background-color: $color-red-0;
+     color: $color-white-0;
+     border: none;
+     &:hover {
+          background-color: $color-red-2;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+     }
+
+     &:disabled {
+          background-color: #cccccc;
+          color: #666666;
+     }
+}

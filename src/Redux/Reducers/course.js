@@ -15,25 +15,24 @@ let initialState = {
 };
 
 const CourseReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case FETCH_COURSE:
-            state.course = action.payload;
+            state.course = payload;
+            return { ...state };
 
-            return { ...state };
         case FETCH_DETAIL_COURCE:
-            console.log(1);
-            state.courseDetail = action.payload;
-            return { ...state };
+            return { ...state, courseDetail: payload };
+
         case FETCH_COURSE_LIST_BY_CATEGORY:
-            state.courseListByCategory = action.payload;
+            state.courseListByCategory = payload;
             return { ...state };
+
         case FETCH_COURSE_LIST_BY_CATEGORY_DEFAULT:
-            console.log("FETCH_COURSE_LIST_BY_CATEGORY_DEFAULT");
-            state.courseListHome = action.payload;
-            return { ...state };
+            return { ...state, courseListHome: payload };
+
         case FETCH_COURSE_LIST_PER_PAGE:
-            console.log("FETCH_COURSE_LIST_PER_PAGE");
-            state.coursePerPage = action.payload;
+            state.coursePerPage = payload;
             return { ...state };
         default:
             return state;

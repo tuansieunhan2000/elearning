@@ -1,7 +1,8 @@
 @import "../../assets/sass/main.scss";
 
 .btn-detail {
-     padding: 10px 30px;
+     padding: 10px 15px;
+
      text-decoration: none;
      transition: all ease 0.2s;
      background-color: $color-red-0;
@@ -11,26 +12,98 @@
           color: $color-white-0;
      }
 }
-.card-body {
-     .card-title {
-          height: 3rem;
-          text-align: center;
+
+.item-list {
+     width: 90%;
+     padding: 0 10%;
+     text-decoration: none;
+     color: #29303b;
+     &:hover {
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          color: $color-red-2;
      }
-     .cardContent {
-          .content {
+     .item-img {
+          // border-radius: 5px;
+          margin: 0 auto;
+          width: 80%;
+          height: 140px; /* [1.1] Set it as per your need */
+          overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+          img {
+               transition: transform 0.5s ease;
+               height: 120px;
+               border-radius: 5px;
+               &:hover {
+                    transform: scale(1.2);
+               }
+          }
+     }
+     .card-body {
+          padding: 0 20%;
+
+          .card-title {
+               font-family: "Courier New", Courier, monospace;
+               height: 2.5rem;
+               font-size: 17px;
+               padding-bottom: 0.2rem;
+               font-weight: bold;
+               text-align: center;
+          }
+          .cardContent {
+               .content {
+                    font-size: 13px;
+                    color: #29303b;
+                    font-weight: normal;
+                    line-height: 13px;
+               }
+          }
+     }
+}
+@include responsive("large") {
+     .card {
+          border: none !important;
+          .card-img-top {
+               height: 150px;
+          }
+          .card-body {
+               .card-title {
+                    height: 3rem;
+                    text-align: center;
+               }
+               .cardContent {
+                    .content {
+                    }
+               }
+          }
+     }
+}
+@include responsive("small") {
+     .card {
+          padding: 0 2rem;
+          .card-img-top {
+               height: 100px;
+          }
+          .card-body {
+               .card-title {
+                    height: 3rem;
+                    text-align: center;
+               }
+               .cardContent {
+                    .content {
+                    }
+               }
           }
      }
 }
 .header_course_list {
      font-size: 18px;
-     margin-bottom: 40px;
      letter-spacing: 1.7px;
      text-transform: uppercase;
      color: $color-black-0;
      position: relative;
      border-bottom: 1px solid #dfdfdf;
-     padding-top: 50px;
-     padding-bottom: 20px;
+
+     padding-bottom: 1.5rem;
+
      &::after {
           content: "";
           width: 120px;
