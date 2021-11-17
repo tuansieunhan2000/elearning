@@ -1,10 +1,6 @@
 import React from "react";
 import "./main.scss";
 export default function ListCourseInCategoryList({ item }) {
-    console.log(item);
-    const SubString = (string, lenght) => {
-        return string.length > lenght ? string.substring(0, lenght) + "..." : string;
-    };
     return (
         <div
             className="tab-pane fade show active "

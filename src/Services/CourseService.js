@@ -1,5 +1,10 @@
 import axios from "axios";
-import { API_COURSES, API_DETAIL_COURSES, API_GET_COURSE_LIST_BY_TYPE } from "../constants/api";
+import {
+    API_COURSES,
+    API_COURSES_PER_PAGE,
+    API_DETAIL_COURSES,
+    API_GET_COURSE_LIST_BY_TYPE,
+} from "../constants/api";
 
 export default function CourseService() {}
 
@@ -15,5 +20,8 @@ CourseService.prototype = {
     },
     GetCourseListByTypeDeFault(maDanhMuc) {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
+    },
+    GetCourseListPerPage(param) {   
+        return axios.get(`${API_COURSES_PER_PAGE}${param}`);
     },
 };

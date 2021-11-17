@@ -15,63 +15,15 @@ body {
   font-weight: normal;
 }
 
-.container--tabs {
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-}
-
-.container--tabs .tab {
-  min-height: 2em;
-  padding: 1em;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  background-color: black;
-  color: white;
-  -webkit-transition: background-color 0.25s;
-  transition: background-color 0.25s;
-}
-
-.container--tabs .tab:hover {
-  background-color: rgba(0, 0, 0, 0.25);
-  -webkit-transition: background-color 0.25s;
-  transition: background-color 0.25s;
-  color: white;
-}
-
-.container--tabs .tabs--active {
-  background-color: #fff;
-  color: black;
-  pointer-events: none;
-}
-
-.content {
-  display: none;
-  padding: 3em;
-  text-align: center;
-}
-
-.content--active {
-  display: block;
+.course h3 {
+  color: #29303b;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .owl-prev {
   position: absolute;
-  top: 28%;
+  top: 18%;
   left: -3%;
   width: 50px;
   height: 50px;
@@ -83,7 +35,7 @@ body {
 }
 
 .owl-prev span {
-  color: #007791;
+  color: #992337;
   font-size: 40px;
   font-weight: normal;
   line-height: 0.8;
@@ -95,7 +47,7 @@ body {
 
 .owl-next {
   position: absolute;
-  top: 28%;
+  top: 18%;
   right: -3%;
   width: 50px;
   height: 50px;
@@ -107,7 +59,7 @@ body {
 }
 
 .owl-next span {
-  color: #007791;
+  color: #992337;
   font-size: 40px;
   font-weight: normal;
   line-height: 0.8;

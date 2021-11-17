@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { fetchCourseByTypeDefaul } from "../../../Redux/Actions/courseAction";
-
-export default function CategoryList({ item }) {
-    const [category, setCategory] = useState(item.maDanhMuc);
-
-    console.log("CategoryList");
+import "./main.scss";
+export default function CategoryList({ item, index }) {
     const dispatch = useDispatch();
     return (
-        <li className="nav-item">
+        <li className="nav-item listCategory">
             <a
-                className="nav-link"
+                className={`nav-link ${index === 0 ? "active" : ""}`}
                 id={`pills-${item.maDanhMuc}-tab`}
                 data-toggle="pill"
                 href={`#${item.maDanhMuc}`}
@@ -19,7 +16,7 @@ export default function CategoryList({ item }) {
                 aria-selected="false"
                 onClick={() => dispatch(fetchCourseByTypeDefaul(item.maDanhMuc))}
             >
-                {item.maDanhMuc}
+                {item.tenDanhMuc}
             </a>
         </li>
     );

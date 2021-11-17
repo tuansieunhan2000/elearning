@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CategoryList from "./CategoryList";
 import ListCourseInCategoryList from "./ListCourseInCategoryList";
 
@@ -7,10 +7,15 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./main.scss";
+import { fetchCourseByTypeDefaul } from "../../Redux/Actions/courseAction";
 export default function CourseTabList() {
+    const dispatch = useDispatch();
     const categoies = useSelector((state) => state.category.category);
+    useEffect(() => {
+        dispatch(fetchCourseByTypeDefaul("BackEnd"));
+    }, [dispatch]);
     const course = useSelector((state) => state.course.courseListHome);
-    console.log(course, "course");
+
     const options = {
         margin: 30,
         responsiveClass: true,
@@ -26,13 +31,16 @@ export default function CourseTabList() {
             400: {
                 items: 1,
             },
-            600: {
+            550: {
                 items: 2,
             },
-            700: {
+            768: {
                 items: 3,
             },
             1000: {
+                items: 3,
+            },
+            1200: {
                 items: 4,
             },
         },
@@ -49,10 +57,10 @@ export default function CourseTabList() {
         });
     };
     return (
-        <div className="container">
+        <div className="container course p-4">
             <div className="row">
-                <div className="col-12 col-md-4 col-lg-4 col-xl-4">
-                    <div className="courses__intro">
+                <div className="col-12 col-md-12 col-lg-3 col-xl-3 d-flex justify-content-center text-center flex-colum align-items-center">
+                    <div className="courses__intro w-100">
                         <h3>The world’s largest selection of courses</h3>
                         <p>
                             Choose from over 100,000 online video courses with new additions
@@ -60,8 +68,12 @@ export default function CourseTabList() {
                         </p>
                     </div>
                 </div>
-                <div className="col-md-12 col-lg-8 col-xl-8">
-                    <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <div className="col-md-12 col-lg-9 col-xl-9">
+                    <ul
+                        className="nav nav-pills mb-3 d-flex justify-content-center align-items-center"
+                        id="pills-tab"
+                        role="tablist"
+                    >
                         {renderCategory()}
                     </ul>
                     <div className="tab-content" id="pills-tabContent">

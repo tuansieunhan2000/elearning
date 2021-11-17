@@ -22,6 +22,7 @@ function App() {
             dispatch(createAction(GET_USER_LOGIN, JSON.parse(userInfo)));
         }
     };
+
     useEffect(() => {
         getUserInfo();
     });
@@ -29,9 +30,8 @@ function App() {
     useEffect(() => {
         dispatch(fetchCourse());
         dispatch(fetchCategory());
-        dispatch(fetchCourseByTypeDefaul("BackEnd"));
+        fetchCourseByTypeDefaul("BackEnd");
     }, [dispatch]);
-
     return (
         <BrowserRouter>
             <Header />

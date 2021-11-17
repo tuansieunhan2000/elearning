@@ -1,0 +1,47 @@
+@import "../../assets/sass/main.scss";
+
+.btn-detail {
+     padding: 10px 30px;
+     text-decoration: none;
+     transition: all ease 0.2s;
+     background-color: $color-red-0;
+     color: $color-white-0;
+     &:hover {
+          background-color: $color-red-2;
+          color: $color-white-0;
+     }
+}
+.card-body {
+     .card-title {
+          height: 3rem;
+          text-align: center;
+     }
+     .cardContent {
+          .content {
+          }
+     }
+}
+.header_course_list {
+     font-size: 18px;
+     margin-bottom: 40px;
+     letter-spacing: 1.7px;
+     text-transform: uppercase;
+     color: $color-black-0;
+     position: relative;
+     border-bottom: 1px solid #dfdfdf;
+     padding-top: 50px;
+     padding-bottom: 20px;
+     &::after {
+          content: "";
+          width: 120px;
+          display: block;
+          height: 4px;
+          background: linear-gradient(to right, $color-red-2, $color-red-0);
+          box-shadow: 0 0 20px 0 $color-red-2;
+          /* dùng position bỏ qua hết các padding */
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          transition: all 0.3s linear;
+     }
+}

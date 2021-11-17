@@ -1,8 +1,45 @@
-.title {
-     margin-bottom: 20px;
-     padding: 20px;
-}
-.img {
-     height: 260px;
-     width: 100%;
+@import "../../../assets/sass/main.scss";
+.listCategory.nav-item {
+     .nav-link {
+          background: #ffffff;
+          color: #000000;
+          transition: all 0.3s linear;
+
+          &:hover {
+               &::after {
+                    position: relative;
+                    content: "";
+                    width: 100%;
+                    display: block;
+                    height: 4px;
+                    background: linear-gradient(to right, $color-red-0, $color-red-2);
+                    box-shadow: 0 0 20px 0 $color-red-2;
+                    /* dùng position bỏ qua hết các padding */
+                    top: 10px;
+                    left: 0;
+                    transition: all 0.3s linear;
+               }
+          }
+     }
+
+     .nav-link.active {
+          color: #000000 !important;
+          background-color: #ffffff;
+          &::after {
+               position: relative;
+
+               content: "";
+               width: 100%;
+               display: block;
+               height: 4px;
+               background: linear-gradient(to right, $color-red-2, $color-red-0);
+               box-shadow: 0 0 20px 0 $color-red-2;
+
+               /* dùng position bỏ qua hết các padding */
+
+               top: 10px;
+               left: 0;
+               transition: all 0.3s linear;
+          }
+     }
 }
