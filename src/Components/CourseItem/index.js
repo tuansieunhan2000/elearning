@@ -4,13 +4,13 @@ import "./main.scss";
 export default function CourseItem({ courseItem }) {
     const limitDisplayName = (string) => {
         if (string) {
-            return string.length > 32 ? string.substr(0, 32) + "..." : string;
+            return string.length > 25 ? string.substr(0, 25) + "..." : string;
         }
         return "";
     };
     return (
-        <div className="item-list col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
-            <Link to={`/detail/${courseItem.maKhoaHoc}`} className="item-list mb-3 ">
+        <div className="item-list col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
+            <Link to={`/detail/${courseItem.maKhoaHoc}`} className="item-list ">
                 <div className="item-img">
                     <img
                         className="card-img-top"
