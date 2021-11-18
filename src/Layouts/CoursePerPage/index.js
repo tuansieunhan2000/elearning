@@ -37,7 +37,7 @@ export default function AllCourseList() {
             {!coursePerPage.items ? (
                 <>Still loading...</>
             ) : (
-                <div className="container w-75 pb-4">
+                <div className="container  pb-4">
                     <div className="row">
                         <h4 className="header_course_list p-0 pb-3">List Course</h4>
                         <div className="container pt-3">

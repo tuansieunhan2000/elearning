@@ -20,3 +20,13 @@
 //Theme
 // @import './Theme/Dark/';
 // @import './Theme/Halloween/';
+.container {
+     max-width: 72rem;
+     margin: 0 auto ;
+     padding: 0 0.9375rem;
+}
+.row {
+     display: flex;
+     flex-wrap: wrap;
+     margin: 0 -0.9375rem;
+}

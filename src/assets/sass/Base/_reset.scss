@@ -8,3 +8,7 @@ body {
     font-family: "Roboto Condensed", sans-serif;
     @include styleText($color-black-0, $fs-0, $fw-normal);
 }
+.container {
+    max-width: 72rem !important;
+    margin: 0 auto !important;
+}
