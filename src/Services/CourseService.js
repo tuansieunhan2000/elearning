@@ -24,4 +24,7 @@ CourseService.prototype = {
     GetCourseListPerPage(param) {   
         return axios.get(`${API_COURSES_PER_PAGE}${param}`);
     },
+    GetCourseListSameType(maDanhMuc) {
+        return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
+    },
 };

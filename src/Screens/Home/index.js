@@ -9,7 +9,7 @@ export default function HomeScreen() {
     return (
         <div>
             <Banner />
-            <CourseTabList />
+            <CourseTabList maDanhMucKhoahoc={"backEnd"} />
             <FeedBackFromUser />
             <AllCourseList />
             <Footer />

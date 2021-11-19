@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import CourseTabList from "../../Layouts/CategoryNav";
+import Footer from "../../Layouts/Footer";
+import SameCategory from "../../Layouts/SameCategory";
 import { fetchDetailCourse } from "../../Redux/Actions/courseAction";
 import "./main.scss";
 export default function DetailScreen() {
@@ -8,6 +11,9 @@ export default function DetailScreen() {
     const detailCourse = useSelector((state) => state.course.courseDetail) || {
         hinhAnh: "",
         ngayTao: "",
+        danhMucKhoaHoc: {
+            tenDanhMucKhoaHoc: "",
+        },
     };
 
     let { id } = useParams();
@@ -19,7 +25,7 @@ export default function DetailScreen() {
             <div className="row">
                 <div className="address-link">
                     Trang chu <i class="fas fa-angle-right"></i>
-                    {/* {detailCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc} */}
+                    {detailCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc}
                     <i class="fas fa-angle-right"></i> {detailCourse.tenKhoaHoc}
                 </div>
             </div>
@@ -32,20 +38,19 @@ export default function DetailScreen() {
                         alt={detailCourse.hinhAnh}
                     />
                 </div>
-                <div className="col-lg-8 col-md-8 col-sm-12">Ngay tao: {detailCourse.ngayTao}</div>
+                <div className="col-lg-8 col-md-8 col-sm-12">
+                    <div>
+                        Tên khóa học :{detailCourse.tenKhoaHoc}
+                        <br />
+                        Ngày Tạo :{detailCourse.ngayTao}
+                        <br />
+                        Mô tả: {detailCourse.moTa}
+                        <br />
+                        Danh mục : {detailCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc}
+                    </div>
+                </div>
             </div>
+            <SameCategory DanhMucKhoahoc={detailCourse.danhMucKhoaHoc} />
         </div>
-        // <div className="card border-primary">
-        //     <img
-        //         className="card-img-top"
-        //         style={{ width: "300px", height: "250px" }}
-        //         src={detailCourse.hinhAnh}
-        //         alt={detailCourse.hinhAnh}
-        //     />
-        //     <div className="card-body">
-        //         <h4 className="card-title">Ngay tao: {detailCourse.ngayTao}</h4>
-        //         <p className="card-text">Text</p>
-        //     </div>
-        // </div>
     );
 }

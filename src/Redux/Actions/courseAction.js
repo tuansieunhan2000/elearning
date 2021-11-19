@@ -5,6 +5,7 @@ import {
     FETCH_COURSE_LIST_BY_CATEGORY,
     FETCH_COURSE_LIST_BY_CATEGORY_DEFAULT,
     FETCH_COURSE_LIST_PER_PAGE,
+    FETCH_COURSE_LIST_SAME_CATEGORY,
     FETCH_DETAIL_COURCE,
 } from "../Types";
 
@@ -41,7 +42,6 @@ export const fetchCourseByTypeDefaul = (maKhoaHoc) => {
         courseService
             .GetCourseListByType(maKhoaHoc)
             .then((res) => {
-                // console.log(res.data);
                 dispatch(createAction(FETCH_COURSE_LIST_BY_CATEGORY_DEFAULT, res.data));
             })
             .catch((err) => console.log(err));
@@ -53,8 +53,18 @@ export const fetchCoursePerPage = (paranms) => {
         courseService
             .GetCourseListPerPage(paranms)
             .then((res) => {
-                console.log(res.data);
                 dispatch(createAction(FETCH_COURSE_LIST_PER_PAGE, res.data));
+            })
+            .catch((err) => console.log(err));
+    };
+};
+
+export const fetchCourseSameCategory = (maKhoaHoc) => {
+    return (dispatch) => {
+        courseService
+            .GetCourseListSameType(maKhoaHoc)
+            .then((res) => {
+                dispatch(createAction(FETCH_COURSE_LIST_SAME_CATEGORY, res.data));
             })
             .catch((err) => console.log(err));
     };

@@ -9,13 +9,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 import "./main.scss";
 import { fetchCourseByTypeDefaul } from "../../Redux/Actions/courseAction";
-export default function CourseTabList() {
+export default function CourseTabList({ maDanhMucKhoahoc }) {
     const dispatch = useDispatch();
     const categoies = useSelector((state) => state.category.category);
     const course = useSelector((state) => state.course.courseListHome);
 
     useEffect(() => {
-        dispatch(fetchCourseByTypeDefaul("BackEnd"));
+        dispatch(fetchCourseByTypeDefaul(maDanhMucKhoahoc));
         console.log("course", course);
     }, [dispatch]);
 
