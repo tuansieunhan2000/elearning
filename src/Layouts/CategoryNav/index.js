@@ -32,13 +32,6 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
 
     const ref = useRef({});
 
-    const next = () => {
-        ref.current.slickNext();
-    };
-
-    const previous = () => {
-        ref.current.slickPrev();
-    };
     const settings = {
         dots: true,
         infinite: false,

@@ -1,0 +1,114 @@
+.new .item .img {
+     border-radius: 0.75rem;
+}
+
+.new .item .img .info {
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: 0;
+     visibility: hidden;
+     transform: scale(0.8);
+     transition: all 0.4s;
+}
+
+.new .item .img:hover .info {
+     opacity: 1;
+     visibility: visible;
+     transform: scale(1);
+}
+
+.new .item .img .info i {
+     width: 4.5rem;
+     height: 4.5rem;
+     border-width: 2px !important;
+}
+
+.new .item .img::before {
+     content: "";
+     width: 0;
+     height: 100%;
+     background: linear-gradient(to bottom, #fbbd61, #ec7532);
+     position: absolute;
+     top: 0;
+     left: -12.5rem;
+     transform: skewX(45deg);
+     transition: all 0.4s;
+     opacity: 0.9;
+}
+
+.new .item .img:hover::before {
+     width: 300%;
+}
+
+.new .container h4 {
+     font-size: 18px;
+     color: #4a4a4a;
+     margin: 0;
+     padding-top: 20px;
+}
+.new .container > h1 {
+     font-size: 18px;
+     margin-bottom: 40px;
+     letter-spacing: 1.7px;
+     text-transform: uppercase;
+     color: #ec7532;
+     position: relative;
+     border-bottom: 1px solid #dfdfdf;
+     padding-top: 50px;
+     padding-bottom: 20px;
+}
+.new .container > h1::after {
+     content: "";
+     width: 120px;
+     display: block;
+     height: 4px;
+     background: linear-gradient(to right, #fbbd61, #ec7532);
+     box-shadow: 0 0 20px 0 #fbbd61;
+     /* dùng position bỏ qua hết các padding */
+     position: absolute;
+     bottom: -1px;
+     left: 0;
+     transition: all 0.3s linear;
+}
+.new .container .star-rating i {
+     font-size: 18px;
+     display: inline-block;
+     width: 18px;
+     color: #fbbd61;
+}
+.new .content-hover a {
+     font-size: 13px;
+     display: block;
+     margin-bottom: 10px;
+     cursor: pointer;
+     letter-spacing: 4px;
+     text-transform: uppercase;
+     color: #fff;
+}
+.new .content-hover p {
+     font-size: 16px;
+     display: block;
+     color: #fff;
+}
+.new .content-hover i {
+     font-size: 15px;
+     line-height: 70px;
+     display: block;
+     width: 80px;
+     height: 80px;
+     margin: 0 auto 20px;
+     color: #fff;
+     color: #fff;
+     border: solid 2px #fff;
+     border-radius: 50%;
+     transition: 0.5s;
+}
+.new .content-hover i:hover {
+     transform: scale(0.9);
+}
+.new {
+     padding-top: 75px;
+     padding-bottom: 75px;
+}

@@ -1,65 +1,97 @@
-import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import { fetchCourseSameCategory } from "../../Redux/Actions/courseAction";
 
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import PropTypes from "prop-types";
 SameCategory.propTypes = {
     maDanhMucKhoahoc: PropTypes.string,
 };
 export default function SameCategory({ DanhMucKhoahoc }) {
-     const {tenDanhMucKhoaHoc, maDanhMucKhoahoc} =DanhMucKhoahoc
+    const { tenDanhMucKhoaHoc, maDanhMucKhoahoc } = DanhMucKhoahoc;
     const dispatch = useDispatch();
 
     const course = useSelector((state) => state.course.courseListDetail) || "";
 
     useEffect(() => {
         dispatch(fetchCourseSameCategory(maDanhMucKhoahoc));
-    }, [dispatch,maDanhMucKhoahoc]);
+    }, [dispatch, DanhMucKhoahoc, maDanhMucKhoahoc]);
 
     console.log(maDanhMucKhoahoc);
-    const options = {
-        margin: 30,
-        responsiveClass: true,
-        nav: true,
-        dots: false,
-        autoplay: false,
-        smartSpeed: 1000,
-        responsive: {
-            0: {
-                items: 1,
+
+    const ref = useRef({});
+
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                },
             },
-            400: {
-                items: 1,
+            {
+                breakpoint: 991,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                },
             },
-            550: {
-                items: 2,
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 3,
+                },
             },
-            768: {
-                items: 3,
+            {
+                breakpoint: 568,
+                settings: {
+                    rows: 1,
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    dots: false,
+                },
             },
-            1000: {
-                items: 4,
+            ,
+            {
+                breakpoint: 456,
+                settings: {
+                    rows: 1,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: false,
+                },
             },
-            1200: {
-                items: 4,
-            },
-        },
+        ],
     };
-    const mapFeedBack = () => {
+    const mapCourseList = () => {
         return course.map((feedBackItem) => {
             return (
-                <div className="card" key={feedBackItem.id}>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                            <img src={feedBackItem.hinhAnh} alt="" />
-                            {/* <p>{feedBackItem.tenKhoaHoc}</p> */}
-                        </h4>
-                        <p className="card-text">{feedBackItem.tenKhoaHoc}</p>
+                <Link to={`/detail/${feedBackItem.maKhoaHoc}`} className="item-course-category">
+                    <div className="item-detail" key={feedBackItem.id}>
+                        <div className="item-body">
+                            <h4 className="item-img">
+                                <img src={feedBackItem.hinhAnh} alt="" className="w-100" />
+                            </h4>
+                            <div className="item-title">
+                                <div className="name_course">{feedBackItem.tenKhoaHoc}</div>
+                                <div className="item-content d-flex justify-content-between">
+                                    <div className="ngayTao"> {feedBackItem.ngayTao}</div>
+                                    <div className="luotXem">Lượt xem :{feedBackItem.luotXem}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </Link>
             );
         });
     };
@@ -69,13 +101,18 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                 <>Still loading...</>
             ) : (
                 <div>
-                    <section className="">
-                         {tenDanhMucKhoaHoc}
+                    <section className="same-category mb-lg-5 mt-lg-4 ">
                         <div className="container">
+                            <div
+                                style={{ textTransform: "uppercase", fontWeight: "bold" }}
+                                className="pb-3"
+                            >
+                                Khoá học cùng thể loại
+                            </div>
                             <div className="have_content">
-                                <OwlCarousel {...options} className="owl-theme" loop nav margin={8}>
-                                    {mapFeedBack()}
-                                </OwlCarousel>
+                                <Slider ref={ref} {...settings}>
+                                    {mapCourseList()}
+                                </Slider>
                             </div>
                         </div>
                     </section>

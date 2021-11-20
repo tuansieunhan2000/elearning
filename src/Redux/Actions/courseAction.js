@@ -32,7 +32,10 @@ export const fetchCourseByType = (maKhoaHoc) => {
     return (dispatch) => {
         courseService
             .GetCourseListByType(maKhoaHoc)
-            .then((res) => dispatch(createAction(FETCH_COURSE_LIST_BY_CATEGORY, res.data)))
+            .then((res) => {
+                console.log(res.data);
+                dispatch(createAction(FETCH_COURSE_LIST_BY_CATEGORY, res.data));
+            })
             .catch((err) => console.log(err));
     };
 };

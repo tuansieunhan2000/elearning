@@ -1,0 +1,27 @@
+@import "../../assets/sass/main.scss";
+
+.detail-course {
+     .address-link {
+          text-transform: uppercase;
+          font-weight: bold;
+          padding-top: 2rem;
+          padding-bottom: 1.5rem;
+
+          .fas {
+               padding: 0.5rem;
+          }
+     }
+     .card-img-top {
+          width: 100%;
+          height: auto;
+     }
+     .borderless td,
+     .borderless th,
+     .borderless tr {
+          border: none;
+     }
+     .borderless {
+          .title-tablle {
+          }
+     }
+}
