@@ -11,7 +11,7 @@ SameCategory.propTypes = {
     maDanhMucKhoahoc: PropTypes.string,
 };
 export default function SameCategory({ DanhMucKhoahoc }) {
-    const { tenDanhMucKhoaHoc, maDanhMucKhoahoc } = DanhMucKhoahoc;
+    const { maDanhMucKhoahoc } = DanhMucKhoahoc;
     const dispatch = useDispatch();
 
     const course = useSelector((state) => state.course.courseListDetail) || "";
@@ -73,42 +73,45 @@ export default function SameCategory({ DanhMucKhoahoc }) {
             },
         ],
     };
+
     const mapCourseList = () => {
-        return course.map((feedBackItem) => {
+        return course.map((courseItem) => {
             return (
-                <Link to={`/detail/${feedBackItem.maKhoaHoc}`} className="item-course-category">
-                    <div className="item-detail" key={feedBackItem.id}>
-                        <div className="item-body">
-                            <h4 className="item-img">
-                                <img src={feedBackItem.hinhAnh} alt="" className="w-100" />
-                            </h4>
-                            <div className="item-title">
-                                <div className="name_course">{feedBackItem.tenKhoaHoc}</div>
-                                <div className="item-content d-flex justify-content-between">
-                                    <div className="ngayTao"> {feedBackItem.ngayTao}</div>
-                                    <div className="luotXem">Lượt xem :{feedBackItem.luotXem}</div>
-                                </div>
+                <div className="course-item px-3">
+                    <div className="item">
+                        <div className="img position-relative overflow-hidden content-hover">
+                            <img
+                                className="w-100"
+                                style={{ height: "120px" }}
+                                src={courseItem.hinhAnh}
+                            />
+                            <div className="info d-flex justify-content-center align-items-center flex-column position-absolute text-white">
+                                <Link
+                                    to={`/detail/${courseItem.maKhoaHoc}`}
+                                    className="d-block mt-3 mb-2 text-white text-decoration-none"
+                                >
+                                    Chi tiết
+                                </Link>
+                                <p>Released: {courseItem.ngayTao}</p>
                             </div>
                         </div>
+                        <h4 className="text-center">{courseItem.tenKhoaHoc}</h4>
                     </div>
-                </Link>
+                </div>
             );
         });
     };
     return (
         <div>
-            {course == "" ? (
+            {course === "" ? (
                 <>Still loading...</>
             ) : (
                 <div>
                     <section className="same-category mb-lg-5 mt-lg-4 ">
                         <div className="container">
-                            <div
-                                style={{ textTransform: "uppercase", fontWeight: "bold" }}
-                                className="pb-3"
-                            >
+                            <h1 className="header_course_list" className="pb-3">
                                 Khoá học cùng thể loại
-                            </div>
+                            </h1>
                             <div className="have_content">
                                 <Slider ref={ref} {...settings}>
                                     {mapCourseList()}

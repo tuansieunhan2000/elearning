@@ -39,7 +39,7 @@ export default function AllCourseList() {
             ) : (
                 <div className="container  pb-4">
                     <div className="row">
-                        <h4 className="header_course_list p-0 pb-3">List Course</h4>
+                        <h4 className="header_course_list p-0 pb-3">Danh sách khoá học</h4>
                         <div className="container pt-3">
                             <div className="row">{renderCourseList()} </div>
                             <div className="text-center">

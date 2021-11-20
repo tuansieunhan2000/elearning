@@ -82,7 +82,7 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
         ],
     };
     return (
-        <div className="container course p-4">
+        <div className="container course p-4 mb-4">
             <div className="row">
                 <div className="col-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center text-center flex-colum align-items-center">
                     <div className="courses__intro w-100">

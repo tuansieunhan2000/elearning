@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import Footer from "../../Layouts/Footer";
 import ListCourseByCategory from "../../Layouts/ListCourseByCategory";
+import CourseTabList from "../../Layouts/CategoryNav"
 import { fetchCourseByType } from "../../Redux/Actions/courseAction";
 
 export default function CourseList() {
@@ -16,6 +17,7 @@ export default function CourseList() {
     return (
         <div>
             <ListCourseByCategory courseListByCategory={courseListByCategory} />
+            <CourseTabList maDanhMucKhoahoc={"backEnd"} />
             <Footer />
         </div>
     );

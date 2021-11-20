@@ -2,33 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./main.scss";
 export default function CourseItem({ courseItem }) {
-    const limitDisplayName = (string) => {
-        if (string) {
-            return string.length > 25 ? string.substr(0, 25) + "..." : string;
-        }
-        return "";
-    };
     return (
-        <div className="item-list col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-2">
-            <Link to={`/detail/${courseItem.maKhoaHoc}`} className="item-list ">
-                <div className="item-img">
+        <div className="col-md-3 col-sm-6 col-xs-12 course-item p-3" key={courseItem.maKhoaHoc}>
+            <div className="item">
+                <div className="img position-relative overflow-hidden content-hover">
                     <img
-                        className="card-img-top"
+                        className="w-100"
+                        style={{ height: "180px" }}
                         src={courseItem.hinhAnh}
-                        alt={courseItem.hinhAnh}
+                        alt=""
                     />
-                </div>
-                <div className="card-body">
-                    <h4 className="card-title">{limitDisplayName(courseItem.tenKhoaHoc)}</h4>
-                    <div className="cardContent">
-                        <div className="content d-flex justify-content-between py-1 flex-colum align-items-center">
-                            <p>{courseItem.ngayTao}</p>
-                            <p>Rating : 5.0</p>
-                        </div>
-                        <div className="d-flex justify-content-center py-1 flex-colum align-items-center"></div>
+                    <div className="info d-flex justify-content-center align-items-center flex-column position-absolute text-white">
+                        <Link
+                            to={`/detail/${courseItem.maKhoaHoc}`}
+                            className="d-block mt-3 mb-2 text-white text-decoration-none"
+                        >
+                            Chi tiết
+                        </Link>
+                        <p>Released: {courseItem.ngayTao}</p>
                     </div>
                 </div>
-            </Link>
+                <h4 className="text-center">{courseItem.tenKhoaHoc}</h4>
+            </div>
         </div>
     );
 }

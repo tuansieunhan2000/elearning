@@ -2,10 +2,17 @@
 
 .detail-course {
      .address-link {
+          font-size: 18px;
+          margin-bottom: 2rem;
+          letter-spacing: 1.7px;
           text-transform: uppercase;
-          font-weight: bold;
-          padding-top: 2rem;
-          padding-bottom: 1.5rem;
+          border-bottom: 1 px solid #dfdfdf;
+          padding-top: 2.5rem;
+          color: black;
+          a {
+               text-decoration: none;
+               color: black;
+          }
 
           .fas {
                padding: 0.5rem;
