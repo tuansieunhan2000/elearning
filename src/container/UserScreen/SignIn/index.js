@@ -2,8 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Login } from "../../Redux/Actions/userAction";
-import { signInUserSchema } from "../../Services/UserService";
+import { Login } from "../../../Redux/Actions/userAction";
+import { signInUserSchema } from "../../../Services/UserService";
 
 export default function SignInScreen() {
     const dispatch = useDispatch();

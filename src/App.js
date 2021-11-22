@@ -3,16 +3,17 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./assets/sass/main.scss";
+import ProfileScreen from "./container/UserScreen/Profile";
 import Header from "./Layouts/Header";
 import { createAction } from "./Redux/Actions";
 import { fetchCategory } from "./Redux/Actions/categoryAction";
 import { fetchCourse, fetchCourseByTypeDefaul } from "./Redux/Actions/courseAction";
 import { GET_USER_LOGIN } from "./Redux/Types";
-import CourseList from "./Screens/CourseList";
-import DetailScreen from "./Screens/Detail";
-import HomeScreen from "./Screens/Home";
-import SignInScreen from "./Screens/SignIn";
-import SignUpScreen from "./Screens/SignUp";
+import CourseList from "./container/UserScreen/CourseList";
+import DetailScreen from "./container/UserScreen/Detail";
+import HomeScreen from "./container/UserScreen/Home";
+import SignInScreen from "./container/UserScreen/SignIn";
+import SignUpScreen from "./container/UserScreen/SignUp";
 
 function App() {
     const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
                 <Route exact path="/courselist/:type" component={CourseList} />
                 <Route exact path="/signup" component={SignUpScreen} />
                 <Route exact path="/signin" component={SignInScreen} />
+                <Route exact path="/profile" component={ProfileScreen} />
             </Switch>
         </BrowserRouter>
     );

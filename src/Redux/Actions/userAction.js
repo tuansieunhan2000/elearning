@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { createAction } from ".";
 import { userService } from "../../Services";
-import { GET_USER_LOGIN } from "../Types";
+import { GET_USER_INFO, GET_USER_LOGIN } from "../Types";
 
 export const register = (value) => {
     return (dispatch) => {
@@ -44,6 +44,22 @@ export const Login = (value) => {
                     icon: "error",
                     confirmButtonText: "OK",
                 });
+                return Promise.reject();
+            });
+    };
+};
+
+export const GetInfoUser = (token) => {
+    return (dispatch) => {
+        return userService
+            .GetUserInfo(token)
+            .then((res) => {
+                console.log(res.data);
+                dispatch(createAction(GET_USER_INFO, res.data));
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.log(err.response);
                 return Promise.reject();
             });
     };

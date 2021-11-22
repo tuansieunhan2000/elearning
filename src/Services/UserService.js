@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_LOGIN_USER, API_REGISTER_USER } from "../constants/api";
+import { API_LOGIN_USER, API_REGISTER_USER, API_USER_INFO } from "../constants/api";
 import * as yup from "yup";
 
 export const signUpUserSchema = yup.object().shape({
@@ -25,5 +25,14 @@ UserService.prototype = {
     },
     SignIn(value) {
         return axios.post(API_LOGIN_USER, value);
+    },
+    GetUserInfo(token) {
+        let config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        console.log("config", config);
+        return axios.post(API_USER_INFO, config);
     },
 };
