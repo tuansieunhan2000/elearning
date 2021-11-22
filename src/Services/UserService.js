@@ -26,13 +26,15 @@ UserService.prototype = {
     SignIn(value) {
         return axios.post(API_LOGIN_USER, value);
     },
-    GetUserInfo(token) {
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        console.log("config", config);
-        return axios.post(API_USER_INFO, config);
+    GetUserInfo(token, taiKhoan) {
+        return axios.post(
+            API_USER_INFO,
+            { taiKhoan: taiKhoan },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
     },
 };

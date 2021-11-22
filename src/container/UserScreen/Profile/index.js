@@ -4,15 +4,17 @@ import { GetInfoUser } from "../../../Redux/Actions/userAction";
 
 export default function ProfileScreen() {
     const dispatch = useDispatch();
+
     const info = useSelector((state) => state.user.info) || {};
     console.log(info);
-    let accessToken = "";
-    if (localStorage.getItem("userItem")) {
-        accessToken = JSON.parse(localStorage.getItem("userItem")).accessToken;
-    }
+
     useEffect(() => {
-        console.log(accessToken);
-        dispatch(GetInfoUser(accessToken));
-    }, [accessToken]);
+        if (localStorage.getItem("userItem")) {
+            let accessToken = JSON.parse(localStorage.getItem("userItem")).accessToken;
+            let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
+
+            dispatch(GetInfoUser(accessToken, taiKhoan));
+        }
+    }, [dispatch]);
     return <div>ProfileScreen</div>;
 }

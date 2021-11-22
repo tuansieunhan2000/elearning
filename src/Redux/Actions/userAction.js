@@ -49,10 +49,10 @@ export const Login = (value) => {
     };
 };
 
-export const GetInfoUser = (token) => {
+export const GetInfoUser = (token, taiKhoan) => {
     return (dispatch) => {
         return userService
-            .GetUserInfo(token)
+            .GetUserInfo(token, taiKhoan)
             .then((res) => {
                 console.log(res.data);
                 dispatch(createAction(GET_USER_INFO, res.data));
