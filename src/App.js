@@ -14,6 +14,7 @@ import DetailScreen from "./container/UserScreen/Detail";
 import HomeScreen from "./container/UserScreen/Home";
 import SignInScreen from "./container/UserScreen/SignIn";
 import SignUpScreen from "./container/UserScreen/SignUp";
+import ProfileEditScreen from "./container/UserScreen/ProfileEditScreen";
 
 function App() {
     const dispatch = useDispatch();

@@ -75,9 +75,9 @@ export default function SameCategory({ DanhMucKhoahoc }) {
     };
 
     const mapCourseList = () => {
-        return course.map((courseItem) => {
+        return course.map((courseItem ,index) => {
             return (
-                <div className="course-item px-3">
+                <div className="course-item px-3" key={index}>
                     <div className="item">
                         <div className="img position-relative overflow-hidden content-hover">
                             <img
@@ -120,6 +120,8 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                         </div>
                     </section>
                 </div>
+
+                
             )}
         </div>
     );

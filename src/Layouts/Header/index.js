@@ -4,6 +4,12 @@ import logo1 from "../../assets/img/logo-coral.svg";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import "./main.scss";
+
+import { ErrorMessage, Field, Form, Formik } from "formik";
+
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 export default function Header() {
     const userInfo = useSelector((state) => state.user.userInfo);
     const category = useSelector((state) => state.category.category);
@@ -25,6 +31,13 @@ export default function Header() {
             );
         });
     };
+
+    let textInput = React.createRef(); // React use ref to get input value
+
+    let onOnclickHandler = (e) => {
+        console.log(textInput.current.value);
+    };
+
     const fetchCategorySmallSreen = () => {
         return (
             <ul className="dropdown-submenu">
@@ -111,9 +124,15 @@ export default function Header() {
                                     placeholder="Search for anything"
                                     aria-label="Recipient's username"
                                     aria-describedby="basic-addon2"
+                                    ref={textInput}
+                                    type="text"
                                 />
                                 <div className="input-group-append">
-                                    <span className="input-group-text" id="basic-addon2">
+                                    <span
+                                        className="input-group-text"
+                                        id="basic-addon2"
+                                        onClick={onOnclickHandler}
+                                    >
                                         <i className="fa fa-search" />
                                     </span>
                                 </div>
@@ -133,7 +152,7 @@ export default function Header() {
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink to="/" className="navlink nameUser">
+                                        <NavLink to="/profile" className="navlink nameUser">
                                             {`Hi, ${
                                                 userInfo.hoTen.toString().length > 20
                                                     ? userInfo.hoTen.substring(0, 15) + "..."

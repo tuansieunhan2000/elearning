@@ -7,6 +7,7 @@ import {
     FETCH_COURSE_LIST_PER_PAGE,
     FETCH_COURSE_LIST_SAME_CATEGORY,
     FETCH_DETAIL_COURCE,
+    FETCH_SEARCH_COURSE,
 } from "../Types";
 
 export const fetchDetailCourse = (id) => {
@@ -69,6 +70,15 @@ export const fetchCourseSameCategory = (maKhoaHoc) => {
             .then((res) => {
                 dispatch(createAction(FETCH_COURSE_LIST_SAME_CATEGORY, res.data));
             })
+            .catch((err) => console.log(err));
+    };
+};
+
+export const fetchSearchCourse = (tenKhoaHoc) => {
+    return (dispatch) => {
+        courseService
+            .SearchCourse(tenKhoaHoc)
+            .then((res) => dispatch(createAction(FETCH_SEARCH_COURSE, res.data)))
             .catch((err) => console.log(err));
     };
 };

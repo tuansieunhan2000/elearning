@@ -1,5 +1,11 @@
 import axios from "axios";
-import { API_LOGIN_USER, API_REGISTER_USER, API_USER_INFO } from "../constants/api";
+import {
+    API_LOGIN_USER,
+    API_REGISTER_COURSE,
+    API_REGISTER_USER,
+    API_UNREGISTER_COURSE,
+    API_USER_INFO,
+} from "../constants/api";
 import * as yup from "yup";
 
 export const signUpUserSchema = yup.object().shape({
@@ -36,5 +42,19 @@ UserService.prototype = {
                 },
             }
         );
+    },
+    RegisterCourse(token, data) {
+        return axios.post(API_REGISTER_COURSE, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+    },
+    CancelCourse(token, data) {
+        return axios.post(API_UNREGISTER_COURSE, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
     },
 };

@@ -4,6 +4,7 @@ import {
     API_COURSES_PER_PAGE,
     API_DETAIL_COURSES,
     API_GET_COURSE_LIST_BY_TYPE,
+    API_SEARCH_COURSE,
 } from "../constants/api";
 
 export default function CourseService() {}
@@ -15,13 +16,16 @@ CourseService.prototype = {
     AllCourse() {
         return axios.get(API_COURSES);
     },
+    SearchCourse(tenKhoaHoc) {
+        return axios.get(`${API_SEARCH_COURSE}${tenKhoaHoc}`);
+    },
     GetCourseListByType(maDanhMuc) {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
     },
     GetCourseListByTypeDeFault(maDanhMuc) {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
     },
-    GetCourseListPerPage(param) {   
+    GetCourseListPerPage(param) {
         return axios.get(`${API_COURSES_PER_PAGE}${param}`);
     },
     GetCourseListSameType(maDanhMuc) {
