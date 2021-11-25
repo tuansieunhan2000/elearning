@@ -49,10 +49,10 @@ export const Login = (value) => {
     };
 };
 
-export const GetInfoUser = (token, taiKhoan) => {
+export const GetInfoUser = (taiKhoan) => {
     return (dispatch) => {
         return userService
-            .GetUserInfo(token, taiKhoan)
+            .GetUserInfo(taiKhoan)
             .then((res) => {
                 dispatch(createAction(GET_USER_INFO, res.data));
                 return Promise.resolve();
@@ -76,7 +76,6 @@ export const UserRegisterCourse = (token, taiKhoan) => {
                     icon: "success",
                     confirmButtonText: "OK",
                 });
-            
 
                 return Promise.resolve();
             })

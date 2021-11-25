@@ -14,7 +14,8 @@ import DetailScreen from "./container/UserScreen/Detail";
 import HomeScreen from "./container/UserScreen/Home";
 import SignInScreen from "./container/UserScreen/SignIn";
 import SignUpScreen from "./container/UserScreen/SignUp";
-import ProfileEditScreen from "./container/UserScreen/ProfileEditScreen";
+import axios from "axios";
+// import ProfileEditScreen from "./container/UserScreen/ProfileEditScreen";
 
 function App() {
     const dispatch = useDispatch();
@@ -22,6 +23,12 @@ function App() {
         const userInfo = localStorage.getItem("userItem");
         if (userInfo) {
             dispatch(createAction(GET_USER_LOGIN, JSON.parse(userInfo)));
+            axios.interceptors.request.use(function (config) {
+                const token = JSON.parse(userInfo).accessToken;
+                config.headers.Authorization = token ? `Bearer ${token}` : "";
+                // console.log(config);
+                return config;
+            });
         }
     };
 

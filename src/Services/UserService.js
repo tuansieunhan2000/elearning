@@ -32,16 +32,9 @@ UserService.prototype = {
     SignIn(value) {
         return axios.post(API_LOGIN_USER, value);
     },
-    GetUserInfo(token, taiKhoan) {
-        return axios.post(
-            API_USER_INFO,
-            { taiKhoan: taiKhoan },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
+    GetUserInfo(taiKhoan) {
+        
+        return axios.post(API_USER_INFO, { taiKhoan: taiKhoan });
     },
     RegisterCourse(token, data) {
         return axios.post(API_REGISTER_COURSE, data, {

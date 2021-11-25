@@ -9,15 +9,12 @@ export default function ProfileScreen() {
 
     const user = useSelector((state) => state.user.info) || {};
 
-    console.log(user);
+    console.log("user", user);
 
     useEffect(() => {
-        if (localStorage.getItem("userItem")) {
-            let accessToken = JSON.parse(localStorage.getItem("userItem")).accessToken;
-            let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
-            dispatch(GetInfoUser(accessToken, taiKhoan));
-        }
-    }, []);
+        let taiKhoan = user.taiKhoan;
+        dispatch(GetInfoUser(taiKhoan));
+    }, [user]);
 
     const handleDelete = (maKhoaHoc) => {
         if (localStorage.getItem("userItem")) {
