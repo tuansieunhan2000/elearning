@@ -1,8 +1,11 @@
+import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { createAction } from "../../../Redux/Actions";
 import { Login } from "../../../Redux/Actions/userAction";
+import { GET_USER_HEADERS } from "../../../Redux/Types";
 import { signInUserSchema } from "../../../Services/UserService";
 
 export default function SignInScreen() {
@@ -11,6 +14,15 @@ export default function SignInScreen() {
     const handleLogin = (value) => {
         dispatch(Login(value))
             .then(() => {
+                const userInfo = localStorage.getItem("userItem");
+                axios.interceptors.request.use(function (config) {
+                    const token = JSON.parse(userInfo).accessToken;
+                    config.headers.Authorization = token ? `Bearer ${token}` : "";
+                    console.log("config when login success ", config);
+                    dispatch(createAction(GET_USER_HEADERS, config.headers.Authorization));
+
+                    return config;
+                });
                 history.push("/");
             })
             .catch(() => {});

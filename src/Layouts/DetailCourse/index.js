@@ -14,13 +14,13 @@ export default function DetailCourse({ detailCourse }) {
     console.log("user", user);
     const handleRegisterCourse = () => {
         if (localStorage.getItem("userItem")) {
-            let taiKhoan = user.taiKhoan;
+            let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
             console.log("taiKhoan", taiKhoan);
             let data = {
                 taiKhoan: taiKhoan,
                 maKhoaHoc: detailCourse.maKhoaHoc,
             };
-         
+
             dispatch(UserRegisterCourse(data));
             dispatch(GetInfoUser(taiKhoan));
         } else {

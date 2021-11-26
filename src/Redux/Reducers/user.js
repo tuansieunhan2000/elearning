@@ -1,8 +1,9 @@
-import { GET_USER_INFO, GET_USER_LOGIN } from "../Types";
+import { GET_USER_HEADERS, GET_USER_INFO, GET_USER_LOGIN } from "../Types";
 
 let initialState = {
     userInfo: {},
     info: {},
+    headers: "",
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -14,6 +15,9 @@ const UserReducer = (state = initialState, action) => {
         case GET_USER_INFO:
             console.log(action.payload);
             state.info = action.payload;
+            return { ...state };
+        case GET_USER_HEADERS:
+            state.headers = action.payload;
             return { ...state };
 
         default:
