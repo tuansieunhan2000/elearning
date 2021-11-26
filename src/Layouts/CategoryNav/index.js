@@ -16,8 +16,7 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
 
     useEffect(() => {
         dispatch(fetchCourseByTypeDefaul(maDanhMucKhoahoc));
-        console.log("course", course);
-    }, [dispatch]);
+    }, [dispatch, maDanhMucKhoahoc]);
 
     const renderCategory = () => {
         return categoies.map((item, index) => {
@@ -31,7 +30,47 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
     };
 
     const ref = useRef({});
-
+    const responsive = [
+        {
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 2,
+            },
+        },
+        {
+            breakpoint: 568,
+            settings: {
+                rows: 1,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                dots: false,
+            },
+        },
+        ,
+        {
+            breakpoint: 456,
+            settings: {
+                rows: 1,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+            },
+        },
+    ];
     const settings = {
         dots: true,
         infinite: false,
@@ -39,47 +78,7 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
         slidesToShow: 5,
         slidesToScroll: 4,
         initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 568,
-                settings: {
-                    rows: 1,
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    dots: false,
-                },
-            },
-            ,
-            {
-                breakpoint: 456,
-                settings: {
-                    rows: 1,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    dots: false,
-                },
-            },
-        ],
+        responsive: responsive,
     };
     return (
         <div className="container course p-4 mb-4">

@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from "formik";
+import { stringify } from "query-string";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,29 +7,27 @@ import { GetInfoUser, UserCancelCourse } from "../../../Redux/Actions/userAction
 export default function ProfileScreen() {
     const dispatch = useDispatch();
 
-    const user = useSelector((state) => state.user.info) || {};
-
-    console.log("user", user);
+    const user = useSelector((state) => state.user.info);
+    const chiTietCacKhoaHocDaDangKi = useSelector((state) => state.chiTietCacKhoaHocDaDangKi) || [];
+    console.log("chiTietCacKhoaHocDaDangKi", chiTietCacKhoaHocDaDangKi);
 
     useEffect(() => {
-        let taiKhoan = user.taiKhoan;
-        dispatch(GetInfoUser(taiKhoan));
-    }, [user]);
+        dispatch(GetInfoUser());
+    }, []);
 
     const handleDelete = (maKhoaHoc) => {
-        if (localStorage.getItem("userItem")) {
-            let accessToken = JSON.parse(localStorage.getItem("userItem")).accessToken;
-            let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
+        if (user) {
+            let taiKhoan = user.taiKhoan;
             let data = {
                 taiKhoan: taiKhoan,
                 maKhoaHoc: maKhoaHoc,
             };
-            dispatch(UserCancelCourse(accessToken, data));
-            dispatch(GetInfoUser(accessToken, taiKhoan));
+            dispatch(UserCancelCourse(data));
         }
     };
+
     const mapCourseRegisted = () => {
-        return user.chiTietKhoaHocGhiDanh?.map((course, index) => {
+        return chiTietCacKhoaHocDaDangKi?.map((course, index) => {
             return (
                 <div className="col-3 mb-4" key={index}>
                     <div className="card">
@@ -104,7 +102,7 @@ export default function ProfileScreen() {
                                 </table>
                                 <h3>Khoá học đã đăng kí</h3>
                                 <div className="row">
-                                    {user.chiTietKhoaHocGhiDanh == [] ? (
+                                    {!user.chiTietKhoaHocGhiDanh ? (
                                         <>Bạn chưa đăng kí khoá học nào</>
                                     ) : (
                                         <>{mapCourseRegisted()}</>

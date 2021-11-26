@@ -11,7 +11,7 @@ export const API_COURSES_PER_PAGE = API + API_COURSE + "LayDanhSachKhoaHoc_PhanT
 
 export const API_REGISTER_USER = API + API_USER + "DangKy";
 export const API_LOGIN_USER = API + API_USER + "DangNhap";
-export const API_USER_INFO = API + API_USER + "ThongTinTaiKhoan";
+export const API_USER_INFO = API + API_USER + "ThongTinNguoiDung";
 
 export const API_REGISTER_COURSE = API + API_COURSE + "DangKyKhoaHoc";
 export const API_UNREGISTER_COURSE = API + API_COURSE + "HuyGhiDanh";

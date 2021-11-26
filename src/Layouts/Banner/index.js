@@ -2,6 +2,11 @@ import React from "react";
 import banner from "../../assets/img/cover.jpg";
 import "./main.scss";
 export default function Banner() {
+    let textInput = React.createRef(); // React use ref to get input value
+
+    let onOnclickHandler = (e) => {
+        console.log(textInput.current.value);
+    };
     return (
         <div className="header__banner ">
             <div className="banner__img">
@@ -20,9 +25,14 @@ export default function Banner() {
                                 type="text"
                                 className="form-control"
                                 placeholder="What do you want to lean?"
+                                ref={textInput}
                             />
                             <div className="input-group-append">
-                                <span className="input-group-text" id="basic-addon2">
+                                <span
+                                    className="input-group-text"
+                                    id="basic-addon2"
+                                    onClick={onOnclickHandler}
+                                >
                                     <i className="fa fa-search" />
                                 </span>
                             </div>

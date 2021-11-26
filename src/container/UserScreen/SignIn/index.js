@@ -11,7 +11,6 @@ export default function SignInScreen() {
     const handleLogin = (value) => {
         dispatch(Login(value))
             .then(() => {
-                console.log(1);
                 history.push("/");
             })
             .catch(() => {});

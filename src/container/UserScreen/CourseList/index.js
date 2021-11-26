@@ -12,7 +12,7 @@ export default function CourseList() {
     useEffect(() => {
         dispatch(fetchCourseByType(maDanhMuc.type));
     }, [maDanhMuc.type, dispatch]);
-    const courseListByCategory = useSelector((state) => state.course.courseListByCategory) || "";
+    const courseListByCategory = useSelector((state) => state.course.courseListByCategory) || {};
 
     return (
         <div>

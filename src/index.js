@@ -1,16 +1,28 @@
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import RootReducer from "./Redux/Reducers/root";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
+import App from "./App";
+import "./index.css";
+import RootReducer from "./Redux/Reducers/root";
+import reportWebVitals from "./reportWebVitals";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(RootReducer, composeEnhancers(applyMiddleware(thunk)));
+
+const userInfo = localStorage.getItem("userItem");
+if (userInfo) {
+    axios.interceptors.request.use(function (config) {
+        const token = JSON.parse(userInfo).accessToken;
+        config.headers.Authorization = token ? `Bearer ${token}` : "";
+        console.log(config);
+        return config;
+    });
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <App />

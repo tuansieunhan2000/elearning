@@ -24,6 +24,47 @@ export default function SameCategory({ DanhMucKhoahoc }) {
 
     const ref = useRef({});
 
+    const responsive = [
+        {
+            breakpoint: 1199,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 3,
+            },
+        },
+        {
+            breakpoint: 568,
+            settings: {
+                rows: 1,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                dots: false,
+            },
+        },
+        ,
+        {
+            breakpoint: 456,
+            settings: {
+                rows: 1,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+            },
+        },
+    ];
     const settings = {
         dots: true,
         infinite: false,
@@ -31,51 +72,11 @@ export default function SameCategory({ DanhMucKhoahoc }) {
         slidesToShow: 5,
         slidesToScroll: 4,
         initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 568,
-                settings: {
-                    rows: 1,
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    dots: false,
-                },
-            },
-            ,
-            {
-                breakpoint: 456,
-                settings: {
-                    rows: 1,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    dots: false,
-                },
-            },
-        ],
+        responsive: responsive,
     };
 
     const mapCourseList = () => {
-        return course.map((courseItem ,index) => {
+        return course.map((courseItem, index) => {
             return (
                 <div className="course-item px-3" key={index}>
                     <div className="item">
@@ -84,6 +85,7 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                                 className="w-100"
                                 style={{ height: "120px" }}
                                 src={courseItem.hinhAnh}
+                                alt=""
                             />
                             <div className="info d-flex justify-content-center align-items-center flex-column position-absolute text-white">
                                 <Link
@@ -120,8 +122,6 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                         </div>
                     </section>
                 </div>
-
-                
             )}
         </div>
     );

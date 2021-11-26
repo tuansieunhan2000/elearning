@@ -1,26 +1,42 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { GetInfoUser, UserRegisterCourse } from "../../Redux/Actions/userAction";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import Swal from "sweetalert2";
+import { headersAxios } from "../../constants/headerAxios";
+import { GetInfoUser, UserRegisterCourse } from "../../Redux/Actions/userAction";
 import "./main.scss";
+
 export default function DetailCourse({ detailCourse }) {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const user = useSelector((state) => state.user.info) || {};
+    console.log("user", user);
     const handleRegisterCourse = () => {
         if (localStorage.getItem("userItem")) {
-            let accessToken = JSON.parse(localStorage.getItem("userItem")).accessToken;
-            let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
+            let taiKhoan = user.taiKhoan;
+            console.log("taiKhoan", taiKhoan);
             let data = {
                 taiKhoan: taiKhoan,
                 maKhoaHoc: detailCourse.maKhoaHoc,
             };
-            dispatch(UserRegisterCourse(accessToken, data));
-            dispatch(GetInfoUser(accessToken, taiKhoan));
+         
+            dispatch(UserRegisterCourse(data));
+            dispatch(GetInfoUser(taiKhoan));
         } else {
-            history.push("/signin");
+            Swal.fire({
+                title: "Bạn hiên chưa đăng nhập!",
+                text: "Bạn có muốn di chuyển tới trang đăng nhập không!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Đăng nhập!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    history.push("/signin");
+                }
+            });
         }
     };
 

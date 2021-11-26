@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { createAction } from ".";
 import { userService } from "../../Services";
-import { GET_USER_INFO, GET_USER_LOGIN } from "../Types";
+import { GET_COURSE_REGISTED, GET_USER_INFO, GET_USER_LOGIN, UPDATE_COURSE } from "../Types";
 
 export const register = (value) => {
     return (dispatch) => {
@@ -49,12 +49,14 @@ export const Login = (value) => {
     };
 };
 
-export const GetInfoUser = (taiKhoan) => {
+export const GetInfoUser = () => {
     return (dispatch) => {
         return userService
-            .GetUserInfo(taiKhoan)
+            .GetUserInfo()
             .then((res) => {
                 dispatch(createAction(GET_USER_INFO, res.data));
+                dispatch(createAction(GET_COURSE_REGISTED, res.data.chiTietKhoaHocGhiDanh));
+
                 return Promise.resolve();
             })
             .catch((err) => {
@@ -64,56 +66,56 @@ export const GetInfoUser = (taiKhoan) => {
     };
 };
 
-export const UserRegisterCourse = (token, taiKhoan) => {
-    return () => {
-        return userService
-            .RegisterCourse(token, taiKhoan)
-            .then((res) => {
-                console.log(res.data);
-                Swal.fire({
-                    title: "Ghi danh thành công!",
-                    text: res.data,
-                    icon: "success",
-                    confirmButtonText: "OK",
-                });
+export const UserRegisterCourse = (taiKhoan) => {
+    return (dispatch) => {
+        return (
+            userService
+                .RegisterCourse(taiKhoan)
+                .then((res) => {
+                    console.log(res);
+                    Swal.fire({
+                        title: "Ghi danh thành công!",
+                        text: res.data,
+                        icon: "success",
 
-                return Promise.resolve();
-            })
-            .catch((err) => {
-                Swal.fire({
-                    title: "Ghi danh thất bại!",
-                    text: err.response.data,
-                    icon: "error",
-                    confirmButtonText: "OK",
-                });
-                console.log(err.response.data);
-                return Promise.reject();
-            });
+                        confirmButtonText: "OK",
+                    });
+                    return Promise.resolve();
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        title: "Ghi danh thất bại!",
+                        text: err.response.data,
+                        icon: "error",
+                        confirmButtonColor: "#ec5252",
+
+                        confirmButtonText: "OK",
+                    });
+                    console.log(err.response.data);
+                    return Promise.reject();
+                }),
+            GetInfoUser()
+        );
     };
 };
-function refreshPage() {
-    setTimeout(() => {
-        window.location.reload(false);
-    }, 500);
-    console.log("page to reload");
-}
-export const UserCancelCourse = (token, taiKhoan) => {
-    return () => {
+
+export const UserCancelCourse = (data) => {
+    return (dispatch) => {
         return userService
-            .CancelCourse(token, taiKhoan)
+            .CancelCourse(data)
             .then((res) => {
-                console.log(res.data);
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
+                    confirmButtonColor: "#ec5252",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, delete it!",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        refreshPage();
+                        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                        dispatch(createAction(UPDATE_COURSE, data.maKhoaHoc));
                     }
                 });
 

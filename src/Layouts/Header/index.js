@@ -1,18 +1,12 @@
 import React from "react";
-import logo1 from "../../assets/img/logo-coral.svg";
-
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import logo1 from "../../assets/img/logo-coral.svg";
 import "./main.scss";
 
-import { ErrorMessage, Field, Form, Formik } from "formik";
-
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
 export default function Header() {
-    const userInfo = useSelector((state) => state.user.userInfo);
-    const category = useSelector((state) => state.category.category);
+    const userInfo = useSelector((state) => state.user.userInfo) || {};
+    const category = useSelector((state) => state.category.category) || {};
 
     const logout = () => {
         localStorage.clear();

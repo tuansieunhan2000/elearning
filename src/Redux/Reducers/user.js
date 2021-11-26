@@ -2,7 +2,7 @@ import { GET_USER_INFO, GET_USER_LOGIN } from "../Types";
 
 let initialState = {
     userInfo: {},
-    info: [],
+    info: {},
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -14,6 +14,8 @@ const UserReducer = (state = initialState, action) => {
         case GET_USER_INFO:
             console.log(action.payload);
             state.info = action.payload;
+            return { ...state };
+
         default:
             return state;
     }
