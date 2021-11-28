@@ -1,10 +1,8 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./assets/sass/main.scss";
-import { headersAxios } from "./constants/headerAxios";
 import CourseList from "./container/UserScreen/CourseList";
 import DetailScreen from "./container/UserScreen/Detail";
 import HomeScreen from "./container/UserScreen/Home";

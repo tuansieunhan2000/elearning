@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
-import { headersAxios } from "../../constants/headerAxios";
 import { GetInfoUser, UserRegisterCourse } from "../../Redux/Actions/userAction";
 import "./main.scss";
 

@@ -33,7 +33,7 @@ export default function ListCourseByCategory({ courseListByCategory }) {
     };
     return (
         <div>
-            {courseListByCategory == "" ? (
+            {courseListByCategory === "" ? (
                 <>Still loading...</>
             ) : (
                 <section className="new">

@@ -119,7 +119,6 @@ export default function Header() {
                                     aria-label="Recipient's username"
                                     aria-describedby="basic-addon2"
                                     ref={textInput}
-                                    type="text"
                                 />
                                 <div className="input-group-append">
                                     <span

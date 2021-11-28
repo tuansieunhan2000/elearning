@@ -7,18 +7,25 @@ import CourseTabList from "../../../Layouts/CategoryNav";
 import { fetchCourseByType } from "../../../Redux/Actions/courseAction";
 
 export default function CourseList() {
-    let maDanhMuc = useParams();
     const dispatch = useDispatch();
+    const courseListByCategory = useSelector((state) => state.course.courseListByCategory) || {};
+    let maDanhMuc = useParams();
+
     useEffect(() => {
         dispatch(fetchCourseByType(maDanhMuc.type));
     }, [maDanhMuc.type, dispatch]);
-    const courseListByCategory = useSelector((state) => state.course.courseListByCategory) || {};
 
     return (
-        <div>
-            <ListCourseByCategory courseListByCategory={courseListByCategory} />
-            <CourseTabList maDanhMucKhoahoc={"backEnd"} />
-            <Footer />
-        </div>
+        <>
+            {!courseListByCategory ? (
+                <>Still loading...</>
+            ) : (
+                <div>
+                    <ListCourseByCategory courseListByCategory={courseListByCategory} />
+                    <CourseTabList maDanhMucKhoahoc={"backEnd"} />
+                    <Footer />
+                </div>
+            )}
+        </>
     );
 }

@@ -1,4 +1,3 @@
-import { stringify } from "query-string";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,7 +12,7 @@ export default function ProfileScreen() {
 
     useEffect(() => {
         dispatch(GetInfoUser());
-    }, []);
+    }, [dispatch]);
 
     const handleDelete = (maKhoaHoc) => {
         if (user) {
@@ -56,9 +55,7 @@ export default function ProfileScreen() {
                 <div>
                     <section className="same-category mb-lg-5 mt-lg-4 ">
                         <div className="container">
-                            <h1 className="header_course_list" className="pb-3">
-                                THÔNG TIN NGƯỜI DÙNG
-                            </h1>
+                            <h1 className="header_course_list pb-3">THÔNG TIN NGƯỜI DÙNG</h1>
                             <div className="have_content">
                                 <table className="table borderless">
                                     <tbody>

@@ -54,7 +54,7 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                 dots: false,
             },
         },
-        ,
+
         {
             breakpoint: 456,
             settings: {
@@ -111,9 +111,7 @@ export default function SameCategory({ DanhMucKhoahoc }) {
                 <div>
                     <section className="same-category mb-lg-5 mt-lg-4 ">
                         <div className="container">
-                            <h1 className="header_course_list" className="pb-3">
-                                Khoá học cùng thể loại
-                            </h1>
+                            <h1 className="header_course_list pb-3">Khoá học cùng thể loại</h1>
                             <div className="have_content">
                                 <Slider ref={ref} {...settings}>
                                     {mapCourseList()}

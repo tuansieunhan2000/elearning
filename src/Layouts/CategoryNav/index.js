@@ -60,7 +60,7 @@ export default function CourseTabList({ maDanhMucKhoahoc }) {
                 dots: false,
             },
         },
-        ,
+        
         {
             breakpoint: 456,
             settings: {
