@@ -56,7 +56,6 @@ export const GetInfoUser = () => {
             .then((res) => {
                 dispatch(createAction(GET_USER_INFO, res.data));
                 dispatch(createAction(GET_COURSE_REGISTED, res.data.chiTietKhoaHocGhiDanh));
-
                 return Promise.resolve();
             })
             .catch((err) => {
@@ -91,7 +90,7 @@ export const UserRegisterCourse = (taiKhoan) => {
 
                         confirmButtonText: "OK",
                     });
-                    console.log(err.response.data);
+
                     return Promise.reject();
                 }),
             GetInfoUser()

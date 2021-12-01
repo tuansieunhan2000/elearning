@@ -6,7 +6,6 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./main.scss";
 export default function FeedBackFromUser() {
-    console.log(listFeedBackFromUser);
     const options = {
         margin: 30,
         responsiveClass: true,

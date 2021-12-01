@@ -8,7 +8,6 @@ export default function ProfileScreen() {
 
     const user = useSelector((state) => state.user.info);
     const chiTietCacKhoaHocDaDangKi = useSelector((state) => state.chiTietCacKhoaHocDaDangKi) || [];
-    console.log("chiTietCacKhoaHocDaDangKi", chiTietCacKhoaHocDaDangKi);
 
     useEffect(() => {
         dispatch(GetInfoUser());

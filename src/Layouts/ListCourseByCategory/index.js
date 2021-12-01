@@ -38,7 +38,7 @@ export default function ListCourseByCategory({ courseListByCategory }) {
             ) : (
                 <section className="new">
                     <div className="container">
-                        <h1>{courseListByCategory[0].danhMucKhoaHoc.tenDanhMucKhoaHoc} </h1>
+                        <h1>{courseListByCategory[0]?.danhMucKhoaHoc.tenDanhMucKhoaHoc} </h1>
                         <div className="row">{mapItem()}</div>
                     </div>
                 </section>
