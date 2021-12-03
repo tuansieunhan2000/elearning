@@ -1,23 +1,41 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
 import Navbar from "../../Components/Navbar";
 import HomeAdmin from "./HomeAdmin";
-import AddUserAdmin from "./AddUser";
-import EditUserAdmin from "./EditUserInfo";
+
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import UserManager from "./UserManager";
+import CourseManager from "./CourseManage";
 
 export default function Admin() {
-    const match = useRouteMatch();
-    console.log(`${match.url}/addUser`, `${match.url}/sedituser`);
+    const history = useHistory();
+    const chuyenHuongAdmin = () => {
+        Swal.fire({
+            title: "Bạn không phải là quản trị!",
+            text: "Vui lòng đăng nhập bằng tài khoản quản trị",
+            icon: "error", //error, success,warning,question
+            confirmButtonText: "Đăng nhập",
+        });
+        localStorage.removeItem("userItem");
+        history.replace("/signin");
+    };
+    const token = JSON.parse(localStorage.getItem("userItem"));
 
     return (
         <>
-            <Navbar />
-            <Switch>
-                <Route exact path={`/admin/adduser`} component={AddUserAdmin} />
-                <Route exact path={`/admin/edituser`} component={EditUserAdmin} />
-                <Route exact path="/admin" component={HomeAdmin} />
-            </Switch>
+            {token && token.maLoaiNguoiDung === "GV" ? (
+                <>
+                    <Navbar token={token} />
+                    <Switch>
+                        <Route exact path={`/admin/usermanager`} component={UserManager} />
+                        <Route exact path={`/admin/coursemanager`} component={CourseManager} />
+                        <Route exact path="/admin" component={HomeAdmin} />
+                    </Switch>
+                </>
+            ) : (
+                chuyenHuongAdmin()
+            )}
         </>
     );
 }

@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./sidebarData";
 import "./main.scss";
-import { useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
 import { IconContext } from "react-icons/lib";
-function Navbar() {
+function Navbar({ token }) {
     const [sidebar, setsidebar] = useState(false);
-    const showSidebar = () => {
-        setsidebar(!sidebar);
-        console.log(sidebar);
-    };
-    let match = useRouteMatch();
+    const showSidebar = () => setsidebar(!sidebar);
 
+    const logout = () => {
+        localStorage.clear();
+        window.location.href = "/signin";
+    };
     return (
         <>
             <IconContext.Provider value={{ color: "#fff" }}>
@@ -21,6 +20,23 @@ function Navbar() {
                     <Link to="#" className="menu-bars">
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
+                    <ul className="navbarss-right d-flex justify-content-center flex-row align-items-center m-0 text-white">
+                        {token.taiKhoan ? (
+                            <>
+                                <li className="nav-item">
+                                    <NavLink to="#" className="navlink nameUser text-white mr-4">
+                                        {`Hi, ${
+                                            token.hoTen.toString().length > 20
+                                                ? token.hoTen.substring(0, 15) + "..."
+                                                : token.hoTen
+                                        }`}
+                                    </NavLink>
+                                </li>
+                            </>
+                        ) : (
+                            <>HI</>
+                        )}
+                    </ul>
                 </div>
                 <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
                     <ul className="nav-menu-items">
@@ -39,6 +55,13 @@ function Navbar() {
                                 </li>
                             );
                         })}
+                        <hr />
+                        <li className="nav-text">
+                            <Link to="#" onClick={logout}>
+                                <FaIcons.FaSignOutAlt />
+                                <span>Đăng xuất</span>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </IconContext.Provider>
