@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_ADD_USER, API_LAY_MA_NGUOI_DUNG } from "../constants/api";
+import { API_ADD_USER, API_GET_LIST_USER_PER_PAGE, API_LAY_MA_NGUOI_DUNG } from "../constants/api";
 
 import * as yup from "yup";
 
@@ -24,5 +24,8 @@ UserManagerService.prototype = {
     },
     fetchMaNguoiDung() {
         return axios.get(API_LAY_MA_NGUOI_DUNG);
+    },
+    fetchListUserPerPage(param) {
+        return axios.get(`${API_GET_LIST_USER_PER_PAGE}${param}`);
     },
 };

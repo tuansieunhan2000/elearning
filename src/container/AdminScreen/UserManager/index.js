@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ListUserPerPage from "../../../Layouts/UserListPerPage";
 import { GetMaNguoiDung } from "../../../Redux/Actions/userAction";
 import AddUser from "../AddUser";
 import "./main.scss";
@@ -15,9 +16,9 @@ export default function UserManager() {
             {maLoaiNguoiDung ? (
                 <>
                     <Link to="/admin">Back</Link>
-                    <div className="container pt-5">
+                    <div className="container-fluied pt-5">
                         <div className="row">
-                            <div className="col-md-3">
+                            <div className="col-md-2">
                                 {/* Tabs nav */}
                                 <div
                                     className="nav flex-column nav-pills nav-pills-custom"
@@ -54,7 +55,7 @@ export default function UserManager() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-md-9">
+                            <div className="col-md-10">
                                 {/* Tabs content */}
                                 <div className="tab-content" id="v-pills-tabContent">
                                     <div
@@ -63,7 +64,7 @@ export default function UserManager() {
                                         role="tabpanel"
                                         aria-labelledby="v-pills-home-tab"
                                     >
-                                        <AddUser maLoaiNguoiDung={maLoaiNguoiDung} />
+                                        <ListUserPerPage />
                                     </div>
                                     <div
                                         className="tab-pane fade shadow rounded bg-white p-5"
@@ -71,18 +72,7 @@ export default function UserManager() {
                                         role="tabpanel"
                                         aria-labelledby="v-pills-profile-tab"
                                     >
-                                        <h4 className="font-italic mb-4">Bookings</h4>
-                                        <p className="font-italic text-muted mb-2">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit, sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                                            nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                            ea commodo consequat. Duis aute irure dolor in
-                                            reprehenderit in voluptate velit esse cillum dolore eu
-                                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                            non proident, sunt in culpa qui officia deserunt mollit
-                                            anim id est laborum.
-                                        </p>
+                                        <AddUser maLoaiNguoiDung={maLoaiNguoiDung} />
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ export default function AddUser({ maLoaiNguoiDung }) {
     };
     return (
         <div className="w-100  mx-auto ">
-            <h4 className="text-center display-4">Thêm tài khoản</h4>
+            <h4 className="header_course_list p-0 pb-3">Thêm người dùng</h4>
             <Formik
                 initialValues={{
                     taiKhoan: "",
