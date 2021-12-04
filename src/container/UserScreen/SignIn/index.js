@@ -23,7 +23,11 @@ export default function SignInScreen() {
 
                     return config;
                 });
-                history.push("/");
+                if (JSON.parse(userInfo).maLoaiNguoiDung === "GV") {
+                    history.push("/admin");
+                } else if (JSON.parse(userInfo).maLoaiNguoiDung === "HV") {
+                    history.push("/");
+                }
             })
             .catch(() => {});
     };
@@ -48,7 +52,7 @@ export default function SignInScreen() {
                                 onChange={formikProps.handleChange}
                             />
                             <ErrorMessage name="taiKhoan">
-                                {(msg) => <div className="alert alert-danger">{msg}</div>}
+                                {(msg) => <div className="text-danger">{msg}</div>}
                             </ErrorMessage>
                         </div>
                         <div className="form-group">
@@ -60,7 +64,7 @@ export default function SignInScreen() {
                                 onChange={formikProps.handleChange}
                             />
                             <ErrorMessage name="matKhau">
-                                {(msg) => <div className="alert alert-danger">{msg}</div>}
+                                {(msg) => <div className="text-danger">{msg}</div>}
                             </ErrorMessage>
                         </div>
                         <button className="btn btn-success" type="submit">

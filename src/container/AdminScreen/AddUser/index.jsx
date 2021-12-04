@@ -1,26 +1,30 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { register } from "../../../Redux/Actions/userAction";
-import { signUpUserSchema } from "../../../Services/UserService";
 
-export default function SignUpScreen() {
+import { AddUserSchema } from "../../../Services/UserManagerService";
+import { actAddUserApi } from "./modules/action";
+
+export default function AddUser({ maLoaiNguoiDung }) {
+    console.log("maLoaiNguoiDung", maLoaiNguoiDung);
     const dispatch = useDispatch();
     const history = useHistory();
-    const handleRegister = (value) => {
-        dispatch(register(value))
-            .then(() => {
-                console.log(1231);
-                history.push("/signin");
-            })
-            .catch(() => {
-                console.log(123124);
-            });
+    const mapOptionTypeUser = () => {
+        return maLoaiNguoiDung.map((item, index) => {
+            return (
+                <option value={item.maLoaiNguoiDung} key={index}>
+                    {item.tenLoaiNguoiDung}
+                </option>
+            );
+        });
+    };
+    const handleAddUser = (value) => {
+        dispatch(actAddUserApi(value));
     };
     return (
-        <div className="w-50 mx-auto ">
-            <h4 className="text-center display-4">Đăng kí</h4>
+        <div className="w-100  mx-auto ">
+            <h4 className="text-center display-4">Thêm tài khoản</h4>
             <Formik
                 initialValues={{
                     taiKhoan: "",
@@ -29,9 +33,10 @@ export default function SignUpScreen() {
                     soDT: "",
                     maNhom: "GP01",
                     email: "",
+                    maLoaiNguoiDung: "GV",
                 }}
-                validationSchema={signUpUserSchema}
-                onSubmit={(value) => handleRegister(value)}
+                validationSchema={AddUserSchema}
+                onSubmit={(value) => handleAddUser(value)}
                 render={(formikProps) => (
                     <Form>
                         <div className="form-group pb-3">
@@ -43,7 +48,7 @@ export default function SignUpScreen() {
                                 onChange={formikProps.handleChange}
                             />
                             <ErrorMessage name="taiKhoan">
-                                {(msg) => <div className="text-danger">{msg}</div>}
+                                {(msg) => <div className="text-danger">*{msg}</div>}
                             </ErrorMessage>
                         </div>
                         <div className="form-group pb-3">
@@ -111,6 +116,13 @@ export default function SignUpScreen() {
                                 <option>GP03</option>
                             </select>
                         </div>
+                        <div className="form-group pb-3">
+                            <label>Mã loại người dùng</label>
+                            <Field className="form-control" name="maLoaiNguoiDung" as="select">
+                                {mapOptionTypeUser()}
+                            </Field>
+                        </div>
+
                         <div className="text-center">
                             <button className="btn btn-success" type="submit">
                                 Submit

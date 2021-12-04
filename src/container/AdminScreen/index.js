@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Navbar from "../../Components/Navbar";
-import HomeAdmin from "./HomeAdmin";
-
-import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import UserManager from "./UserManager";
+import Swal from "sweetalert2";
+import Navbar from "../../Components/Navbar";
 import CourseManager from "./CourseManage";
+import HomeAdmin from "./HomeAdmin";
+import UserManager from "./UserManager";
 
 export default function Admin() {
     const history = useHistory();
@@ -14,7 +13,7 @@ export default function Admin() {
         Swal.fire({
             title: "Bạn không phải là quản trị!",
             text: "Vui lòng đăng nhập bằng tài khoản quản trị",
-            icon: "error", //error, success,warning,question
+            type: "error", //error, success,warning,question
             confirmButtonText: "Đăng nhập",
         });
         localStorage.removeItem("userItem");

@@ -1,7 +1,13 @@
 import Swal from "sweetalert2";
 import { createAction } from ".";
-import { userService } from "../../Services";
-import { GET_COURSE_REGISTED, GET_USER_INFO, GET_USER_LOGIN, UPDATE_COURSE } from "../Types";
+import { userManagerService, userService } from "../../Services";
+import {
+    FETCH_MA_LOAI_NGUOI_DUNG,
+    GET_COURSE_REGISTED,
+    GET_USER_INFO,
+    GET_USER_LOGIN,
+    UPDATE_COURSE,
+} from "../Types";
 
 export const register = (value) => {
     return (dispatch) => {
@@ -11,7 +17,7 @@ export const register = (value) => {
                 Swal.fire({
                     title: "Success!",
                     text: "Tạo tài khoản mới thành công!!!!",
-                    icon: "success",
+                    type: "success",
                     confirmButtonText: "OK",
                 });
                 return Promise.resolve();
@@ -20,7 +26,7 @@ export const register = (value) => {
                 Swal.fire({
                     title: "Error!",
                     text: err.response.data,
-                    icon: "error",
+                    type: "error",
                     confirmButtonText: "OK",
                 });
                 return Promise.reject();
@@ -41,7 +47,7 @@ export const Login = (value) => {
                 Swal.fire({
                     title: "Error!",
                     text: err.response.data,
-                    icon: "error",
+                    type: "error",
                     confirmButtonText: "OK",
                 });
                 return Promise.reject();
@@ -64,6 +70,20 @@ export const GetInfoUser = () => {
             });
     };
 };
+export const GetMaNguoiDung = () => {
+    return (dispatch) => {
+        return userManagerService
+            .fetchMaNguoiDung()
+            .then((res) => {
+                dispatch(createAction(FETCH_MA_LOAI_NGUOI_DUNG, res.data));
+                return Promise.resolve();
+            })
+            .catch((err) => {
+                console.log(err.response);
+                return Promise.reject();
+            });
+    };
+};
 
 export const UserRegisterCourse = (taiKhoan) => {
     return (dispatch) => {
@@ -75,7 +95,7 @@ export const UserRegisterCourse = (taiKhoan) => {
                     Swal.fire({
                         title: "Ghi danh thành công!",
                         text: res.data,
-                        icon: "success",
+                        type: "success",
 
                         confirmButtonText: "OK",
                     });
@@ -85,7 +105,7 @@ export const UserRegisterCourse = (taiKhoan) => {
                     Swal.fire({
                         title: "Ghi danh thất bại!",
                         text: err.response.data,
-                        icon: "error",
+                        type: "error",
                         confirmButtonColor: "#ec5252",
 
                         confirmButtonText: "OK",
@@ -104,16 +124,16 @@ export const UserCancelCourse = (data) => {
             .CancelCourse(data)
             .then((res) => {
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
+                    title: "Bạn có chắc chắn không?",
+                    text: "Bạn sẽ không thể hoàn tác được!",
+                    type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#ec5252",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonText: "Tồi chắc!",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                        Swal.fire("Đã xoá!", "Khoá học đã được xoá.");
                         dispatch(createAction(UPDATE_COURSE, data.maKhoaHoc));
                     }
                 });

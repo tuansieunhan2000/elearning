@@ -16,3 +16,7 @@ export const API_USER_INFO = API + API_USER + "ThongTinNguoiDung";
 export const API_REGISTER_COURSE = API + API_COURSE + "DangKyKhoaHoc";
 export const API_UNREGISTER_COURSE = API + API_COURSE + "HuyGhiDanh";
 export const API_SEARCH_COURSE = "LayDanhSachKhoaHoc?MaNhom=GP01&tenKhoaHoc=";
+
+export const API_ADD_USER = API + API_USER + "ThemNguoiDung";
+
+export const API_LAY_MA_NGUOI_DUNG = API + API_USER + "LayDanhSachLoaiNguoiDung";

@@ -54,7 +54,7 @@ export default function Header() {
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            to=""
+                            to="#"
                         >
                             <i className="fa fa-bars" />
                         </Link>
