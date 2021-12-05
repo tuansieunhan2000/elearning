@@ -1,8 +1,7 @@
-import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
 import { AddUserSchema } from "../../../Services/UserManagerService";
 import { actAddUserApi } from "./modules/action";
 
@@ -19,24 +18,31 @@ export default function AddUser({ maLoaiNguoiDung }) {
             );
         });
     };
-    const handleAddUser = (value) => {
+
+    const handleAddUser = (value, { resetForm }) => {
         dispatch(actAddUserApi(value));
     };
     return (
         <div className="w-100  mx-auto ">
             <h4 className="header_course_list p-0 pb-3">Thêm người dùng</h4>
             <Formik
-                initialValues={{
-                    taiKhoan: "",
-                    matKhau: "",
-                    hoTen: "",
-                    soDT: "",
-                    maNhom: "GP01",
-                    email: "",
-                    maLoaiNguoiDung: "GV",
-                }}
+                initialValues={
+                    {
+                        taiKhoan: "",
+                        matKhau: "",
+                        hoTen: "",
+                        soDT: "",
+                        maNhom: "GP01",
+                        email: "",
+                        maLoaiNguoiDung: "GV",
+                    } || ""
+                }
                 validationSchema={AddUserSchema}
-                onSubmit={(value) => handleAddUser(value)}
+                onSubmit={(value, { handleReset }) => {
+                    handleAddUser(value, () => {
+                        handleReset();
+                    });
+                }}
                 render={(formikProps) => (
                     <Form>
                         <div className="form-group pb-3">
@@ -123,9 +129,12 @@ export default function AddUser({ maLoaiNguoiDung }) {
                             </Field>
                         </div>
 
-                        <div className="text-center">
-                            <button className="btn btn-success" type="submit">
+                        <div className="text-center ">
+                            <button className="btn-prev " type="submit">
                                 Submit
+                            </button>
+                            <button className="btn-prev " onClick={(e) => formikProps.resetForm()}>
+                                Reset Form
                             </button>
                         </div>
                     </Form>

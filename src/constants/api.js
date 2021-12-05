@@ -22,3 +22,4 @@ export const API_ADD_USER = API + API_USER + "ThemNguoiDung";
 export const API_LAY_MA_NGUOI_DUNG = API + API_USER + "LayDanhSachLoaiNguoiDung";
 
 export const API_GET_LIST_USER_PER_PAGE = API + API_USER + "LayDanhSachNguoiDung_PhanTrang?";
+export const API_DELETE_USER = API + API_USER + "XoaNguoiDung?TaiKhoan=";

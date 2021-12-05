@@ -7,7 +7,6 @@ const chiTietCacKhoaHocDaDangKiReducer = (state = initialState, action) => {
         case UPDATE_COURSE:
             console.log(action.payload);
             let newList = [...state];
-
             let index = newList.findIndex((item) => item.maKhoaHoc === action.payload);
             newList.splice(index, 1);
             console.log(newList);
