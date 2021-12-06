@@ -64,7 +64,7 @@ export default function UserManager() {
                                         role="tabpanel"
                                         aria-labelledby="v-pills-home-tab"
                                     >
-                                        <ListUserPerPage />
+                                        <ListUserPerPage maLoaiNguoiDung={maLoaiNguoiDung} />
                                     </div>
                                     <div
                                         className="tab-pane fade shadow rounded bg-white p-5"

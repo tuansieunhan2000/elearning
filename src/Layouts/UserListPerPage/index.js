@@ -2,10 +2,11 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Modaladduser from "../../Components/Modal/ModalAddUser";
 import { deleteUserByAdmin, fetchUserPerPage } from "../../Redux/Actions/UserAdminAction";
 
 // import "./main.scss";
-export default function ListUserPerPage() {
+export default function ListUserPerPage({ maLoaiNguoiDung }) {
     const dispatch = useDispatch();
     const userListPerPage = useSelector((state) => state.maLoaiNguoiDung.userListPerPage);
     const user = useSelector((state) => state.maLoaiNguoiDung.userListPerPageData);
@@ -17,6 +18,7 @@ export default function ListUserPerPage() {
         pageSize: 12,
         MaNhom: "GP01",
     });
+    
 
     useEffect(() => {
         const paramsString = queryString.stringify(filters);
@@ -65,9 +67,7 @@ export default function ListUserPerPage() {
             }
         });
     };
-    const handleEditUser =(item )=>{
-        console.log(item);
-    }
+
     const renderCourseList = () => {
         let counter = 0;
         for (const obj of user) {
@@ -95,7 +95,7 @@ export default function ListUserPerPage() {
                         </td>
                         <td>{item.maLoaiNguoiDung}</td>
                         <td>
-                            <i className="fas fa-edit" onClick={() => handleEditUser(item)}></i>
+                            <Modaladduser maLoaiNguoiDung={maLoaiNguoiDung} item={item} />
                         </td>
                         <td>
                             <i

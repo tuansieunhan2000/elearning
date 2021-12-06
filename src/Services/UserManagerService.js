@@ -5,6 +5,7 @@ import {
     API_DELETE_USER,
     API_GET_LIST_USER_PER_PAGE,
     API_LAY_MA_NGUOI_DUNG,
+    API_UPDATE_USER,
 } from "../constants/api";
 
 import * as yup from "yup";
@@ -35,5 +36,8 @@ UserManagerService.prototype = {
     },
     deleteUser(taikhoan) {
         return axios.delete(`${API_DELETE_USER}${taikhoan}`);
+    },
+    updateUser(data) {
+        return axios.put(API_UPDATE_USER, data);
     },
 };

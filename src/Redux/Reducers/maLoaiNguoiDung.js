@@ -3,6 +3,7 @@ import {
     FETCH_MA_LOAI_NGUOI_DUNG,
     FETCH_USER_LIST_PER_PAGE,
     FETCH_USER_LIST_PER_PAGE_DATA,
+    UPDATE_USER_BY_ADMIN,
 } from "../Types";
 
 let initialState = {
@@ -30,6 +31,19 @@ const MaLoaiNguoiDungReducer = (state = initialState, action) => {
             newList.splice(index, 1);
             state.userListPerPageData = newList;
             return { ...state };
+        case UPDATE_USER_BY_ADMIN:
+            console.log(payload);
+            let newListUpdate = [...state.userListPerPageData];
+            let indexUpdate = newListUpdate.findIndex((item) => item.taiKhoan === payload.taiKhoan);
+            if (indexUpdate <= 0) {
+                newListUpdate[indexUpdate] = payload;
+                console.log("change");
+            }
+            console.log("newListUpdate", newListUpdate[indexUpdate], "payload", payload);
+
+            state.userListPerPageData = newListUpdate;
+            return { ...state };
+
         default:
             return state;
     }

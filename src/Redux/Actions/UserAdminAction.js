@@ -5,6 +5,7 @@ import {
     DELETE_USER_BY_ADMIN,
     FETCH_USER_LIST_PER_PAGE,
     FETCH_USER_LIST_PER_PAGE_DATA,
+    UPDATE_USER_BY_ADMIN,
 } from "../Types";
 
 export const fetchUserPerPage = (paranms) => {
@@ -29,6 +30,22 @@ export const deleteUserByAdmin = (data) => {
             })
             .catch((err) => {
                 Swal.fire("Error", err.response.data);
+            });
+    };
+};
+
+export const updateUserByAdmin = (data) => {
+    return (dispatch) => {
+        userManagerService
+            .updateUser(data)
+            .then((res) => {
+                console.log(res.data);
+                Swal.fire("Success", res.data);
+                dispatch(createAction(UPDATE_USER_BY_ADMIN, data));
+            })
+            .catch((err) => {
+                console.log(err);
+                Swal.fire("Error", err.response);
             });
     };
 };

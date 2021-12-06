@@ -19,7 +19,7 @@ export default function AddUser({ maLoaiNguoiDung }) {
         });
     };
 
-    const handleAddUser = (value, { resetForm }) => {
+    const handleAddUser = (value) => {
         dispatch(actAddUserApi(value));
     };
     return (
@@ -38,12 +38,9 @@ export default function AddUser({ maLoaiNguoiDung }) {
                     } || ""
                 }
                 validationSchema={AddUserSchema}
-                onSubmit={(value, { handleReset }) => {
-                    handleAddUser(value, () => {
-                        handleReset();
-                    });
-                }}
-                render={(formikProps) => (
+                onSubmit={(value) => handleAddUser(value)}
+            >
+                {(formikProps) => (
                     <Form>
                         <div className="form-group pb-3">
                             <label>Tài khoản</label>
@@ -139,7 +136,7 @@ export default function AddUser({ maLoaiNguoiDung }) {
                         </div>
                     </Form>
                 )}
-            />
+            </Formik>
         </div>
     );
 }
