@@ -25,3 +25,7 @@ export const API_GET_LIST_USER_PER_PAGE = API + API_USER + "LayDanhSachNguoiDung
 export const API_DELETE_USER = API + API_USER + "XoaNguoiDung?TaiKhoan=";
 
 export const API_UPDATE_USER = API + API_USER + "CapNhatThongTinNguoiDung";
+export const API_GET_ALL_USER_BY_ADMIN = API + API_USER + "TimKiemNguoiDung";
+
+//COURSE ADMIN
+export const API_DELETE_COURSE_BY_ADMIN = API + API_COURSE + "XoaKhoaHoc";

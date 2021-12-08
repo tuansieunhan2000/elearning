@@ -30,3 +30,16 @@
      flex-wrap: wrap;
      margin: 0 -0.9375rem;
 }
+html {
+     width: 100vw;
+}
+.no-border {
+     border: 0 !important;
+}
+
+.swal-wide {
+     width: 850px !important;
+}
+body {
+     padding: 0 !important;
+}

@@ -1,7 +1,6 @@
-import * as ActionType from "./constants";
-import axios from "axios";
-import { userManagerService } from "../../../../Services";
 import Swal from "sweetalert2";
+import { userManagerService } from "../../../../Services";
+import * as ActionType from "./constants";
 
 export const actAddUserApi = (user) => {
     return (dispatch) => {

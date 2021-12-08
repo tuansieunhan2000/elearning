@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal } from "react-bootstrap";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { AddUserSchema } from "../../Services/UserManagerService";
-import { updateUserByAdmin } from "../../Redux/Actions/UserAdminAction";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { updateUserByAdmin } from "../../Redux/Actions/UserAdminAction";
+import { EditUserSchema } from "../../Services/UserManagerService";
 
-const Modaladduser = ({ item, maLoaiNguoiDung }) => {
+const ModalEdituser = ({ item, maLoaiNguoiDung }) => {
     const dispatch = useDispatch();
 
     const [popup, setpopup] = useState(false);
     const modalOpen = () => setpopup(true);
     const modalClose = () => setpopup(false);
     let user = item;
-    console.log("user", user);
+
     const handleEditUser = (value) => {
         console.log(value);
         Swal.fire({
@@ -65,7 +65,7 @@ const Modaladduser = ({ item, maLoaiNguoiDung }) => {
                             handleEditUser(value);
                         }}
                         validator={() => ({})}
-                        validationSchema={AddUserSchema}
+                        validationSchema={EditUserSchema}
                         s
                     >
                         {({ handleChange, handleSubmit, resetForm }) => (
@@ -77,23 +77,13 @@ const Modaladduser = ({ item, maLoaiNguoiDung }) => {
                                         className="form-control"
                                         name="taiKhoan"
                                         onChange={handleChange}
+                                        disabled
                                     />
                                     <ErrorMessage name="taiKhoan">
                                         {(msg) => <div className="text-danger">*{msg}</div>}
                                     </ErrorMessage>
                                 </div>
-                                <div className="form-group pb-3">
-                                    <label>Mật Khẩu</label>
-                                    <Field
-                                        type="text"
-                                        className="form-control"
-                                        name="matKhau"
-                                        onChange={handleChange}
-                                    />
-                                    <ErrorMessage name="matKhau">
-                                        {(msg) => <div className="text-danger">{msg}</div>}
-                                    </ErrorMessage>
-                                </div>
+
                                 <div className="form-group pb-3">
                                     <label>Họ tên</label>
 
@@ -127,6 +117,7 @@ const Modaladduser = ({ item, maLoaiNguoiDung }) => {
                                         className="form-control"
                                         name="email"
                                         onChange={handleChange}
+                                        disabled
                                     />
                                     <ErrorMessage name="email">
                                         {(msg) => <div className="text-danger">{msg}</div>}
@@ -179,4 +170,4 @@ const Modaladduser = ({ item, maLoaiNguoiDung }) => {
     );
 };
 
-export default Modaladduser;
+export default ModalEdituser;

@@ -1,4 +1,4 @@
-import { GET_USER_HEADERS, GET_USER_INFO, GET_USER_LOGIN } from "../Types";
+import { GET_USER_HEADERS, GET_USER_INFO, GET_USER_LOGIN, UPDATE_USER_BY_USER } from "../Types";
 
 let initialState = {
     userInfo: {},
@@ -19,7 +19,9 @@ const UserReducer = (state = initialState, action) => {
         case GET_USER_HEADERS:
             state.headers = action.payload;
             return { ...state };
-
+        case UPDATE_USER_BY_USER:
+            state.info = action.payload;
+            return { ...state };
         default:
             return state;
     }

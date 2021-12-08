@@ -3,6 +3,7 @@ import axios from "axios";
 import {
     API_ADD_USER,
     API_DELETE_USER,
+    API_GET_ALL_USER_BY_ADMIN,
     API_GET_LIST_USER_PER_PAGE,
     API_LAY_MA_NGUOI_DUNG,
     API_UPDATE_USER,
@@ -15,6 +16,18 @@ export const AddUserSchema = yup.object().shape({
     matKhau: yup.string().required("Vui lòng nhập mật khẩu"),
     hoTen: yup.string().required("Vui lòng nhập nhập họ tên"),
     soDT: yup
+        .string()
+        .matches(/^(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+        .required("Vui lòng nhập số điện thoại"),
+    maNhom: yup.string(),
+    email: yup.string().required("Vui lòng nhập tài khoản").email("Email Không hợp lệ"),
+});
+
+export const EditUserSchema = yup.object().shape({
+    taiKhoan: yup.string().required("Vui lòng nhập tài khoản"),
+    hoTen: yup.string().required("Vui lòng nhập nhập họ tên"),
+    matKhau: yup.string().required("Vui lòng nhập mật khẩu"),
+    soDt: yup
         .string()
         .matches(/^(84|0[3|5|7|8|9])+([0-9]{8})\b/)
         .required("Vui lòng nhập số điện thoại"),
@@ -39,5 +52,8 @@ UserManagerService.prototype = {
     },
     updateUser(data) {
         return axios.put(API_UPDATE_USER, data);
+    },
+    getAllUserByAdmin() {
+        return axios.get(API_GET_ALL_USER_BY_ADMIN);
     },
 };

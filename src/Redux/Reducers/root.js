@@ -5,6 +5,7 @@ import UserReducer from "./user";
 import chiTietCacKhoaHocDaDangKiReducer from "./chiTietKhoaHocGhiDanh";
 import MaLoaiNguoiDungReducer from "./maLoaiNguoiDung";
 import addUserReducer from "../../container/AdminScreen/AddUser/modules/reducer";
+import ManageUserByAdminReducer from "./courseListAdmin";
 const RootReducer = combineReducers({
     course: CourseReducer,
     user: UserReducer,
@@ -12,6 +13,7 @@ const RootReducer = combineReducers({
     chiTietCacKhoaHocDaDangKi: chiTietCacKhoaHocDaDangKiReducer,
     maLoaiNguoiDung: MaLoaiNguoiDungReducer,
     addUserReducer,
+    manageUserByAdminReducer: ManageUserByAdminReducer,
 });
 
 export default RootReducer;

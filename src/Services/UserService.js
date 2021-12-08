@@ -4,6 +4,7 @@ import {
     API_REGISTER_COURSE,
     API_REGISTER_USER,
     API_UNREGISTER_COURSE,
+    API_UPDATE_USER,
     API_USER_INFO,
 } from "../constants/api";
 import * as yup from "yup";
@@ -40,5 +41,8 @@ UserService.prototype = {
     },
     CancelCourse(data) {
         return axios.post(API_UNREGISTER_COURSE, data);
+    },
+    UpdateUser(data) {
+        return axios.put(API_UPDATE_USER, data);
     },
 };

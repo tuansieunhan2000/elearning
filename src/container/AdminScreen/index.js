@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
 import Navbar from "../../Components/Navbar";
 import CourseManager from "./CourseManage";
+import EditUserByAdmin from "./EditUserByAdmin";
 import HomeAdmin from "./HomeAdmin";
 import UserManager from "./UserManager";
 
@@ -28,6 +29,12 @@ export default function Admin() {
                     <Navbar token={token} />
                     <Switch>
                         <Route exact path={`/admin/usermanager`} component={UserManager} />
+                        <Route
+                            exact
+                            path={`/admin/usermanager/:taiKhoan`}
+                            component={EditUserByAdmin}
+                        />
+
                         <Route exact path={`/admin/coursemanager`} component={CourseManager} />
                         <Route exact path="/admin" component={HomeAdmin} />
                     </Switch>

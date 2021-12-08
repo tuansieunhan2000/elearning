@@ -7,6 +7,7 @@ import {
     GET_USER_INFO,
     GET_USER_LOGIN,
     UPDATE_COURSE,
+    UPDATE_USER_BY_USER,
 } from "../Types";
 
 export const register = (value) => {
@@ -143,6 +144,22 @@ export const UserCancelCourse = (data) => {
             .catch((err) => {
                 console.log(err.response);
                 return Promise.reject();
+            });
+    };
+};
+export const updateUserByUser = (data) => {
+    return (dispatch) => {
+        return userService
+            .UpdateUser(data)
+
+            .then((res) => {
+                console.log(res.data);
+                Swal.fire("Success", res.data);
+                dispatch(createAction(UPDATE_USER_BY_USER, data));
+            })
+            .catch((err) => {
+                console.log(err);
+                Swal.fire("Error", err.response);
             });
     };
 };

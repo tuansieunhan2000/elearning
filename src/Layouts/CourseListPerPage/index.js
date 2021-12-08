@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { deleteUserByAdmin, fetchUserPerPage } from "../../Redux/Actions/UserAdminAction";
+import { STATUS_ICON_QUESTION } from "../../constants/status";
+import { deleteCourse, fetchCoursePerPageAdmin } from "../../Redux/Actions/courseListAdmin";
 
-// import "./main.scss";
-export default function ListUserPerPage({ maLoaiNguoiDung }) {
+export default function ListCoursePerPage() {
     const dispatch = useDispatch();
-    const userListPerPage = useSelector((state) => state.maLoaiNguoiDung.userListPerPage);
-    const user = useSelector((state) => state.maLoaiNguoiDung.userListPerPageData);
-
+    const courseListPerPage = useSelector(
+        (state) => state.manageUserByAdminReducer.listCoursePerPage
+    );
+    const course = useSelector((state) => state.manageUserByAdminReducer.listCoursePerPageData);
+    console.log("courseListPerPage", courseListPerPage);
     const [search, setsearch] = useState("");
     const [filters, setFilters] = useState({
-        user,
+        course,
         page: 1,
         pageSize: 12,
         MaNhom: "GP01",
@@ -21,7 +23,7 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
 
     useEffect(() => {
         const paramsString = queryString.stringify(filters);
-        dispatch(fetchUserPerPage(paramsString));
+        dispatch(fetchCoursePerPageAdmin(paramsString));
     }, [dispatch, filters]);
 
     function onPageChange(newPage) {
@@ -39,11 +41,11 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
             setFilters({
                 ...filters,
                 page: 1,
-                tuKhoa: search,
+                tenKhoaHoc: search,
             });
         } else {
             setFilters({
-                user,
+                course,
                 page: 1,
                 pageSize: 12,
                 MaNhom: "GP01",
@@ -51,48 +53,56 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
         }
     };
     const handleDeleteUser = (taikhoan) => {
+        console.log(taikhoan);
+        // console.log("allEmojiShotcut", allEmojiShotcut[1]);
         Swal.fire({
             title: "Bạn có chắc chắn xoá không?",
             text: "Bạn sẽ không thể phục hồi được",
-            icon: "warning",
+            iconHtml: STATUS_ICON_QUESTION,
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Chắc chắn",
+            customClass: {
+                icon: "no-border",
+            },
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(deleteUserByAdmin(taikhoan));
+                dispatch(deleteCourse(taikhoan));
             }
         });
     };
 
     const renderCourseList = () => {
-        let counter = 0;
-        for (const obj of user) {
-            if (obj) counter++;
+        let counters = 0;
+        for (const obj in course) {
+            counters = obj;
         }
-
-        if (counter === 0) {
+        console.log(counters);
+        if (counters === 0) {
             return (
                 <tr>
                     <td colSpan="7">Không tìm thây kết quả phù hợp</td>
                 </tr>
             );
         } else {
-            return user.map((item, index) => {
+            return course.map((item, index) => {
                 return (
                     <tr key={index}>
-                        <td>{item.taiKhoan}</td>
-                        <td>{item.hoTen}</td>
-                        <td>{item.soDT}</td>
+                        <td>{item.maKhoaHoc}</td>
+                        <td>{item.tenKhoaHoc}</td>
                         <td>
-                            {item.email.lenght < 20
-                                ? item.email
-                                : item.email.substring(0, 20) + "..."}
+                            <img
+                                src={item.hinhAnh}
+                                alt=""
+                                style={{ width: "50px", height: "50px" }}
+                            />
                         </td>
-                        <td>{item.maLoaiNguoiDung}</td>
+
+                        <td>{item.ngayTao}</td>
+                        <td>{item.danhMucKhoaHoc.tenDanhMucKhoaHoc}</td>
+                        <td>{item.danhMucKhoaHoc.maDanhMucKhoahoc}</td>
                         <td>
-                            {/* <ModalEdituser maLoaiNguoiDung={maLoaiNguoiDung} item={item.taiKhoan} /> */}
                             <Link to={`/admin/usermanager/${item.taiKhoan}`}>
                                 <i className="fas fa-edit" style={{ color: "black" }}></i>
                             </Link>
@@ -100,7 +110,7 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
                         <td>
                             <i
                                 className="fas fa-trash-alt"
-                                onClick={() => handleDeleteUser(item.taiKhoan)}
+                                onClick={() => handleDeleteUser(item.maKhoaHoc)}
                             ></i>
                         </td>
                     </tr>
@@ -111,23 +121,21 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
 
     return (
         <div>
-            {!userListPerPage.items ? (
+            {!courseListPerPage ? (
                 <>Still loading...</>
             ) : (
                 <div className="container mt-4">
                     <div className="row">
                         <div className="d-flex justify-content-between mt-4">
                             <div className="col-6 ">
-                                <h4 className="header_course_list p-0  pb-3">
-                                    Danh sách người dùng
-                                </h4>
+                                <h4 className="header_course_list p-0  pb-3">Danh sách khoá học</h4>
                             </div>
                             <div className="col-6">
                                 <div className="input-group rounded">
                                     <input
                                         type="search"
                                         className="form-control rounded"
-                                        placeholder="Nhập vào tên hoặc tài khoản"
+                                        placeholder="Nhập vào tên khoá học"
                                         aria-label="Search"
                                         aria-describedby="search-addon"
                                         value={search}
@@ -145,11 +153,13 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
                                 <table className="table">
                                     <thead className="thead-light">
                                         <tr>
-                                            <th scope="col">Tài Khoản</th>
-                                            <th scope="col">Họ tên</th>
-                                            <th scope="col">SDT</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">MND</th>
+                                            <th scope="col">Mã khoá học</th>
+                                            <th scope="col">Tên khoá học</th>
+                                            <th scope="col">Hình Ảnh</th>
+                                            <th scope="col">Ngày tạo</th>
+
+                                            <th scope="col">Mã danh mục</th>
+                                            <th scope="col">Tên danh mục</th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
                                         </tr>
@@ -160,9 +170,9 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
                             <div className="text-center">
                                 <button
                                     className="btn-prev"
-                                    disabled={userListPerPage.currentPage <= 1}
+                                    disabled={courseListPerPage.currentPage <= 1}
                                     onClick={() => {
-                                        console.log("current page", userListPerPage.currentPage);
+                                        console.log("current page", courseListPerPage.currentPage);
                                         onPageChange(filters.page - 1);
                                     }}
                                 >
@@ -171,7 +181,8 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
                                 <button
                                     className="btn-prev"
                                     disabled={
-                                        userListPerPage.currentPage >= userListPerPage.totalPages
+                                        courseListPerPage.currentPage >=
+                                        courseListPerPage.totalPages
                                     }
                                     onClick={() => onPageChange(filters.page + 1)}
                                 >

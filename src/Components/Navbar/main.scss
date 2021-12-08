@@ -1,6 +1,6 @@
 .navbarss {
      background-color: #060b26;
-     height: 80px;
+     height: 60px;
      display: flex;
      align-items: center;
      justify-content: space-between;
@@ -16,8 +16,8 @@
      }
 }
 .menu-bars {
-     margin-left: 0.5rem;
-     font-size: 2rem;
+     margin-left: 1rem;
+     font-size: 1.5rem;
      background: none;
 }
 
@@ -41,7 +41,6 @@
 
 .nav-text {
      display: flex;
-
      align-items: center;
      padding: 8px 0px 8px 16px;
      list-style: none;
@@ -62,7 +61,10 @@
 .nav-text a:hover {
      background-color: #1a83ff;
 }
-
+.nav-pills-custom .nav-link.active {
+     color: #060b26 !important;
+     font-weight: bold;
+}
 .nav-menu-items {
      width: 100%;
 }

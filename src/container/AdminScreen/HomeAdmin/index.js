@@ -10,7 +10,7 @@ export default function HomeAdmin() {
                 <div className="row">
                     <div className="display-4 text-center">Dashboard Admin</div>
                 </div>
-                <div className="container h-100">
+                <div className="container ">
                     <div className="row align-middle">
                         <div className="col-md-6 col-lg-6 column">
                             <div className="card gr-1">

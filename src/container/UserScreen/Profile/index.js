@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { GetInfoUser, UserCancelCourse } from "../../../Redux/Actions/userAction";
+import ModalEditByUser from "../../../Components/Modal/ModalEditUserByUser";
+import { GetInfoUser, GetMaNguoiDung, UserCancelCourse } from "../../../Redux/Actions/userAction";
 
 export default function ProfileScreen() {
     const dispatch = useDispatch();
@@ -10,9 +11,11 @@ export default function ProfileScreen() {
     const chiTietCacKhoaHocDaDangKi = useSelector((state) => state.chiTietCacKhoaHocDaDangKi) || [];
 
     useEffect(() => {
+        dispatch(GetMaNguoiDung());
         dispatch(GetInfoUser());
     }, [dispatch]);
 
+    const maLoaiNguoiDung = useSelector((state) => state.maLoaiNguoiDung.maLoaiNguoiDung);
     const handleDelete = (maKhoaHoc) => {
         if (user) {
             let taiKhoan = user.taiKhoan;
@@ -48,75 +51,83 @@ export default function ProfileScreen() {
     };
     return (
         <>
-            {!user ? (
-                <>Still loading...</>
-            ) : (
-                <div>
-                    <section className="same-category mb-lg-5 mt-lg-4 ">
-                        <div className="container">
-                            <h1 className="header_course_list pb-3">THÔNG TIN NGƯỜI DÙNG</h1>
-                            <div className="have_content">
-                                <table className="table borderless">
-                                    <tbody>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Họ tên
-                                            </th>
-                                            <td> {user.hoTen}</td>
-                                        </tr>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Số điện thoại
-                                            </th>
-                                            <td>{user.soDT}</td>
-                                        </tr>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Email
-                                            </th>
-                                            <td>{user.email}</td>
-                                        </tr>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Tài khoản
-                                            </th>
-                                            <td>{user.taiKhoan}</td>
-                                        </tr>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Mã nhóm
-                                            </th>
-                                            <td>{user.maNhom}</td>
-                                        </tr>
-                                        <tr>
-                                            <th className="title-tablle" width="30%">
-                                                Mã Loại người dùng
-                                            </th>
-                                            <td>{user.maLoaiNguoiDung}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <h3>Khoá học đã đăng kí</h3>
-                                <div className="row">
-                                    {!user.chiTietKhoaHocGhiDanh ? (
-                                        <>Bạn chưa đăng kí khoá học nào</>
-                                    ) : (
-                                        <>{mapCourseRegisted()}</>
-                                    )}
+            {maLoaiNguoiDung ? (
+                <>
+                    {!user ? (
+                        <>Still loading...</>
+                    ) : (
+                        <div>
+                            <section className="same-category mb-lg-5 mt-lg-4 ">
+                                <div className="container">
+                                    <h1 className="header_course_list pb-3">
+                                        THÔNG TIN NGƯỜI DÙNG
+                                    </h1>
+                                    <div className="have_content">
+                                        <table className="table borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Họ tên
+                                                    </th>
+                                                    <td> {user.hoTen}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Số điện thoại
+                                                    </th>
+                                                    <td>{user.soDT}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Email
+                                                    </th>
+                                                    <td>{user.email}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Tài khoản
+                                                    </th>
+                                                    <td>{user.taiKhoan}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Mã nhóm
+                                                    </th>
+                                                    <td>{user.maNhom}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title-tablle" width="30%">
+                                                        Mã Loại người dùng
+                                                    </th>
+                                                    <td>{user.maLoaiNguoiDung}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div className="text-center mt-2 d-flex flex-row justify-content-center">
+                                            <Link to="/" className="btn-prev p-2 text-white m-2">
+                                                Quay Lại
+                                            </Link>
+                                            <ModalEditByUser
+                                                item={user}
+                                                maLoaiNguoiDung={maLoaiNguoiDung}
+                                            />
+                                        </div>
+                                        <h3>Khoá học đã đăng kí</h3>
+                                        <div className="row">
+                                            {!user.chiTietKhoaHocGhiDanh ? (
+                                                <>Bạn chưa đăng kí khoá học nào</>
+                                            ) : (
+                                                <>{mapCourseRegisted()}</>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className="text-center mt-5">
-                                    <Link to="/" className="btn-prev p-2 text-white m-5">
-                                        Quay Lại
-                                    </Link>
-                                    {/* <Link to="/profile/edit" className="btn-prev p-2 text-white ">
-                                        Sửa thông tin
-                                    </Link> */}
-                                </div>
-                            </div>
+                            </section>
                         </div>
-                    </section>
-                </div>
+                    )}
+                </>
+            ) : (
+                <>Loading</>
             )}
         </>
     );

@@ -21,8 +21,8 @@ $gr-2: linear-gradient(170deg, #b4ec51 0%, #429321 100%);
 }
 
 .column {
-     margin-top: 3rem;
-     padding-left: 3rem;
+     margin-top: 2rem;
+     padding-left: 2rem;
      &:hover {
           padding-left: 0;
           .card .txt {
@@ -93,7 +93,7 @@ $gr-2: linear-gradient(170deg, #b4ec51 0%, #429321 100%);
           left: 0;
           bottom: 0;
           right: 0;
-          width: 100%;
+          width: 80%;
           height: 100%;
           overflow: hidden;
      }

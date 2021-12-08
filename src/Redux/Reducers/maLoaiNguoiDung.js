@@ -3,13 +3,17 @@ import {
     FETCH_MA_LOAI_NGUOI_DUNG,
     FETCH_USER_LIST_PER_PAGE,
     FETCH_USER_LIST_PER_PAGE_DATA,
+    GET_ALL_USER_BY_ADMIN,
     UPDATE_USER_BY_ADMIN,
+    GET_DATA_USER_BY_ADMIN,
 } from "../Types";
 
 let initialState = {
     maLoaiNguoiDung: [],
     userListPerPage: [],
     userListPerPageData: [],
+    allUser: [],
+    dataUserEdit: {},
 };
 
 const MaLoaiNguoiDungReducer = (state = initialState, action) => {
@@ -31,17 +35,22 @@ const MaLoaiNguoiDungReducer = (state = initialState, action) => {
             newList.splice(index, 1);
             state.userListPerPageData = newList;
             return { ...state };
+
+        case GET_ALL_USER_BY_ADMIN:
+            state.allUser = payload;
+            return { ...state };
+
+        case GET_DATA_USER_BY_ADMIN:
+            state.dataUserEdit = payload;
+            return { ...state };
+
         case UPDATE_USER_BY_ADMIN:
-            console.log(payload);
-            let newListUpdate = [...state.userListPerPageData];
+            console.log("UPDATE_USER_BY_ADMIN", payload);
+            let newListUpdate = [...state.allUser];
             let indexUpdate = newListUpdate.findIndex((item) => item.taiKhoan === payload.taiKhoan);
-            if (indexUpdate <= 0) {
-                newListUpdate[indexUpdate] = payload;
-                console.log("change");
-            }
             console.log("newListUpdate", newListUpdate[indexUpdate], "payload", payload);
 
-            state.userListPerPageData = newListUpdate;
+            state.allUser = newListUpdate;
             return { ...state };
 
         default:
