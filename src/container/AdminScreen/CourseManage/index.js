@@ -30,7 +30,7 @@ export default function CourseManager() {
                             </div>
                             <label className="nav " htmlFor="home">
                                 <span>
-                                    <i class="fas fa-book"></i>
+                                    <i className="fas fa-book"></i>
                                     Quản lý khoá học
                                 </span>
                             </label>
@@ -43,7 +43,7 @@ export default function CourseManager() {
                             </div>
                             <label className="nav" htmlFor="about">
                                 <span>
-                                    <i class="fas fa-book-medical"></i>
+                                    <i className="fas fa-book-medical"></i>
                                     Thêm khoá học
                                 </span>
                             </label>
