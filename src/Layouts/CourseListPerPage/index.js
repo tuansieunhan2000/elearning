@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../Components/LazyLoad";
-import { STATUS_ICON_QUESTION, STATUS_ICON_WARNING } from "../../constants/status";
+import { STATUS_ICON_WARNING } from "../../constants/status";
 import { deleteCourse, fetchCoursePerPageAdmin } from "../../Redux/Actions/courseListAdmin";
 
 export default function ListCoursePerPage() {

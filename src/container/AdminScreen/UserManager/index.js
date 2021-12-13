@@ -31,7 +31,7 @@ export default function UserManager() {
                             </div>
                             <label className="nav " htmlFor="home">
                                 <span>
-                                    <i class="fas fa-users-cog"></i>
+                                    <i className="fas fa-users-cog"></i>
                                     Quản lý người dùng
                                 </span>
                             </label>
@@ -43,7 +43,7 @@ export default function UserManager() {
                             </div>
                             <label className="nav" htmlFor="about">
                                 <span>
-                                    <i class="fas fa-user-plus"></i>
+                                    <i className="fas fa-user-plus"></i>
                                     Thêm người dùng
                                 </span>
                             </label>

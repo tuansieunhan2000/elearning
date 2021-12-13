@@ -35,7 +35,6 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
         setsearch(e.target.value);
     }
     const handleSearch = () => {
-        console.log(search);
         if (search) {
             setFilters({
                 ...filters,
@@ -164,7 +163,6 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
                                     className="btn-prev"
                                     disabled={userListPerPage.currentPage <= 1}
                                     onClick={() => {
-                                        console.log("current page", userListPerPage.currentPage);
                                         onPageChange(filters.page - 1);
                                     }}
                                 >

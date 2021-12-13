@@ -45,7 +45,6 @@ const CourseReducer = (state = initialState, action) => {
             return { ...state };
 
         case FETCH_COURSE_LIST_SAME_CATEGORY:
-            console.log(payload);
             return { ...state, courseListDetail: payload };
 
         case FETCH_SEARCH_COURSE:

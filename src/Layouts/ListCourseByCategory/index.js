@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import LoadingLazy from "../../Components/LazyLoad";
 import "./main.scss";
 export default function ListCourseByCategory({ courseListByCategory }) {
-    console.log("courseListByCategory", courseListByCategory);
     const mapItem = () => {
         return courseListByCategory.map((item, index) => {
             return (

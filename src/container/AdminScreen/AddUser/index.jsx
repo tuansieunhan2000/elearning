@@ -5,7 +5,6 @@ import { AddUserSchema } from "../../../Services/UserManagerService";
 import { actAddUserApi } from "./modules/action";
 
 export default function AddUser({ maLoaiNguoiDung }) {
-    console.log("maLoaiNguoiDung", maLoaiNguoiDung);
     const dispatch = useDispatch();
     const mapOptionTypeUser = () => {
         return maLoaiNguoiDung.map((item, index) => {

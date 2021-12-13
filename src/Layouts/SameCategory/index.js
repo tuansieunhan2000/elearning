@@ -20,8 +20,6 @@ export default function SameCategory({ DanhMucKhoahoc }) {
         dispatch(fetchCourseSameCategory(maDanhMucKhoahoc));
     }, [dispatch, DanhMucKhoahoc, maDanhMucKhoahoc]);
 
-    console.log(maDanhMucKhoahoc);
-
     const ref = useRef({});
 
     const responsive = [

@@ -45,10 +45,8 @@ const MaLoaiNguoiDungReducer = (state = initialState, action) => {
             return { ...state };
 
         case UPDATE_USER_BY_ADMIN:
-            console.log("UPDATE_USER_BY_ADMIN", payload);
             let newListUpdate = [...state.allUser];
             let indexUpdate = newListUpdate.findIndex((item) => item.taiKhoan === payload.taiKhoan);
-            console.log("newListUpdate", newListUpdate[indexUpdate], "payload", payload);
 
             state.allUser = newListUpdate;
             return { ...state };

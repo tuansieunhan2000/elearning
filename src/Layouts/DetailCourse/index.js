@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
@@ -9,12 +9,9 @@ import "./main.scss";
 export default function DetailCourse({ detailCourse }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const user = useSelector((state) => state.user.info) || {};
-    console.log("user", user);
     const handleRegisterCourse = () => {
         if (localStorage.getItem("userItem")) {
             let taiKhoan = JSON.parse(localStorage.getItem("userItem")).taiKhoan;
-            console.log("taiKhoan", taiKhoan);
             let data = {
                 taiKhoan: taiKhoan,
                 maKhoaHoc: detailCourse.maKhoaHoc,

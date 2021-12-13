@@ -48,5 +48,3 @@ export default function Customer() {
         </>
     );
 }
-
-// path={`${match.path}/detail/:id`}

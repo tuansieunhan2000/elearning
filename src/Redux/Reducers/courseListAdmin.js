@@ -21,7 +21,6 @@ const ManageUserByAdminReducer = (state = initialState, action) => {
             state.allCourse = payload;
             return { ...state };
         case FETCH_COURSE_LIST_PER_PAGE_ADMIN:
-            console.log(state);
             state.listCoursePerPageData = payload.items;
             state.listCoursePerPage = payload;
             return { ...state };
@@ -32,11 +31,9 @@ const ManageUserByAdminReducer = (state = initialState, action) => {
                 (item) => item.maKhoaHoc === payload.maKhoaHoc
             );
             if (indexNewList >= 0) {
-                console.log(1);
             }
             return { ...state };
         case DELETE_COURSE_BY_ADMIN:
-            console.log("payload", payload);
             let newList = [...state.listCoursePerPageData];
             let index = newList.findIndex((item) => item.maKhoaHoc === payload);
             newList.splice(index, 1);

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../../Components/LazyLoad";
-import { STATUS_ICON_QUESTION, STATUS_ICON_WARNING } from "../../../constants/status";
+import { STATUS_ICON_QUESTION } from "../../../constants/status";
 import { fetchCategory } from "../../../Redux/Actions/categoryAction";
 import { addCourse } from "../../../Redux/Actions/courseListAdmin";
 import { AddCourseSchema } from "../../../Services/CourseManagerService";
