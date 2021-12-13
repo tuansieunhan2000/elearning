@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import banner from "../../assets/img/cover.jpg";
 import "./main.scss";
 export default function Banner() {
-    let textInput = React.createRef(); // React use ref to get input value
+    const [search, setsearch] = useState("");
 
-    let onOnclickHandler = (e) => {
-        console.log(textInput.current.value);
-    };
     return (
         <div className="header__banner ">
             <div className="banner__img">
@@ -25,16 +23,19 @@ export default function Banner() {
                                 type="text"
                                 className="form-control"
                                 placeholder="What do you want to lean?"
-                                ref={textInput}
+                                onChange={(e) => {
+                                    setsearch(e.target.value);
+                                }}
                             />
                             <div className="input-group-append">
-                                <span
+                                <Link
+                                    to={`/courselist/search/${search}`}
                                     className="input-group-text"
                                     id="basic-addon2"
-                                    onClick={onOnclickHandler}
+                                    style={{ textDecoration: "none" }}
                                 >
-                                    <i className="fa fa-search" />
-                                </span>
+                                    <i className="fas fa-search"></i>
+                                </Link>
                             </div>
                         </div>
                     </form>

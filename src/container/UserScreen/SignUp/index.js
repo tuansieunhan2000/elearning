@@ -111,9 +111,9 @@ export default function SignUpScreen() {
                                 <option>GP03</option>
                             </select>
                         </div>
-                        <div className="text-center">
-                            <button className="btn btn-success" type="submit">
-                                Submit
+                        <div className="text-center pt-4">
+                            <button className="btn btn-prev p-2" type="submit">
+                                Đăng kí
                             </button>
                         </div>
                     </Form>

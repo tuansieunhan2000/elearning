@@ -13,6 +13,8 @@ import { fetchCategory } from "../../Redux/Actions/categoryAction";
 import { createAction } from "../../Redux/Actions";
 import { GET_USER_LOGIN } from "../../Redux/Types";
 import { useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
+import CourseListSearch from "./SearchCourse";
+import PageNotFound from "../PageNotFound";
 
 export default function Customer() {
     const dispatch = useDispatch();
@@ -25,7 +27,6 @@ export default function Customer() {
         fetchCourseByTypeDefaul("BackEnd");
         dispatch(createAction(GET_USER_LOGIN, JSON.parse(userInfo)));
     }, [dispatch, userInfo]);
-    console.log(`${match.url}detail/:id`);
     return (
         <>
             <Header />
@@ -33,9 +34,16 @@ export default function Customer() {
                 <Route exact path="/" component={HomeScreen} />
                 <Route exact path={`${match.url}detail/:id`} component={DetailScreen} />
                 <Route exact path={`${match.url}courselist/:type`} component={CourseList} />
+                <Route
+                    exact
+                    path={`${match.url}courselist/search/:search`}
+                    component={CourseListSearch}
+                />
+
                 <Route exact path={`${match.url}signup`} component={SignUpScreen} />
                 <Route exact path={`${match.url}signin`} component={SignInScreen} />
                 <Route exact path={`${match.url}profile`} component={ProfileScreen} />
+                <Route path="*" component={PageNotFound} />
             </Switch>
         </>
     );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CourseItem from "../../Components/CourseItem";
-
+import LoadingLazy from "../../Components/LazyLoad";
 import queryString from "query-string";
 import { fetchCoursePerPage } from "../../Redux/Actions/courseAction";
 import "./main.scss";
@@ -35,7 +35,9 @@ export default function AllCourseList() {
     return (
         <div>
             {!coursePerPage.items ? (
-                <>Still loading...</>
+                <>
+                    <LoadingLazy />
+                </>
             ) : (
                 <div className="container  pb-4">
                     <div className="row">

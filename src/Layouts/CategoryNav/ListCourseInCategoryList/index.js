@@ -23,9 +23,8 @@ export default function ListCourseInCategoryList({ item }) {
                         </h4>
                         <div className="item-title">
                             <div className="name_course">{limitDisplayName(item.tenKhoaHoc)}</div>
-                            <div className="item-content d-flex justify-content-between">
-                                <div className="ngayTao"> {item.ngayTao}</div>
-                                <div className="luotXem">Lượt xem :{item.luotXem}</div>
+                            <div className="item-content d-flex justify-content-center">
+                                <div className="luotXem">{item.ngayTao}</div>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,6 @@ const UserReducer = (state = initialState, action) => {
 
             return { ...state };
         case GET_USER_INFO:
-            console.log(action.payload);
             state.info = action.payload;
             return { ...state };
         case GET_USER_HEADERS:

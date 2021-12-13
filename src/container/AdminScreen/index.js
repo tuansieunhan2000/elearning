@@ -3,7 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Swal from "sweetalert2";
 import Navbar from "../../Components/Navbar";
+import PageNotFound from "../PageNotFound";
 import CourseManager from "./CourseManage";
+import EditCourseByAdmin from "./EditCourseByAdmin";
 import EditUserByAdmin from "./EditUserByAdmin";
 import HomeAdmin from "./HomeAdmin";
 import UserManager from "./UserManager";
@@ -36,7 +38,13 @@ export default function Admin() {
                         />
 
                         <Route exact path={`/admin/coursemanager`} component={CourseManager} />
+                        <Route
+                            exact
+                            path={`/admin/coursemanager/:maKhoaHoc`}
+                            component={EditCourseByAdmin}
+                        />
                         <Route exact path="/admin" component={HomeAdmin} />
+                        <Route exact path="*" component={PageNotFound} />
                     </Switch>
                 </>
             ) : (

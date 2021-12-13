@@ -6,6 +6,7 @@ import {
     FETCH_COURSE_LIST_SAME_CATEGORY,
     FETCH_DETAIL_COURCE,
     FETCH_SEARCH_COURSE,
+    FETCH_SEARCH_COURSES,
 } from "../Types";
 
 let initialState = {
@@ -16,6 +17,7 @@ let initialState = {
     coursePerPage: [],
     courseListDetail: [],
     searchCourse: [],
+    searchCourses: [],
 };
 
 const CourseReducer = (state = initialState, action) => {
@@ -23,6 +25,9 @@ const CourseReducer = (state = initialState, action) => {
     switch (type) {
         case FETCH_COURSE:
             state.course = payload;
+            return { ...state };
+        case FETCH_SEARCH_COURSES:
+            state.searchCourses = payload;
             return { ...state };
 
         case FETCH_DETAIL_COURCE:

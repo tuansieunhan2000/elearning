@@ -1,14 +1,18 @@
 import axios from "axios";
+import * as yup from "yup";
 import {
+    API_ADD_COURSE_BY_ADMIN,
+    API_ADD_IMG_COURSE_BY_ADMIN,
     API_COURSES,
     API_COURSES_PER_PAGE,
     API_DELETE_COURSE_BY_ADMIN,
     API_DETAIL_COURSES,
+    API_EDIT_COURSE_BY_ADMIN,
     API_GET_COURSE_LIST_BY_TYPE,
     API_SEARCH_COURSE,
+    API_SEARCH_COURSE_BY_ID,
 } from "../constants/api";
-import * as yup from "yup";
-import { getFileExtension, isImage } from "../constants/checkFileType";
+import { getFileExtension } from "../constants/checkFileType";
 
 // function getFileExtension(filename) {
 //     var ext = /^.+\.([^.]+)$/.exec(filename);
@@ -21,7 +25,7 @@ export const AddCourseSchema = yup.object().shape({
     moTa: yup.string().required("Vui lòng nhập mỗ tả"),
     ngayTao: yup.string().required("Vui lòng chọn ngày"),
     luotXem: yup.number().integer().min(0),
-    danhGia: yup.number().integer().min(0),
+    danhGia: yup.string().required("Vui lòng nhập đánh giá"),
     hinhAnh: yup
         .mixed()
         .required("Vui lòng chọn file")
@@ -35,6 +39,7 @@ export const AddCourseSchema = yup.object().shape({
                 case "jpeg":
                     //etc
                     return true;
+                default:
             }
             return false;
         }),
@@ -42,7 +47,18 @@ export const AddCourseSchema = yup.object().shape({
     maNhom: yup.string().required("Vui lòng chọn mã nhóm"),
     maDanhMucKhoaHoc: yup.string().required("Vui lòng chọn mã danh mục khoá học"),
 });
+export const EditCourseSchema = yup.object().shape({
+    maKhoaHoc: yup.string().required("Vui lòng nhập mã khoá học"),
+    biDanh: yup.string().required("Vui lòng nhập bí danh cho khoá học"),
+    tenKhoaHoc: yup.string().required("Vui lòng nhập tên khoá học"),
+    moTa: yup.string().required("Vui lòng nhập mỗ tả"),
+    ngayTao: yup.string().required("Vui lòng chọn ngày"),
+    luotXem: yup.number().integer().min(0),
+    danhGia: yup.number(),
 
+    maNhom: yup.string().required("Vui lòng chọn mã nhóm"),
+    maDanhMucKhoaHoc: yup.string().required("Vui lòng chọn mã danh mục khoá học"),
+});
 export default function CourseManagerService() {}
 
 CourseManagerService.prototype = {
@@ -68,6 +84,18 @@ CourseManagerService.prototype = {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
     },
     DeleteCourseByAmin(maKhoaHoc) {
-        return axios.delete(API_DELETE_COURSE_BY_ADMIN, { MaKhoaHoc: maKhoaHoc });
+        return axios.delete(`${API_DELETE_COURSE_BY_ADMIN}${maKhoaHoc}`);
+    },
+    AddCourseByAmin(data) {
+        return axios.post(API_ADD_COURSE_BY_ADMIN, data);
+    },
+    PostImgForCourse(formdata) {
+        return axios.post(API_ADD_IMG_COURSE_BY_ADMIN, { data: formdata });
+    },
+    SearchCourseByMaKhoaHoc(id) {
+        return axios.get(`${API_SEARCH_COURSE_BY_ID}${id}`);
+    },
+    EditCourseByAdmin(data) {
+        return axios.put(API_EDIT_COURSE_BY_ADMIN, data);
     },
 };

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingLazy from "../../../Components/LazyLoad";
 import ListUserPerPage from "../../../Layouts/UserListPerPage";
 import { GetMaNguoiDung } from "../../../Redux/Actions/userAction";
 import AddUser from "../AddUser";
@@ -50,7 +51,9 @@ export default function UserManager() {
                     </div>
                 </>
             ) : (
-                <>Loading</>
+                <>
+                    <LoadingLazy />
+                </>
             )}
         </>
     );

@@ -22,7 +22,9 @@ export default function CourseItem({ courseItem }) {
                         <p>Released: {courseItem.ngayTao}</p>
                     </div>
                 </div>
-                <h4 className="text-center">{courseItem.tenKhoaHoc}</h4>
+                <h4 className="text-center" style={{ fontSize: "16px",paddingTop :"8px" }}>
+                    {courseItem.tenKhoaHoc}
+                </h4>
             </div>
         </div>
     );

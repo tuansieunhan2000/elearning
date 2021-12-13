@@ -1,36 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../../Components/LazyLoad";
 import { fetchCategory } from "../../../Redux/Actions/categoryAction";
-import { addCourse } from "../../../Redux/Actions/courseListAdmin";
-import { AddCourseSchema } from "../../../Services/CourseManagerService";
-export default function AddCourse() {
+import { editCourse, searchCourse } from "../../../Redux/Actions/courseListAdmin";
+import { EditCourseSchema } from "../../../Services/CourseManagerService";
+export default function EditCourseByAdmin() {
     const dispatch = useDispatch();
-    let user = "";
-    if (localStorage.getItem("userItem")) {
-        user = JSON.parse(localStorage.getItem("userItem"));
-    }
+    const { maKhoaHoc } = useParams();
     const category = useSelector((state) => state.category.category);
-    const [data, setdata] = useState({
-        maKhoaHoc: "",
-        biDanh: "",
-        tenKhoaHoc: "",
-        moTa: "",
-        luotXem: 0,
-        danhGia: 0,
-        hinhAnh: "",
-        maNhom: "GP01",
-        ngayTao: "",
-        maDanhMucKhoaHoc: "BackEnd",
-        taiKhoanNguoiTao: user.taiKhoan,
-    });
+    const course = useSelector((state) => state.manageUserByAdminReducer.dataCourseEdit);
     useEffect(() => {
         dispatch(fetchCategory());
-    }, [dispatch]);
-
-    // const [data, setData] = useState();
+        dispatch(searchCourse(maKhoaHoc));
+    }, [dispatch, maKhoaHoc]);
 
     const mapOptionCategory = () => {
         return category.map((item, index) => {
@@ -41,72 +27,61 @@ export default function AddCourse() {
             );
         });
     };
-    // let formData = new FormData();
 
-    // const handleeChange = (e) => {
-    //     let target = e.target;
-    //     if (target.name === "hinhAnh") {
-    //         setData((data) => ({
-    //             ...data,
-    //             hinhAnh: e.target.files[0],
-    //         }));
-    //     } else {
-    //         setData((data) => ({
-    //             ...data,
-    //             [e.target.name]: e.target.value,
-    //         }));
-    //     }
-    // };
-    const handleAddUser = (value) => {
-        // var formData = new FormData();
-        // formData.append("file", data.hinhAnh);
-        // formData.append("tenKhoaHoc", data.tenKhoaHoc);
-
-        let form_data = new FormData();
-        for (var key in data) {
-            form_data.append(key, data[key]);
-        }
+    const handleEditCourse = (value) => {
+        console.log(value);
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Bạn có chắc chắn sửa không?",
+            text: "Bạn sẽ không thể phục hồi được",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(addCourse(value));
-                setdata({
-                    maKhoaHoc: "",
-                    biDanh: "",
-                    tenKhoaHoc: "",
-                    moTa: "",
-                    luotXem: 0,
-                    danhGia: 0,
-                    hinhAnh: "",
-                    maNhom: "GP01",
-                    ngayTao: "",
-                    maDanhMucKhoaHoc: "BackEnd",
-                    taiKhoanNguoiTao: user.taiKhoan,
-                });
-                // dispatch(addImgCourse(form_data));
-
-                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                dispatch(editCourse(value));
             }
         });
     };
 
     return (
         <>
-            {category ? (
+            {course &&
+            Object.keys(course).length !== 0 &&
+            Object.getPrototypeOf(course) === Object.prototype &&
+            category ? (
                 <>
-                    <div className="w-100  mx-auto ">
-                        <h4 className="header_course_list p-0 mt-4 mb-3 pb-3">Thêm khoá học</h4>
+                    <div className="w-100  mx-auto container">
+                        <h4 className="header_course_list  mt-5 mb-3">
+                            <Link to="/admin">
+                                <i className="fas fa-home"></i>
+                            </Link>
+                            <i class="fas fa-chevron-right"></i>
+                            <Link to="/admin/coursemanager" className="pr-3">
+                                Quản lý khoá học
+                            </Link>
+                            <i class="fas fa-chevron-right"></i>
+                            Cập nhật thông tin khoá học
+                        </h4>
                         <Formik
-                            initialValues={data || ""}
-                            validationSchema={AddCourseSchema}
-                            onSubmit={(value) => handleAddUser(value)}
+                            initialValues={
+                                {
+                                    maKhoaHoc: course.maKhoaHoc || "",
+                                    biDanh: course.biDanh || "",
+                                    tenKhoaHoc: course.tenKhoaHoc || "",
+                                    moTa: course.moTa || "",
+                                    luotXem: course.luotXem || "",
+                                    danhGia: course.moTa || "",
+                                    hinhAnh: course.hinhAnh || "",
+                                    maNhom: course.maNhom || "",
+                                    ngayTao: course.ngayTao || "",
+                                    maDanhMucKhoaHoc: course.danhMucKhoaHoc.maDanhMucKhoahoc || "",
+                                    taiKhoanNguoiTao: course.nguoiTao.taiKhoan || "",
+                                } || ""
+                            }
+                            validationSchema={EditCourseSchema}
+                            onSubmit={(value) => handleEditCourse(value)}
                         >
                             {({ handleChange, handleReset }) => (
                                 <Form>
@@ -119,7 +94,8 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="maKhoaHoc"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
+                                                        disabled
                                                     />
                                                     <ErrorMessage name="maKhoaHoc">
                                                         {(msg) => (
@@ -135,7 +111,10 @@ export default function AddCourse() {
                                                         className="form-control"
                                                         name="maDanhMucKhoaHoc"
                                                         component="select"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
+                                                        defaultValue={
+                                                            course.danhMucKhoaHoc.maDanhMucKhoahoc
+                                                        }
                                                     >
                                                         {mapOptionCategory()}
                                                     </select>
@@ -153,7 +132,7 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="tenKhoaHoc"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                     />
                                                     <ErrorMessage name="tenKhoaHoc">
                                                         {(msg) => (
@@ -168,7 +147,7 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="biDanh"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                     />
                                                     <ErrorMessage name="biDanh">
                                                         {(msg) => (
@@ -189,7 +168,7 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="luotXem"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                     />
                                                     <ErrorMessage name="luotXem">
                                                         {(msg) => (
@@ -203,7 +182,7 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="danhGia"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                     />
                                                     <ErrorMessage name="danhGia">
                                                         {(msg) => (
@@ -225,7 +204,7 @@ export default function AddCourse() {
                                                         className="form-control"
                                                         name="maNhom"
                                                         component="select"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                     >
                                                         <option value="GP01">GP01</option>
                                                         <option value="GP02">GP02</option>
@@ -237,12 +216,13 @@ export default function AddCourse() {
                                                 <div className="col-md-6 col-sm-12">
                                                     <label>Ngày taọ</label>
                                                     <Field
-                                                        type="date"
+                                                        type="text"
                                                         className="form-control"
                                                         name="ngayTao"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                         locate="pt-br"
                                                         format="dd-MM-yyyy"
+                                                        disabled
                                                     />
                                                     <ErrorMessage name="ngayTao">
                                                         {(msg) => (
@@ -258,15 +238,14 @@ export default function AddCourse() {
                                             <div className="row">
                                                 <div className="col-md-6 col-sm-12">
                                                     <div className="form-group pb-3">
-                                                        <label>Hình Ảnh</label>
-
+                                                        <label>Mô tả</label>
                                                         <Field
-                                                            type="file"
+                                                            type="text"
                                                             className="form-control"
-                                                            name="hinhAnh"
+                                                            name="moTa"
                                                             onChange={handleChange}
                                                         />
-                                                        <ErrorMessage name="hinhAnh">
+                                                        <ErrorMessage name="moTa">
                                                             {(msg) => (
                                                                 <div className="text-danger">
                                                                     {msg}
@@ -281,7 +260,7 @@ export default function AddCourse() {
                                                         type="text"
                                                         className="form-control"
                                                         name="taiKhoanNguoiTao"
-                                                        onChange={handleChange}
+                                                        onClick={handleChange}
                                                         disabled
                                                     />
                                                     <ErrorMessage name="taiKhoanNguoiTao">
@@ -294,18 +273,11 @@ export default function AddCourse() {
                                         </div>
                                     </div>
 
-                                    <div className="form-group pb-3">
-                                        <label>Mô tả</label>
-                                        <Field
-                                            type="text"
-                                            className="form-control"
-                                            name="moTa"
-                                            onChange={handleChange}
-                                        />
-                                        <ErrorMessage name="moTa">
-                                            {(msg) => <div className="text-danger">{msg}</div>}
-                                        </ErrorMessage>
-                                    </div>
+                                    {/* <div className="form-group pb-3">
+                                        <label>Hình Ảnh</label>
+
+                                        <img src={course.hinhAnh} alt="" />
+                                    </div> */}
 
                                     <div className="text-center ">
                                         <button className="btn-prev " type="submit">

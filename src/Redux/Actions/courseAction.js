@@ -8,6 +8,7 @@ import {
     FETCH_COURSE_LIST_SAME_CATEGORY,
     FETCH_DETAIL_COURCE,
     FETCH_SEARCH_COURSE,
+    FETCH_SEARCH_COURSES,
 } from "../Types";
 
 export const fetchDetailCourse = (id) => {
@@ -80,5 +81,19 @@ export const fetchSearchCourse = (tenKhoaHoc) => {
             .SearchCourse(tenKhoaHoc)
             .then((res) => dispatch(createAction(FETCH_SEARCH_COURSE, res.data)))
             .catch((err) => console.log(err));
+    };
+};
+export const fetchSearchCourses = (tenKhoaHoc) => {
+    return (dispatch) => {
+        courseService
+            .SearchCourses(tenKhoaHoc)
+            .then((res) => {
+                console.log(res.data);
+                dispatch(createAction(FETCH_SEARCH_COURSES, res.data));
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+                dispatch(createAction(FETCH_SEARCH_COURSES, []));
+            });
     };
 };

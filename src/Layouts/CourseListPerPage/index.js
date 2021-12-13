@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoadingLazy from "../../Components/LazyLoad";
 import { STATUS_ICON_QUESTION } from "../../constants/status";
 import { deleteCourse, fetchCoursePerPageAdmin } from "../../Redux/Actions/courseListAdmin";
 
@@ -78,7 +79,6 @@ export default function ListCoursePerPage() {
         for (const obj in course) {
             counters = obj;
         }
-        console.log(counters);
         if (counters === 0) {
             return (
                 <tr>
@@ -103,7 +103,7 @@ export default function ListCoursePerPage() {
                         <td>{item.danhMucKhoaHoc.tenDanhMucKhoaHoc}</td>
                         <td>{item.danhMucKhoaHoc.maDanhMucKhoahoc}</td>
                         <td>
-                            <Link to={`/admin/usermanager/${item.taiKhoan}`}>
+                            <Link to={`/admin/coursemanager/${item.maKhoaHoc}`}>
                                 <i className="fas fa-edit" style={{ color: "black" }}></i>
                             </Link>
                         </td>
@@ -122,7 +122,9 @@ export default function ListCoursePerPage() {
     return (
         <div>
             {!courseListPerPage ? (
-                <>Still loading...</>
+                <>
+                    <LoadingLazy />
+                </>
             ) : (
                 <div className="container mt-4">
                     <div className="row">

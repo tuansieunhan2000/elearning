@@ -5,6 +5,7 @@ import {
     API_DETAIL_COURSES,
     API_GET_COURSE_LIST_BY_TYPE,
     API_SEARCH_COURSE,
+    API_SEARCH_COURSES,
 } from "../constants/api";
 
 export default function CourseService() {}
@@ -30,5 +31,8 @@ CourseService.prototype = {
     },
     GetCourseListSameType(maDanhMuc) {
         return axios.get(`${API_GET_COURSE_LIST_BY_TYPE}${maDanhMuc}`);
+    },
+    SearchCourses(tenKhoaHoc) {
+        return axios.get(`${API_SEARCH_COURSES}${tenKhoaHoc}`);
     },
 };

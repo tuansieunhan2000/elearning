@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoadingLazy from "../../../Components/LazyLoad";
 import { GetMaNguoiDung } from "../../../Redux/Actions/userAction";
 import { getAllUserByAdminAction, updateUserByAdmin } from "../../../Redux/Actions/UserAdminAction";
 export default function EditUserByAdmin() {
@@ -67,11 +68,11 @@ export default function EditUserByAdmin() {
                             <Link to="/admin">
                                 <i className="fas fa-home"></i>
                             </Link>
-                            <span>/</span>
+                            <i class="fas fa-chevron-right"></i>
                             <Link to="/admin/usermanager" className="pr-3">
                                 Quản lý người dùng
                             </Link>
-                            <span>/</span>
+                            <i class="fas fa-chevron-right"></i>
                             Cập nhật thông tin người dùng
                         </h4>
 
@@ -92,72 +93,116 @@ export default function EditUserByAdmin() {
                                 validator={() => ({})}
                                 // validationSchema={EditUserSchema}
                             >
-                                {({ handleChange, handleSubmit, resetForm }) => (
+                                {({ handleChange, handleSubmit, handleReset }) => (
                                     <Form onSubmit={handleSubmit}>
-                                        <div className="form-group pb-3">
-                                            <label>Tài khoản</label>
-                                            <Field
-                                                type="text"
-                                                className="form-control"
-                                                name="taiKhoan"
-                                                onChange={handleChange}
-                                                disabled
-                                            />
-                                            <ErrorMessage name="taiKhoan">
-                                                {(msg) => <div className="text-danger">*{msg}</div>}
-                                            </ErrorMessage>
-                                        </div>
-                                        <div className="form-group pb-3">
-                                            <label>Mật Khẩu</label>
-                                            <Field
-                                                type={passwordShown ? "text" : "password"}
-                                                className="form-control "
-                                                id="positionInput"
-                                                name="matKhau"
-                                                onChange={handleChange}
-                                            />
+                                        <div className="row">
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Tài khoản</label>
+                                                <Field
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="taiKhoan"
+                                                    onChange={handleChange}
+                                                    disabled
+                                                />
+                                                <ErrorMessage name="taiKhoan">
+                                                    {(msg) => (
+                                                        <div className="text-danger">*{msg}</div>
+                                                    )}
+                                                </ErrorMessage>
+                                            </div>
 
-                                            {passwordShown ? (
-                                                <i
-                                                    className="fas fa-eye field-icon"
-                                                    onClick={togglePassword}
-                                                ></i>
-                                            ) : (
-                                                <i
-                                                    className="far fa-eye-slash field-icon"
-                                                    onClick={togglePassword}
-                                                ></i>
-                                            )}
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Mật Khẩu</label>
+                                                <Field
+                                                    type={passwordShown ? "text" : "password"}
+                                                    className="form-control "
+                                                    id="positionInput"
+                                                    name="matKhau"
+                                                    onChange={handleChange}
+                                                />
 
-                                            <ErrorMessage name="matKhau">
-                                                {(msg) => <div className="text-danger">{msg}</div>}
-                                            </ErrorMessage>
-                                        </div>
-                                        <div className="form-group pb-3">
-                                            <label>Họ tên</label>
+                                                {passwordShown ? (
+                                                    <i
+                                                        className="fas fa-eye field-icon"
+                                                        onClick={togglePassword}
+                                                    ></i>
+                                                ) : (
+                                                    <i
+                                                        className="far fa-eye-slash field-icon"
+                                                        onClick={togglePassword}
+                                                    ></i>
+                                                )}
 
-                                            <Field
-                                                type="text"
-                                                className="form-control"
-                                                name="hoTen"
-                                                onChange={handleChange}
-                                            />
-                                            <ErrorMessage name="hoTen">
-                                                {(msg) => <div className="text-danger">{msg}</div>}
-                                            </ErrorMessage>
+                                                <ErrorMessage name="matKhau">
+                                                    {(msg) => (
+                                                        <div className="text-danger">{msg}</div>
+                                                    )}
+                                                </ErrorMessage>
+                                            </div>
                                         </div>
-                                        <div className="form-group pb-3">
-                                            <label>Số điện thoại</label>
-                                            <Field
-                                                type="text"
-                                                className="form-control"
-                                                name="soDt"
-                                                onChange={handleChange}
-                                            />
-                                            <ErrorMessage name="soDt">
-                                                {(msg) => <div className="text-danger">{msg}</div>}
-                                            </ErrorMessage>
+                                        <div className="row">
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Họ tên</label>
+
+                                                <Field
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="hoTen"
+                                                    onChange={handleChange}
+                                                />
+                                                <ErrorMessage name="hoTen">
+                                                    {(msg) => (
+                                                        <div className="text-danger">{msg}</div>
+                                                    )}
+                                                </ErrorMessage>
+                                            </div>
+
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Số điện thoại</label>
+                                                <Field
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="soDt"
+                                                    onChange={handleChange}
+                                                />
+                                                <ErrorMessage name="soDt">
+                                                    {(msg) => (
+                                                        <div className="text-danger">{msg}</div>
+                                                    )}
+                                                </ErrorMessage>
+                                            </div>
                                         </div>
+
+                                        <div className="row">
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Mã loại người dùng</label>
+                                                <Field
+                                                    className="form-control"
+                                                    name="maLoaiNguoiDung"
+                                                    as="select"
+                                                >
+                                                    {mapOptionTypeUser()}
+                                                </Field>
+                                            </div>
+
+                                            <div className="col-md-6 col-sm-12">
+                                                <label>Mã lớp học</label>
+
+                                                <select
+                                                    id=""
+                                                    className="form-control"
+                                                    name="maNhom"
+                                                    component="select"
+                                                    onChange={handleChange}
+                                                >
+                                                    <option>GP01</option>
+                                                    <option>GP02</option>
+                                                    <option>GP03</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div className="form-group pb-3">
                                             <label>Email</label>
 
@@ -172,42 +217,14 @@ export default function EditUserByAdmin() {
                                                 {(msg) => <div className="text-danger">{msg}</div>}
                                             </ErrorMessage>
                                         </div>
-                                        <div className="form-group pb-3">
-                                            <label>Mã lớp học</label>
-
-                                            <select
-                                                id=""
-                                                className="form-control"
-                                                name="maNhom"
-                                                component="select"
-                                                onChange={handleChange}
-                                            >
-                                                <option>GP01</option>
-                                                <option>GP02</option>
-                                                <option>GP03</option>
-                                            </select>
-                                        </div>
-                                        <div className="form-group pb-3">
-                                            <label>Mã loại người dùng</label>
-                                            <Field
-                                                className="form-control"
-                                                name="maLoaiNguoiDung"
-                                                as="select"
-                                            >
-                                                {mapOptionTypeUser()}
-                                            </Field>
-                                        </div>
 
                                         <div className="text-center ">
                                             <button className="btn-prev " type="submit">
                                                 Submit
                                             </button>
-                                            <button
-                                                className="btn-prev "
-                                                type="button"
-                                                onClick={(e) => resetForm()}
-                                            >
-                                                Reset Form
+
+                                            <button className="btn-prev " onClick={handleReset}>
+                                                ĐẶT LẠI
                                             </button>
                                         </div>
                                     </Form>
@@ -217,7 +234,9 @@ export default function EditUserByAdmin() {
                     </div>
                 </>
             ) : (
-                <>Loading</>
+                <>
+                    <LoadingLazy />
+                </>
             )}
         </>
     );

@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import LoadingLazy from "../../../Components/LazyLoad";
 import ModalEditByUser from "../../../Components/Modal/ModalEditUserByUser";
+import { STATUS_ICON_QUESTION } from "../../../constants/status";
 import { GetInfoUser, GetMaNguoiDung, UserCancelCourse } from "../../../Redux/Actions/userAction";
 
 export default function ProfileScreen() {
@@ -23,7 +26,21 @@ export default function ProfileScreen() {
                 taiKhoan: taiKhoan,
                 maKhoaHoc: maKhoaHoc,
             };
-            dispatch(UserCancelCourse(data));
+            Swal.fire({
+                title: "Xoá khoá học",
+                iconHtml: STATUS_ICON_QUESTION,
+                text: "Bạn có chắc muốn xoá khoá học này không?",
+                customClass: {
+                    icon: "no-border",
+                },
+                showCancelButton: true,
+                confirmButtonText: "Chắc chắn!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Đã xoá!", "Khoá học đã được xoá.");
+                    dispatch(UserCancelCourse(data));
+                }
+            });
         }
     };
 
@@ -35,13 +52,20 @@ export default function ProfileScreen() {
                         <div className="card-body">
                             <h4
                                 className="card-title"
-                                style={{ height: "50px", overflow: "hidden" }}
+                                style={{
+                                    height: "50px",
+                                    overflow: "hidden",
+                                    fontFamily: "Times New Roman",
+                                }}
                             >
                                 {course.tenKhoaHoc}
                             </h4>
-                            <p className="card-text">{course.maKhoaHoc}</p>
                         </div>
-                        <button className="btn-prev" onClick={() => handleDelete(course.maKhoaHoc)}>
+                        <button
+                            className="btn-prev"
+                            style={{ fontFamily: "Times New Roman" }}
+                            onClick={() => handleDelete(course.maKhoaHoc)}
+                        >
                             Huỷ Khoá học
                         </button>
                     </div>
@@ -54,7 +78,9 @@ export default function ProfileScreen() {
             {maLoaiNguoiDung ? (
                 <>
                     {!user ? (
-                        <>Still loading...</>
+                        <>
+                            <LoadingLazy />
+                        </>
                     ) : (
                         <div>
                             <section className="same-category mb-lg-5 mt-lg-4 ">

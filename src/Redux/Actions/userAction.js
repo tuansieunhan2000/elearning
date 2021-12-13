@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { createAction } from ".";
+import { STATUS_ICON_ERROR, STATUS_ICON_SUCCESS } from "../../constants/status";
 import { userManagerService, userService } from "../../Services";
 import {
     FETCH_MA_LOAI_NGUOI_DUNG,
@@ -16,20 +17,25 @@ export const register = (value) => {
             .SignUp(value)
             .then((res) => {
                 Swal.fire({
-                    title: "Success!",
-                    text: "Tạo tài khoản mới thành công!!!!",
-                    type: "success",
-                    confirmButtonText: "OK",
+                    title: "Tạo tài khoản thành công",
+                    iconHtml: STATUS_ICON_SUCCESS,
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
+
                 return Promise.resolve();
             })
             .catch((err) => {
                 Swal.fire({
-                    title: "Error!",
+                    title: "Tạo tài khoản thất bại",
+                    iconHtml: STATUS_ICON_ERROR,
                     text: err.response.data,
-                    type: "error",
-                    confirmButtonText: "OK",
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
+
                 return Promise.reject();
             });
     };
@@ -46,11 +52,14 @@ export const Login = (value) => {
             })
             .catch((err) => {
                 Swal.fire({
-                    title: "Error!",
+                    title: "Đăng nhập thất bại",
+                    iconHtml: STATUS_ICON_ERROR,
                     text: err.response.data,
-                    type: "error",
-                    confirmButtonText: "OK",
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
+
                 return Promise.reject();
             });
     };
@@ -66,7 +75,6 @@ export const GetInfoUser = () => {
                 return Promise.resolve();
             })
             .catch((err) => {
-                console.log(err.response);
                 return Promise.reject();
             });
     };
@@ -80,7 +88,6 @@ export const GetMaNguoiDung = () => {
                 return Promise.resolve();
             })
             .catch((err) => {
-                console.log(err.response);
                 return Promise.reject();
             });
     };
@@ -92,24 +99,24 @@ export const UserRegisterCourse = (taiKhoan) => {
             userService
                 .RegisterCourse(taiKhoan)
                 .then((res) => {
-                    console.log(res);
                     Swal.fire({
-                        title: "Ghi danh thành công!",
-                        text: res.data,
-                        type: "success",
-
-                        confirmButtonText: "OK",
+                        title: "Thành công",
+                        iconHtml: STATUS_ICON_SUCCESS,
+                        text: "Ghi danh thành công!!!",
+                        customClass: {
+                            icon: "no-border",
+                        },
                     });
                     return Promise.resolve();
                 })
                 .catch((err) => {
                     Swal.fire({
-                        title: "Ghi danh thất bại!",
+                        title: "err",
+                        iconHtml: STATUS_ICON_ERROR,
                         text: err.response.data,
-                        type: "error",
-                        confirmButtonColor: "#ec5252",
-
-                        confirmButtonText: "OK",
+                        customClass: {
+                            icon: "no-border",
+                        },
                     });
 
                     return Promise.reject();
@@ -125,24 +132,27 @@ export const UserCancelCourse = (data) => {
             .CancelCourse(data)
             .then((res) => {
                 Swal.fire({
-                    title: "Bạn có chắc chắn không?",
-                    text: "Bạn sẽ không thể hoàn tác được!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#ec5252",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Tồi chắc!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire("Đã xoá!", "Khoá học đã được xoá.");
-                        dispatch(createAction(UPDATE_COURSE, data.maKhoaHoc));
-                    }
+                    title: "Thành công",
+                    iconHtml: STATUS_ICON_SUCCESS,
+                    text: "Bạn đã xoá thành công khoá học",
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
+                dispatch(createAction(UPDATE_COURSE, data.maKhoaHoc));
 
                 return Promise.resolve();
             })
             .catch((err) => {
-                console.log(err.response);
+                Swal.fire({
+                    title: "err",
+                    iconHtml: STATUS_ICON_ERROR,
+                    text: err.response.data,
+                    customClass: {
+                        icon: "no-border",
+                    },
+                });
+
                 return Promise.reject();
             });
     };
@@ -151,15 +161,26 @@ export const updateUserByUser = (data) => {
     return (dispatch) => {
         return userService
             .UpdateUser(data)
-
             .then((res) => {
-                console.log(res.data);
-                Swal.fire("Success", res.data);
+                Swal.fire({
+                    title: "Thành công",
+                    iconHtml: STATUS_ICON_SUCCESS,
+                    text: "Bạn đã sửa thông tin thành công !!!c",
+                    customClass: {
+                        icon: "no-border",
+                    },
+                });
                 dispatch(createAction(UPDATE_USER_BY_USER, data));
             })
             .catch((err) => {
-                console.log(err);
-                Swal.fire("Error", err.response);
+                Swal.fire({
+                    title: "err",
+                    iconHtml: STATUS_ICON_ERROR,
+                    text: err.response.data,
+                    customClass: {
+                        icon: "no-border",
+                    },
+                });
             });
     };
 };

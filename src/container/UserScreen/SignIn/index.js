@@ -43,7 +43,7 @@ export default function SignInScreen() {
                 onSubmit={(value) => handleLogin(value)}
                 render={(formikProps) => (
                     <Form>
-                        <div className="form-group">
+                        <div className="form-group pb-3">
                             <label>Tài khoản</label>
                             <Field
                                 type="text"
@@ -55,7 +55,7 @@ export default function SignInScreen() {
                                 {(msg) => <div className="text-danger">{msg}</div>}
                             </ErrorMessage>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group pb-3">
                             <label>Mật khẩu</label>
                             <Field
                                 type="password"
@@ -67,9 +67,11 @@ export default function SignInScreen() {
                                 {(msg) => <div className="text-danger">{msg}</div>}
                             </ErrorMessage>
                         </div>
-                        <button className="btn btn-success" type="submit">
-                            Đăng Nhập
-                        </button>
+                        <div className="text-center pt-4">
+                            <button className="btn btn-prev p-2" type="submit">
+                                Đăng Nhập
+                            </button>
+                        </div>
                     </Form>
                 )}
             />

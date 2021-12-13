@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import logo1 from "../../assets/img/logo-coral.svg";
@@ -26,11 +26,7 @@ export default function Header() {
         });
     };
 
-    let textInput = React.createRef(); // React use ref to get input value
-
-    let onOnclickHandler = (e) => {
-        console.log(textInput.current.value);
-    };
+    const [search, setsearch] = useState("");
 
     const fetchCategorySmallSreen = () => {
         return (
@@ -118,16 +114,19 @@ export default function Header() {
                                     placeholder="Search for anything"
                                     aria-label="Recipient's username"
                                     aria-describedby="basic-addon2"
-                                    ref={textInput}
+                                    onChange={(e) => {
+                                        setsearch(e.target.value);
+                                    }}
                                 />
                                 <div className="input-group-append">
-                                    <span
+                                    <Link
+                                        to={`/courselist/search/${search}`}
                                         className="input-group-text"
                                         id="basic-addon2"
-                                        onClick={onOnclickHandler}
+                                        style={{ textDecoration: "none" }}
                                     >
-                                        <i className="fa fa-search" />
-                                    </span>
+                                        <i className=" fas fa-search"></i>
+                                    </Link>
                                 </div>
                             </div>
                         </form>

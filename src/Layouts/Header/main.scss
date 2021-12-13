@@ -74,10 +74,13 @@ header {
             }
             &:focus + .input-group-append {
                 .input-group-text {
+                    text-decoration: none;
+
                     background-color: $color-white-0;
                     // border-top: 1px solid $color-gray-3;
                     // border-right: 1px solid $color-gray-3;
                     // border-bottom: 1px solid $color-gray-3;
+                  
                 }
                 &:hover {
                     .input-group-text {

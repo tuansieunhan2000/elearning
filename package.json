@@ -2,6 +2,8 @@
   "name": "elearning",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://elearning0706.cybersoft.edu.vn/api",
+  "homepage": "http://localhost:3000/",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@testing-library/jest-dom": "^5.15.0",
@@ -57,5 +59,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.1"
   }
 }

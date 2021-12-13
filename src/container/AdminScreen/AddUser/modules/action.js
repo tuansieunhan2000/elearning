@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { STATUS_ICON_ERROR, STATUS_ICON_SUCCESS } from "../../../../constants/status";
 import { userManagerService } from "../../../../Services";
 import * as ActionType from "./constants";
 
@@ -10,16 +11,22 @@ export const actAddUserApi = (user) => {
             .then((result) => {
                 dispatch(actAddUserSuccess(result.data));
                 Swal.fire({
-                    type: "success",
                     title: "Thêm thành công",
+                    iconHtml: STATUS_ICON_SUCCESS,
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
             })
             .catch((err) => {
                 dispatch(actAddUserFailed(err));
                 Swal.fire({
-                    icon: "error",
                     title: "Thêm thất bại",
+                    iconHtml: STATUS_ICON_ERROR,
                     text: "Tài khoản hoặc email đã tồn tại",
+                    customClass: {
+                        icon: "no-border",
+                    },
                 });
             });
     };

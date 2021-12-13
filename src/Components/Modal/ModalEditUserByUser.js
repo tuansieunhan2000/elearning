@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { STATUS_ICON_WARNING } from "../../constants/status";
 import { updateUserByUser } from "../../Redux/Actions/userAction";
 import { AddUserSchema } from "../../Services/UserManagerService";
 import "./ModalEditUserByUser.scss";
@@ -17,11 +18,12 @@ const ModalEditByUser = ({ item, maLoaiNguoiDung }) => {
         console.log(value);
         Swal.fire({
             title: "Bạn có chắc chắn sửa không?",
+            iconHtml: STATUS_ICON_WARNING,
             text: "Bạn sẽ không thể phục hồi được",
-            icon: "warning",
+            customClass: {
+                icon: "no-border",
+            },
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {

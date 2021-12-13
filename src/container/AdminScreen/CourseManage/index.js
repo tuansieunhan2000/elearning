@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingLazy from "../../../Components/LazyLoad";
 import ListCoursePerPage from "../../../Layouts/CourseListPerPage";
 import { GetMaNguoiDung } from "../../../Redux/Actions/userAction";
 import AddCourse from "../AddCourseByAdmin";
@@ -51,7 +52,9 @@ export default function CourseManager() {
                     </div>
                 </>
             ) : (
-                <>Loading</>
+                <>
+                    <LoadingLazy />
+                </>
             )}
         </>
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LoadingLazy from "../../Components/LazyLoad";
 import "./main.scss";
 export default function ListCourseByCategory({ courseListByCategory }) {
     console.log("courseListByCategory", courseListByCategory);
@@ -34,7 +35,9 @@ export default function ListCourseByCategory({ courseListByCategory }) {
     return (
         <div>
             {courseListByCategory === "" ? (
-                <>Still loading...</>
+                <>
+                    <LoadingLazy />
+                </>
             ) : (
                 <section className="new">
                     <div className="container">
