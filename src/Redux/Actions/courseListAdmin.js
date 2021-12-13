@@ -15,12 +15,10 @@ export const fetchCoursePerPageAdmin = (paranms) => {
         courseManagerService
             .GetCourseListPerPage(paranms)
             .then((res) => {
-                console.log(res.data);
                 dispatch(createAction(FETCH_COURSE_LIST_PER_PAGE_ADMIN, res.data));
             })
             .catch((err) => {
                 dispatch(createAction(FETCH_COURSE_LIST_PER_PAGE_ADMIN, err.response.data));
-                console.log(err.response.data);
             });
     };
 };
@@ -29,12 +27,9 @@ export const getAllCourseByAdminAction = () => {
         courseManagerService
             .AllCourse()
             .then((res) => {
-                console.log(res.data);
                 dispatch(createAction(FETCH_ALL_COURSE_BY_ADMIN, res.data));
             })
-            .catch((err) => {
-                console.log(err.response.data);
-            });
+            .catch((err) => {});
     };
 };
 
@@ -80,16 +75,14 @@ export const addCourse = (paranms) => {
                         icon: "no-border",
                     },
                 });
-                console.log(res.data);
                 dispatch(createAction(ADD_NEW_COURSE_BY_ADMIN, res.data));
             })
             .catch((err) => {
-                console.log(err.response);
                 // dispatch(createAction(FETCH_COURSE_LIST_PER_PAGE_ADMIN, err.response.data));
                 Swal.fire({
                     title: "err",
                     iconHtml: STATUS_ICON_ERROR,
-                    text: "Thêm khoá học thất bại",
+                    text: err.response.data,
                     customClass: {
                         icon: "no-border",
                     },

@@ -51,9 +51,9 @@ export default function ProfileScreen() {
                     <div className="card">
                         <div className="card-body">
                             <h4
-                                className="card-title"
+                                className="card-title text-center"
                                 style={{
-                                    height: "50px",
+                                    height: "30px",
                                     overflow: "hidden",
                                     fontFamily: "Times New Roman",
                                 }}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../Components/LazyLoad";
-import { STATUS_ICON_QUESTION } from "../../constants/status";
+import { STATUS_ICON_QUESTION, STATUS_ICON_WARNING } from "../../constants/status";
 import { deleteCourse, fetchCoursePerPageAdmin } from "../../Redux/Actions/courseListAdmin";
 
 export default function ListCoursePerPage() {
@@ -58,15 +58,13 @@ export default function ListCoursePerPage() {
         // console.log("allEmojiShotcut", allEmojiShotcut[1]);
         Swal.fire({
             title: "Bạn có chắc chắn xoá không?",
+            iconHtml: STATUS_ICON_WARNING,
             text: "Bạn sẽ không thể phục hồi được",
-            iconHtml: STATUS_ICON_QUESTION,
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Chắc chắn",
             customClass: {
                 icon: "no-border",
             },
+            showCancelButton: true,
+            confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(deleteCourse(taikhoan));

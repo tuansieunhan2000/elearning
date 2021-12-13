@@ -54,7 +54,7 @@ const ModalEditByUser = ({ item, maLoaiNguoiDung }) => {
             </div>
             <Modal show={popup} onHide={modalClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Sửa thông tin ngừoi dùng</Modal.Title>
+                    <Modal.Title>Sửa thông tin người dùng</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {item ? (
@@ -182,14 +182,14 @@ const ModalEditByUser = ({ item, maLoaiNguoiDung }) => {
 
                                         <div className="text-center ">
                                             <button className="btn-prev " type="submit">
-                                                Submit
+                                                Sửa
                                             </button>
                                             <button
                                                 className="btn-prev "
                                                 type="button"
                                                 onClick={(e) => resetForm()}
                                             >
-                                                Reset Form
+                                               Đặt lại Form
                                             </button>
                                         </div>
                                     </Form>

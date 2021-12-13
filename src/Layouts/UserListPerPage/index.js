@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { STATUS_ICON_WARNING } from "../../constants/status";
 import { deleteUserByAdmin, fetchUserPerPage } from "../../Redux/Actions/UserAdminAction";
 
 // import "./main.scss";
@@ -53,11 +54,12 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
     const handleDeleteUser = (taikhoan) => {
         Swal.fire({
             title: "Bạn có chắc chắn xoá không?",
+            iconHtml: STATUS_ICON_WARNING,
             text: "Bạn sẽ không thể phục hồi được",
-            icon: "warning",
+            customClass: {
+                icon: "no-border",
+            },
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {

@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../../Components/LazyLoad";
+import { STATUS_ICON_WARNING } from "../../../constants/status";
 import { fetchCategory } from "../../../Redux/Actions/categoryAction";
 import { editCourse, searchCourse } from "../../../Redux/Actions/courseListAdmin";
 import { EditCourseSchema } from "../../../Services/CourseManagerService";
@@ -31,12 +32,14 @@ export default function EditCourseByAdmin() {
     const handleEditCourse = (value) => {
         console.log(value);
         Swal.fire({
-            title: "Bạn có chắc chắn sửa không?",
+            title: "Bạn có chắc chắn sửa khoá học không?",
             text: "Bạn sẽ không thể phục hồi được",
-            icon: "warning",
+
+            iconHtml: STATUS_ICON_WARNING,
+            customClass: {
+                icon: "no-border",
+            },
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {

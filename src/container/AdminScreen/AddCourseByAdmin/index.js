@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import LoadingLazy from "../../../Components/LazyLoad";
+import { STATUS_ICON_QUESTION, STATUS_ICON_WARNING } from "../../../constants/status";
 import { fetchCategory } from "../../../Redux/Actions/categoryAction";
 import { addCourse } from "../../../Redux/Actions/courseListAdmin";
 import { AddCourseSchema } from "../../../Services/CourseManagerService";
@@ -67,13 +68,13 @@ export default function AddCourse() {
             form_data.append(key, data[key]);
         }
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
+            title: "Bạn có chắc chắn thêm khoá học không?",
+            iconHtml: STATUS_ICON_QUESTION,
+            customClass: {
+                icon: "no-border",
+            },
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Chắc chắn",
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(addCourse(value));
@@ -309,11 +310,11 @@ export default function AddCourse() {
 
                                     <div className="text-center ">
                                         <button className="btn-prev " type="submit">
-                                            Submit
+                                           Thêm khoá học
                                         </button>
 
                                         <button className="btn-prev " onClick={handleReset}>
-                                            ĐẶT LẠI
+                                           Đặt lại
                                         </button>
                                     </div>
                                 </Form>
