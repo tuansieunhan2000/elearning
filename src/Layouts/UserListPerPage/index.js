@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoadingLazy from "../../Components/LazyLoad";
 import { STATUS_ICON_WARNING } from "../../constants/status";
 import { deleteUserByAdmin, fetchUserPerPage } from "../../Redux/Actions/UserAdminAction";
 
@@ -113,7 +114,9 @@ export default function ListUserPerPage({ maLoaiNguoiDung }) {
     return (
         <div>
             {!userListPerPage.items ? (
-                <>Still loading...</>
+                <>
+                    <LoadingLazy />
+                </>
             ) : (
                 <div className="container mt-4">
                     <div className="row">

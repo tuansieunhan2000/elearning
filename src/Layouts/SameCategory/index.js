@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import LoadingLazy from "../../Components/LazyLoad";
 import { fetchCourseSameCategory } from "../../Redux/Actions/courseAction";
 
 SameCategory.propTypes = {
@@ -104,7 +105,9 @@ export default function SameCategory({ DanhMucKhoahoc }) {
     return (
         <div>
             {course === "" ? (
-                <>Still loading...</>
+                <>
+                    <LoadingLazy />
+                </>
             ) : (
                 <div>
                     <section className="same-category mb-lg-5 mt-lg-4 ">

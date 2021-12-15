@@ -13,7 +13,6 @@ export default function ListCoursePerPage() {
         (state) => state.manageUserByAdminReducer.listCoursePerPage
     );
     const course = useSelector((state) => state.manageUserByAdminReducer.listCoursePerPageData);
-    console.log("courseListPerPage", courseListPerPage);
     const [search, setsearch] = useState("");
     const [filters, setFilters] = useState({
         course,
