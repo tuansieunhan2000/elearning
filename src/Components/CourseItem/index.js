@@ -14,12 +14,9 @@ export default function CourseItem({ courseItem }) {
                             alt=""
                         />
                         <div className="info d-flex justify-content-center align-items-center flex-column position-absolute text-white">
-                            <Link
-                                to={`/detail/${courseItem.maKhoaHoc}`}
-                                className="d-block mt-3 mb-2 text-white text-decoration-none"
-                            >
+                            <p className="d-block mt-3 mb-2 text-white text-decoration-none">
                                 Chi tiết
-                            </Link>
+                            </p>
                             <p>Released: {courseItem.ngayTao}</p>
                         </div>
                     </div>

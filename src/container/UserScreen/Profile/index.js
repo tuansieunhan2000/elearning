@@ -53,7 +53,7 @@ export default function ProfileScreen() {
                             <h4
                                 className="card-title text-center"
                                 style={{
-                                    height: "30px",
+                                    height: "60px",
                                     overflow: "hidden",
                                     fontFamily: "Times New Roman",
                                 }}
@@ -138,7 +138,9 @@ export default function ProfileScreen() {
                                                 maLoaiNguoiDung={maLoaiNguoiDung}
                                             />
                                         </div>
-                                        <h3>Khoá học đã đăng kí</h3>
+                                        <h1 className="header_course_list pb-3 mb-4">
+                                            Khoá học đã đăng kí
+                                        </h1>
                                         <div className="row">
                                             {!user.chiTietKhoaHocGhiDanh ? (
                                                 <>Bạn chưa đăng kí khoá học nào</>
